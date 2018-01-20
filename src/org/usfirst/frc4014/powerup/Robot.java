@@ -42,7 +42,7 @@ public class Robot extends TimedRobot {
         // Add commands to Autonomous Sendable Chooser
         chooser.addDefault("Autonomous Command", new AutonomousCommand());
 
-        SmartDashboard.putData("Auto mode", chooser);
+        SmartDashboard.putData("Autonomous mode chooser", chooser);
     }
 
     /**
