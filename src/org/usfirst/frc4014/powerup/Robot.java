@@ -30,14 +30,10 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-        RobotMap.init();
-        driveTrain = new DriveTrain();
-
-        // OI must be constructed after subsystems. If the OI creates Commands
-        // (which it very likely will), subsystems are not guaranteed to be
-        // constructed yet. Thus, their requires() statements may grab null
-        // pointers. Bad news. Don't move it.
+    	  // since oi is constructed before subsystems, it must not contain any commands
         oi = new OI();
+        RobotMap.init();
+        driveTrain = new DriveTrain(oi);
 
         // Add commands to Autonomous Sendable Chooser
         chooser.addDefault("Autonomous Command", new AutonomousCommand());
@@ -88,8 +84,6 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopPeriodic() {
-    		double x = oi.getDriverJoystick().getX();
-		RobotMap.driveTrainDifferentialDrive.tankDrive(x, x);
         Scheduler.getInstance().run();
     }
 }

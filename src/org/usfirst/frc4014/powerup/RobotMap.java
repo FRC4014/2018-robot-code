@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * floating around.
  */
 public class RobotMap {
-    public static WPI_TalonSRX driveTrainLeftMotor;
-    public static WPI_TalonSRX driveTrainRightMotor;
+    private static WPI_TalonSRX driveTrainLeftMotor;
+    private static WPI_TalonSRX driveTrainRightMotor;
     public static DifferentialDrive driveTrainDifferentialDrive;
 
     public static void init() {
