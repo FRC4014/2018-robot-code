@@ -30,4 +30,8 @@ public class DriveTrain extends Subsystem {
     public void drive(Joystick joystick) {
     	RobotMap.driveTrainDifferentialDrive.arcadeDrive(joystick.getY(), joystick.getTwist());
     }
+    
+    public void drive(double speed) {
+    	RobotMap.driveTrainDifferentialDrive.arcadeDrive(speed, 0);
+    }
 }

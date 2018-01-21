@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc4014.powerup.autonomous.AutonomousCommand;
+import org.usfirst.frc4014.powerup.autonomous.DriveByTime;
 import org.usfirst.frc4014.powerup.drivetrain.DriveTrain;
 
 /**
@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
         driveTrain = new DriveTrain(oi);
 
         // Add commands to Autonomous Sendable Chooser
-        chooser.addDefault("Autonomous Command", new AutonomousCommand());
+        chooser.addDefault("Drive By Time", new DriveByTime(driveTrain, 1, 3));
 
         SmartDashboard.putData("Autonomous mode chooser", chooser);
     }
@@ -58,7 +58,6 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         autonomousCommand = chooser.getSelected();
-        // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
     }
 
