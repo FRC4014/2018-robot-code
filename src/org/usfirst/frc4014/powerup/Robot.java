@@ -1,5 +1,6 @@
 package org.usfirst.frc4014.powerup;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -23,6 +24,8 @@ public class Robot extends TimedRobot {
 
     public static OI oi;
     public static DriveTrain driveTrain;
+    
+    public boolean isAllySwitchOnLeft;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -52,6 +55,14 @@ public class Robot extends TimedRobot {
 
     @Override
     public void disabledPeriodic() {
+    		String gameData;
+    		gameData = DriverStation.getInstance().getGameSpecificMessage();
+    		if(gameData.charAt(0) == 'L')
+    		{
+    			isAllySwitchOnLeft = true;
+    		} else {
+    			isAllySwitchOnLeft = false;
+    		}
         Scheduler.getInstance().run();
     }
 
