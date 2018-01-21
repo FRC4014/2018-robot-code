@@ -23,8 +23,8 @@ public class RobotMap {
     		// We could have a CANSettings.java that has constants that clearly show 
     		// the needed configuration so whoever sets up the CAN can look in one place 
     		// rather than hunting though the robot code.
-        driveTrainLeftMotor = new WPI_TalonSRX(0);
-        driveTrainRightMotor = new WPI_TalonSRX(1);
+        driveTrainLeftMotor = new WPI_TalonSRX(9);
+        driveTrainRightMotor = new WPI_TalonSRX(8);
 
         driveTrainDifferentialDrive = new DifferentialDrive(driveTrainRightMotor, driveTrainLeftMotor);
 
@@ -34,8 +34,8 @@ public class RobotMap {
         // RobotBuilder generated this next line that uses deprecated library code. We can do better.
         // LiveWindow.addActuator("DriveTrain", "Differential Drive", driveTrainDifferentialDrive);
         
-        driveTrainDifferentialDrive.setSafetyEnabled(true);
-        driveTrainDifferentialDrive.setExpiration(0.1);
-        driveTrainDifferentialDrive.setMaxOutput(1.0);
+//        driveTrainDifferentialDrive.setSafetyEnabled(true);
+//        driveTrainDifferentialDrive.setExpiration(0.1);
+//        driveTrainDifferentialDrive.setMaxOutput(1.0);
     }
 }
