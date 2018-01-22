@@ -26,6 +26,7 @@ public class Robot extends TimedRobot {
     public static DriveTrain driveTrain;
     
     public boolean isAllySwitchOnLeft;
+    public boolean isAllyScaleOnLeft;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -62,6 +63,13 @@ public class Robot extends TimedRobot {
     			isAllySwitchOnLeft = true;
     		} else {
     			isAllySwitchOnLeft = false;
+    		}
+    		
+    		if(gameData.charAt(1) == 'L')
+    		{
+    			isAllyScaleOnLeft = true;
+    		} else {
+    			isAllyScaleOnLeft = false;
     		}
         Scheduler.getInstance().run();
     }
