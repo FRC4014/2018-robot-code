@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveByDistance extends Command{
 
+	
+	
 	private static double WHEEL_DIAMETER = 6;
 	private static double GEAR_RATIO = 5.45;
 	private static double PULSES_PER_ROTATION = 4;
@@ -22,7 +24,11 @@ public class DriveByDistance extends Command{
 		this.speed = speed;
 		this.distance = distance;
 	}
-	 
+	
+	protected void initialize() {
+		driveTrain.resetEncoders();
+	}
+	
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub

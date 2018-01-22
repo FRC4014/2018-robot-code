@@ -34,4 +34,9 @@ public class DriveTrain extends Subsystem {
     public void drive(double speed) {
     	RobotMap.driveTrainDifferentialDrive.arcadeDrive(speed, 0);
     }
+
+	public void resetEncoders() {
+		// TODO Auto-generated method stub
+		
+	}
 }

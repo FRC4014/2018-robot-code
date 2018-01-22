@@ -2,6 +2,7 @@ package org.usfirst.frc4014.powerup;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -16,7 +17,10 @@ public class RobotMap {
     private static WPI_TalonSRX driveTrainLeftMotor;
     private static WPI_TalonSRX driveTrainRightMotor;
     public static DifferentialDrive driveTrainDifferentialDrive;
-
+    
+    public static Encoder leftEncoder;
+    public static Encoder rightEncoder;
+    
     public static void init() {
     		// The numbers of these WPI_TalonSRXs have to match the CAN configuration.
     		// Other things will be on the CAN bus too.
@@ -37,5 +41,8 @@ public class RobotMap {
 //        driveTrainDifferentialDrive.setSafetyEnabled(true);
 //        driveTrainDifferentialDrive.setExpiration(0.1);
 //        driveTrainDifferentialDrive.setMaxOutput(1.0);
+        
+        leftEncoder = new Encoder(DPIO.LEFT_ENCODER_A_CHANNEL, DPIO.LEFT_ENCODER_B_CHANNEL, false, Encoder.EncodingType.k4X);
+        rightEncoder = new Encoder(DPIO.RIGHT_ENCODER_A_CHANNEL, DPIO.RIGHT_ENCODER_B_CHANNEL, true, Encoder.EncodingType.k4X);
     }
 }
