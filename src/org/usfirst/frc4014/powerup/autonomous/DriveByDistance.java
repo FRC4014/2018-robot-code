@@ -8,11 +8,7 @@ public class DriveByDistance extends Command{
 
 	
 	
-	private static double WHEEL_DIAMETER = 6;
-	private static double GEAR_RATIO = 5.45;
-	private static double PULSES_PER_ROTATION = 4;
-	private static double DISTANCE_PER_PULSE = 
-			Math.PI * WHEEL_DIAMETER / GEAR_RATIO * PULSES_PER_ROTATION;
+
 
 	private final DriveTrain driveTrain;
 	
@@ -29,13 +25,15 @@ public class DriveByDistance extends Command{
 		driveTrain.resetEncoders();
 	}
 	
-	int count = sampleEncoder.get();
-	sampleEncoder.getDistance();
+	@Override
+	protected void execute() {
+		driveTrain.drive(speed);
+	}
 	
 	@Override
 	protected boolean isFinished() {
 		// TODO: this is just a placeholder.... need to have it based on target distance etc.
-		return driveTrain.getRightWheelDistance() > distance;
+		return driveTrain.getRightWheelDistance() >= distance;
 	}
 
 }

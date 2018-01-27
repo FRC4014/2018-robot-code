@@ -51,7 +51,7 @@ public class RobotMap {
 //        driveTrainDifferentialDrive.setExpiration(0.1);
 //        driveTrainDifferentialDrive.setMaxOutput(1.0);
         
-//        leftEncoder = new Encoder(DPIO.LEFT_ENCODER_A_CHANNEL, DPIO.LEFT_ENCODER_B_CHANNEL, false, Encoder.EncodingType.k4X);
-//        rightEncoder = new Encoder(DPIO.RIGHT_ENCODER_A_CHANNEL, DPIO.RIGHT_ENCODER_B_CHANNEL, true, Encoder.EncodingType.k4X);
+        leftEncoder = new Encoder(DPIO.LEFT_ENCODER_A_CHANNEL, DPIO.LEFT_ENCODER_B_CHANNEL, true, Encoder.EncodingType.k4X);
+        rightEncoder = new Encoder(DPIO.RIGHT_ENCODER_A_CHANNEL, DPIO.RIGHT_ENCODER_B_CHANNEL, false, Encoder.EncodingType.k4X);
     }
 }

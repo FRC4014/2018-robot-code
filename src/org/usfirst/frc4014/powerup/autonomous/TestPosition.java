@@ -6,6 +6,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class TestPosition extends CommandGroup{
 	public TestPosition (DriveTrain driveTrain){
-		addSequential (new DriveByDistance(driveTrain, .5, 10));
+		addSequential (new DriveByDistance(driveTrain, 1, 10));
 	}
 }

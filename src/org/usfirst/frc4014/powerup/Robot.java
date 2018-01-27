@@ -7,7 +7,9 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc4014.powerup.autonomous.DriveByDistance;
 import org.usfirst.frc4014.powerup.autonomous.DriveByTime;
+import org.usfirst.frc4014.powerup.autonomous.TestPosition;
 import org.usfirst.frc4014.powerup.drivetrain.DriveTrain;
 
 /**
@@ -41,6 +43,7 @@ public class Robot extends TimedRobot {
 
         // Add commands to Autonomous Sendable Chooser
         chooser.addDefault("Drive By Time", new DriveByTime(driveTrain, 1, 3));
+        chooser.addObject("test", new DriveByDistance(driveTrain, .5, 10));
 
         SmartDashboard.putData("Autonomous mode chooser", chooser);
     }

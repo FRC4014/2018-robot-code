@@ -32,16 +32,21 @@ public class DriveTrain extends Subsystem {
     }
     
     public void drive(double speed) {
-    	RobotMap.driveTrainDifferentialDrive.arcadeDrive(speed, 0);
+    	RobotMap.driveTrainDifferentialDrive.arcadeDrive(-speed, 0);
     }
 
 	public void resetEncoders() {
 		RobotMap.leftEncoder.reset();
 		RobotMap.rightEncoder.reset();
 	}
+	private static double WHEEL_DIAMETER = 6;
+	private static double GEAR_RATIO = 5.45;
+	private static double PULSES_PER_ROTATION = 4;
+	private static double DISTANCE_PER_PULSE = 
+			Math.PI * WHEEL_DIAMETER / GEAR_RATIO * PULSES_PER_ROTATION;
 	
 	public double getRightWheelDistance() {
 		// TODO: this is just a placeholder ... need to calculate distance based on pulses or something
-		return RobotMap.rightEncoder.getDistance();
+		return (RobotMap.rightEncoder.getDistance()) * DISTANCE_PER_PULSE;
 	}
 }
