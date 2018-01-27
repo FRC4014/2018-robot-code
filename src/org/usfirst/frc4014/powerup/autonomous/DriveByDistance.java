@@ -19,21 +19,27 @@ public class DriveByDistance extends Command{
 		this.driveTrain = driveTrain;
 		this.speed = speed;
 		this.distance = distance;
+		requires(driveTrain);
 	}
+
 	@Override
 	protected void initialize() {
+		System.out.println("DriveByDistance.initialize()");
 		driveTrain.resetEncoders();
 	}
 	
 	@Override
 	protected void execute() {
+		System.out.println("DriveByDistance.execute()");
 		driveTrain.drive(speed);
 	}
 	
 	@Override
 	protected boolean isFinished() {
 		// TODO: this is just a placeholder.... need to have it based on target distance etc.
-		return driveTrain.getRightWheelDistance() >= distance;
+		boolean finished = driveTrain.getRightWheelDistance() >= distance;
+		System.out.println("DriveByDistance.isFinished(): " + finished);
+		return finished;
 	}
 
 }
