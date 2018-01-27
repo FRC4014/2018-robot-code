@@ -36,7 +36,12 @@ public class DriveTrain extends Subsystem {
     }
 
 	public void resetEncoders() {
-		// TODO Auto-generated method stub
-		
+		RobotMap.leftEncoder.reset();
+		RobotMap.rightEncoder.reset();
+	}
+	
+	public double getRightWheelDistance() {
+		// TODO: this is just a placeholder ... need to calculate distance based on pulses or something
+		return RobotMap.rightEncoder.getDistance();
 	}
 }

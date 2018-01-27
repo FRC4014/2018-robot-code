@@ -24,15 +24,18 @@ public class DriveByDistance extends Command{
 		this.speed = speed;
 		this.distance = distance;
 	}
-	
+	@Override
 	protected void initialize() {
 		driveTrain.resetEncoders();
 	}
 	
+	int count = sampleEncoder.get();
+	sampleEncoder.getDistance();
+	
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
-		return false;
+		// TODO: this is just a placeholder.... need to have it based on target distance etc.
+		return driveTrain.getRightWheelDistance() > distance;
 	}
 
 }
