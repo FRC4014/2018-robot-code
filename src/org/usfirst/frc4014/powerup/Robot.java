@@ -56,26 +56,26 @@ public class Robot extends TimedRobot {
 
     @Override
     public void disabledPeriodic() {
-//    		String gameData;
-//    		gameData = DriverStation.getInstance().getGameSpecificMessage();
-//    		if(gameData.charAt(0) == 'L')
-//    		{
-//    			isAllySwitchOnLeft = true;
-//    		} else {
-//    			isAllySwitchOnLeft = false;
-//    		}
-//    		
-//    		if(gameData.charAt(1) == 'L')
-//    		{
-//    			isAllyScaleOnLeft = true;
-//    		} else {
-//    			isAllyScaleOnLeft = false;
-//    		}
         Scheduler.getInstance().run();
     }
 
     @Override
     public void autonomousInit() {
+    	String gameData;
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		if(gameData.charAt(0) == 'L')
+		{
+			isAllySwitchOnLeft = true;
+		} else {
+			isAllySwitchOnLeft = false;
+		}
+		
+		if(gameData.charAt(1) == 'L')
+		{
+			isAllyScaleOnLeft = true;
+		} else {
+			isAllyScaleOnLeft = false;
+		}
         autonomousCommand = chooser.getSelected();
         if (autonomousCommand != null) autonomousCommand.start();
     }
