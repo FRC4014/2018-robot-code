@@ -1,5 +1,6 @@
 package org.usfirst.frc4014.powerup.autonomous;
 
+import org.usfirst.frc4014.powerup.RobotMap;
 import org.usfirst.frc4014.powerup.drivetrain.DriveTrain;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -24,7 +25,7 @@ public class DriveByDistance extends Command{
 
 	@Override
 	protected void initialize() {
-		System.out.println("DriveByDistance.initialize()");
+		System.out.println("DriveByDistance.initialize(): distance = " + distance);
 		driveTrain.resetEncoders();
 	}
 	
@@ -37,8 +38,12 @@ public class DriveByDistance extends Command{
 	@Override
 	protected boolean isFinished() {
 		// TODO: this is just a placeholder.... need to have it based on target distance etc.
-		boolean finished = driveTrain.getRightWheelDistance() >= distance;
-		System.out.println("DriveByDistance.isFinished(): " + finished);
+		double rightWheelDistance = driveTrain.getRightWheelDistance();
+		double leftDistance = RobotMap.leftEncoder.getDistance();
+		System.out.println("DriveByDistance.isFinished(): rightWheelDistance = " + rightWheelDistance);
+		System.out.println("DriveByDistance.isFinished(): leftWheelDistance = " + 
+				leftDistance);
+		boolean finished = leftDistance  >= distance * 3000;
 		return finished;
 	}
 

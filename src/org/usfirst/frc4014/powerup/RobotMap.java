@@ -15,7 +15,13 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * floating around.
  */
 public class RobotMap {
-    private static WPI_TalonSRX driveTrainLeftMotorA;
+	private static double WHEEL_DIAMETER = 6;
+	private static double GEAR_RATIO = 5.45;
+	private static double PULSES_PER_ROTATION = 4;
+	private static double DISTANCE_PER_PULSE = 
+			Math.PI * WHEEL_DIAMETER / GEAR_RATIO * PULSES_PER_ROTATION;
+
+	private static WPI_TalonSRX driveTrainLeftMotorA;
     private static WPI_TalonSRX driveTrainLeftMotorB;
     private static SpeedControllerGroup driveTrainLeftMotorGroup;
     private static WPI_TalonSRX driveTrainRightMotorA;
@@ -51,7 +57,10 @@ public class RobotMap {
 //        driveTrainDifferentialDrive.setExpiration(0.1);
 //        driveTrainDifferentialDrive.setMaxOutput(1.0);
         
-        leftEncoder = new Encoder(DPIO.LEFT_ENCODER_A_CHANNEL, DPIO.LEFT_ENCODER_B_CHANNEL, true, Encoder.EncodingType.k4X);
-        rightEncoder = new Encoder(DPIO.RIGHT_ENCODER_A_CHANNEL, DPIO.RIGHT_ENCODER_B_CHANNEL, false, Encoder.EncodingType.k4X);
+        leftEncoder = new Encoder(DPIO.LEFT_ENCODER_A_CHANNEL, DPIO.LEFT_ENCODER_B_CHANNEL, false, Encoder.EncodingType.k4X);
+        rightEncoder = new Encoder(DPIO.RIGHT_ENCODER_A_CHANNEL, DPIO.RIGHT_ENCODER_B_CHANNEL, true, Encoder.EncodingType.k4X);
+		leftEncoder.setDistancePerPulse(DISTANCE_PER_PULSE);
+		rightEncoder.setDistancePerPulse(DISTANCE_PER_PULSE);
+		System.out.println("DriveMap: DISTANCE_PER_PULSE = " + DISTANCE_PER_PULSE);
     }
 }

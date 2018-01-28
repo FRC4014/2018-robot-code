@@ -39,14 +39,9 @@ public class DriveTrain extends Subsystem {
 		RobotMap.leftEncoder.reset();
 		RobotMap.rightEncoder.reset();
 	}
-	private static double WHEEL_DIAMETER = 6;
-	private static double GEAR_RATIO = 5.45;
-	private static double PULSES_PER_ROTATION = 4;
-	private static double DISTANCE_PER_PULSE = 
-			Math.PI * WHEEL_DIAMETER / GEAR_RATIO * PULSES_PER_ROTATION;
 	
 	public double getRightWheelDistance() {
 		// TODO: this is just a placeholder ... need to calculate distance based on pulses or something
-		return (RobotMap.rightEncoder.getDistance()) * DISTANCE_PER_PULSE;
+		return (RobotMap.rightEncoder.getDistance());// * DISTANCE_PER_PULSE;
 	}
 }
