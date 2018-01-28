@@ -34,6 +34,10 @@ public class DriveTrain extends Subsystem {
     public void drive(double speed) {
     	RobotMap.driveTrainDifferentialDrive.arcadeDrive(-speed, 0);
     }
+    
+    public void rotate(double turnSpeed) {
+    	RobotMap.driveTrainDifferentialDrive.arcadeDrive(0, turnSpeed);
+    }
 
 	public void resetEncoders() {
 		RobotMap.leftEncoder.reset();

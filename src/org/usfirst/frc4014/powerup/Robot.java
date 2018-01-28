@@ -1,6 +1,7 @@
 package org.usfirst.frc4014.powerup;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -11,6 +12,8 @@ import org.usfirst.frc4014.powerup.autonomous.DriveByDistance;
 import org.usfirst.frc4014.powerup.autonomous.DriveByTime;
 import org.usfirst.frc4014.powerup.autonomous.TestPosition;
 import org.usfirst.frc4014.powerup.drivetrain.DriveTrain;
+
+import com.kauailabs.navx.frc.AHRS;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,6 +27,7 @@ public class Robot extends TimedRobot {
     Command autonomousCommand;
     SendableChooser<Command> chooser = new SendableChooser<>();
 
+    public static AHRS ahrs = new AHRS(SPI.Port.kMXP);
     public static OI oi;
     public static DriveTrain driveTrain;
     
