@@ -50,6 +50,7 @@ public class Robot extends TimedRobot {
         chooser.addObject("test", new DriveByDistance(driveTrain, .5, 10));
 
         SmartDashboard.putData("Autonomous mode chooser", chooser);
+        ahrs.reset();
     }
 
     /**
@@ -110,5 +111,6 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        System.out.println("gyro angle is: " + ahrs.getAngle()); //TODO just for testing, delete when possible
     }
 }
