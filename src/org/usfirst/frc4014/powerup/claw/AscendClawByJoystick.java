@@ -17,7 +17,7 @@ public class AscendClawByJoystick extends Command {
 	}
 
 	protected void execute() {
-		claw.ascend(oi.getDriverJoystick());
+		claw.ascend(oi.mateJoystick);
 	}
 
 	@Override
