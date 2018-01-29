@@ -1,5 +1,6 @@
 package org.usfirst.frc4014.powerup;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
@@ -15,17 +16,18 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * floating around.
  */
 public class RobotMap {
-	private static double WHEEL_DIAMETER = 6;
-	private static double GEAR_RATIO = 5.45;
-	private static double PULSES_PER_ROTATION = 4;
-	private static double DISTANCE_PER_PULSE = 
-			Math.PI * WHEEL_DIAMETER / GEAR_RATIO * PULSES_PER_ROTATION;
+	private static final double WHEEL_DIAMETER = 6;
+	private static final double GEAR_RATIO = 4.4;
+	private static final int ENCODER_RESOLUTION = 2048;
+	private static final double PULSES_PER_ROTATION = ENCODER_RESOLUTION;
+	private static final double DISTANCE_PER_PULSE = 
+			Math.PI * WHEEL_DIAMETER * GEAR_RATIO / PULSES_PER_ROTATION;
 
-	private static WPI_TalonSRX driveTrainLeftMotorA;
-    private static WPI_TalonSRX driveTrainLeftMotorB;
+	public static WPI_TalonSRX driveTrainLeftMotorA;
+	public static WPI_TalonSRX driveTrainLeftMotorB;
     private static SpeedControllerGroup driveTrainLeftMotorGroup;
-    private static WPI_TalonSRX driveTrainRightMotorA;
-    private static WPI_TalonSRX driveTrainRightMotorB;
+    public static WPI_TalonSRX driveTrainRightMotorA;
+    public static WPI_TalonSRX driveTrainRightMotorB;
     private static SpeedControllerGroup driveTrainRightMotorGroup;
     public static DifferentialDrive driveTrainDifferentialDrive;
     

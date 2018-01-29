@@ -14,6 +14,7 @@ import org.usfirst.frc4014.powerup.autonomous.TestPosition;
 import org.usfirst.frc4014.powerup.drivetrain.DriveTrain;
 
 import com.kauailabs.navx.frc.AHRS;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -47,7 +48,7 @@ public class Robot extends TimedRobot {
 
         // Add commands to Autonomous Sendable Chooser
         chooser.addDefault("Drive By Time", new DriveByTime(driveTrain, 1, 3));
-        chooser.addObject("test", new DriveByDistance(driveTrain, .5, 10));
+        chooser.addObject("test", new DriveByDistance(driveTrain, .5, 36));
 
         SmartDashboard.putData("Autonomous mode chooser", chooser);
     }
@@ -83,6 +84,9 @@ public class Robot extends TimedRobot {
 		} else {
 			isAllyScaleOnLeft = false;
 		}
+		
+		driveTrain.setNeutralMode(NeutralMode.Brake);
+
         autonomousCommand = chooser.getSelected();
         if (autonomousCommand != null) autonomousCommand.start();
     }
@@ -97,6 +101,8 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
+		driveTrain.setNeutralMode(NeutralMode.Coast);
+    	
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove

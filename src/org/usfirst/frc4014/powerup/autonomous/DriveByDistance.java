@@ -31,7 +31,7 @@ public class DriveByDistance extends Command{
 	
 	@Override
 	protected void execute() {
-		System.out.println("DriveByDistance.execute()");
+//		System.out.println("DriveByDistance.execute()");
 		driveTrain.drive(speed);
 	}
 	
@@ -40,10 +40,12 @@ public class DriveByDistance extends Command{
 		// TODO: this is just a placeholder.... need to have it based on target distance etc.
 		double rightWheelDistance = driveTrain.getRightWheelDistance();
 		double leftDistance = RobotMap.leftEncoder.getDistance();
-		System.out.println("DriveByDistance.isFinished(): rightWheelDistance = " + rightWheelDistance);
+//		System.out.println("DriveByDistance.isFinished(): rightWheelDistance = " + rightWheelDistance);
 		System.out.println("DriveByDistance.isFinished(): leftWheelDistance = " + 
 				leftDistance);
-		boolean finished = leftDistance  >= distance * 3000;
+		System.out.println("DriveByDistance.isFinished(): leftWheel raw = " + 
+				RobotMap.leftEncoder.getRaw());
+		boolean finished = leftDistance  >= distance;
 		return finished;
 	}
 

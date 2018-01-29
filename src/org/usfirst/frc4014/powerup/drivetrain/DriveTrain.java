@@ -5,6 +5,8 @@ import org.usfirst.frc4014.powerup.RobotMap;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
+
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -47,5 +49,12 @@ public class DriveTrain extends Subsystem {
 	public double getRightWheelDistance() {
 		// TODO: this is just a placeholder ... need to calculate distance based on pulses or something
 		return (RobotMap.rightEncoder.getDistance());// * DISTANCE_PER_PULSE;
+	}
+
+	public void setNeutralMode(NeutralMode mode) {
+		RobotMap.driveTrainLeftMotorA.setNeutralMode(mode);
+		RobotMap.driveTrainLeftMotorB.setNeutralMode(mode);
+		RobotMap.driveTrainRightMotorA.setNeutralMode(mode);
+		RobotMap.driveTrainRightMotorB.setNeutralMode(mode);
 	}
 }
