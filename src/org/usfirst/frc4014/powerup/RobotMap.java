@@ -32,6 +32,8 @@ public class RobotMap {
     public static Encoder leftEncoder;
     public static Encoder rightEncoder;
     
+	public static WPI_TalonSRX clawAscentMotor;
+
     public static void init() {
     		// The numbers of these WPI_TalonSRXs have to match the CAN configuration.
     		// Other things will be on the CAN bus too.

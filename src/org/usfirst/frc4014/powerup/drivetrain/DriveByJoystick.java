@@ -8,6 +8,7 @@ public class DriveByJoystick extends Command{
 
 	private final DriveTrain drivetrain;
 	private final OI oi;
+	
 	public DriveByJoystick(DriveTrain drivetrain, OI oi) {
 		super();
 		this.oi = oi;
