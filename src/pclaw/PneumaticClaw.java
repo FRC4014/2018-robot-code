@@ -1,4 +1,4 @@
-package claw;
+package pclaw;
 
 import org.usfirst.frc4014.powerup.OI;
 import org.usfirst.frc4014.powerup.RobotMap;
@@ -6,11 +6,11 @@ import org.usfirst.frc4014.powerup.RobotMap;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Claw extends Subsystem{
+public class PneumaticClaw extends Subsystem{
 
 	private OI oi;
 	
-	public Claw (OI oi) {
+	public PneumaticClaw (OI oi) {
 		this.oi = oi;
 		
 		oi.c.toggleWhenPressed(new ControlClawWithButtons(this));

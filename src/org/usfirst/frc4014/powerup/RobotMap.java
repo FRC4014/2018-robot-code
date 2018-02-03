@@ -33,6 +33,9 @@ public class RobotMap {
     private static SpeedControllerGroup driveTrainRightMotorGroup;
     public static DifferentialDrive driveTrainDifferentialDrive;
     
+    public static WPI_TalonSRX clawMotorA;
+    public static WPI_TalonSRX clawMotorB;
+    
     public static Compressor compressor;
     public static Solenoid clawSolenoidA;
     public static Solenoid clawSolenoidB;
@@ -54,12 +57,13 @@ public class RobotMap {
         driveTrainRightMotorA = new WPI_TalonSRX(5);
         driveTrainRightMotorB = new WPI_TalonSRX(4);
         driveTrainRightMotorGroup = new SpeedControllerGroup(driveTrainRightMotorA, driveTrainRightMotorB);
-
         driveTrainDifferentialDrive = new DifferentialDrive(driveTrainRightMotorGroup, driveTrainLeftMotorGroup);
-
         driveTrainDifferentialDrive.setName("Differential Drive");
         driveTrainDifferentialDrive.setSubsystem("DriveTrain");
         LiveWindow.add(driveTrainDifferentialDrive);
+        
+        clawMotorA = new WPI_TalonSRX(6);
+        clawMotorB = new WPI_TalonSRX(7);
         
         compressor = new Compressor(0);
         compressor.setClosedLoopControl(true);
