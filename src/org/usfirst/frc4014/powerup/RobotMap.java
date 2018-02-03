@@ -45,7 +45,8 @@ public class RobotMap {
     public static Encoder leftEncoder;
     public static Encoder rightEncoder;
     
-	public static WPI_TalonSRX clawAscentMotor;
+	public static WPI_TalonSRX clawAscentMotorA;
+	public static WPI_TalonSRX clawAscentMotorB;
 
     public static void init() {
     		// The numbers of these WPI_TalonSRXs have to match the CAN configuration.
@@ -72,6 +73,9 @@ public class RobotMap {
         clawSolenoidA = new DoubleSolenoid(1, 2);
         clawSolenoidB = new DoubleSolenoid(3, 4);
         driveTrainSolenoid = new DoubleSolenoid(5, 6);
+        
+        clawAscentMotorA = new WPI_TalonSRX(8);
+        clawAscentMotorB = new WPI_TalonSRX(9);
         
         
         // RobotBuilder generated this next line that uses deprecated library code. We can do better.
