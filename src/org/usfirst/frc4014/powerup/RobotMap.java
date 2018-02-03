@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -37,8 +38,8 @@ public class RobotMap {
     public static WPI_TalonSRX clawMotorB;
     
     public static Compressor compressor;
-    public static Solenoid clawSolenoidA;
-    public static Solenoid clawSolenoidB;
+    public static DoubleSolenoid clawSolenoidA;
+    public static DoubleSolenoid clawSolenoidB;
     
     public static Encoder leftEncoder;
     public static Encoder rightEncoder;
@@ -67,8 +68,8 @@ public class RobotMap {
         
         compressor = new Compressor(0);
         compressor.setClosedLoopControl(true);
-        clawSolenoidA = new Solenoid(1);
-        clawSolenoidB = new Solenoid(2);
+        clawSolenoidA = new DoubleSolenoid(1, 2);
+        clawSolenoidB = new DoubleSolenoid(3, 4);
         
         
         // RobotBuilder generated this next line that uses deprecated library code. We can do better.
