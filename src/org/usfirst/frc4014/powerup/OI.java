@@ -41,12 +41,14 @@ public class OI {
 
 
     public Joystick driverJoystick;
+    public JoystickButton r;
     public Joystick mateJoystick;
     public JoystickButton c;
     public JoystickButton b;
 
     public OI() {
         driverJoystick = new Joystick(0);
+        r = new JoystickButton(driverJoystick, 2);
         mateJoystick = new Joystick(1);
         c = new JoystickButton(mateJoystick, 3);
         b = new JoystickButton(mateJoystick, 2);

@@ -40,6 +40,7 @@ public class RobotMap {
     public static Compressor compressor;
     public static DoubleSolenoid clawSolenoidA;
     public static DoubleSolenoid clawSolenoidB;
+    public static DoubleSolenoid driveTrainSolenoid;
     
     public static Encoder leftEncoder;
     public static Encoder rightEncoder;
@@ -70,6 +71,7 @@ public class RobotMap {
         compressor.setClosedLoopControl(true);
         clawSolenoidA = new DoubleSolenoid(1, 2);
         clawSolenoidB = new DoubleSolenoid(3, 4);
+        driveTrainSolenoid = new DoubleSolenoid(5, 6);
         
         
         // RobotBuilder generated this next line that uses deprecated library code. We can do better.
