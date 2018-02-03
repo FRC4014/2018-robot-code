@@ -3,6 +3,7 @@ package org.usfirst.frc4014.powerup;
 import org.usfirst.frc4014.powerup.autonomous.*;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -41,10 +42,12 @@ public class OI {
 
     public Joystick driverJoystick;
     public Joystick mateJoystick;
+    public JoystickButton c;
 
     public OI() {
         driverJoystick = new Joystick(0);
         mateJoystick = new Joystick(1);
+        c = new JoystickButton(mateJoystick, 3);
 
         // SmartDashboard Buttons
         SmartDashboard.putData("Autonomous Command", new DriveByTime(null, 0, 0)); //TODO i'm pretty sure this line isn't supposed to be here. probably move to robot.java

@@ -7,12 +7,18 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ControlClawWithButtons extends Command{
 
 	private final Claw claw;
-	private final OI oi;
 	
-	public ControlClawWithButtons(Claw claw, OI oi) {
+	public ControlClawWithButtons(Claw claw) {
 		this.claw = claw;
-		this.oi = oi;
 		requires(claw);
+	}
+	
+	protected void initialize() {
+		claw.open();
+	}
+	
+	protected void end() {
+		claw.close();
 	}
 	
 	@Override
