@@ -13,12 +13,14 @@ public class ControlClawWithButtons extends Command{
 		requires(claw);
 	}
 	
+	//initialize close the claw
 	protected void initialize() {
-		claw.open();
+		claw.close();
 	}
 	
+	//end resets the claw to open position
 	protected void end() {
-		claw.close();
+		claw.open();
 	}
 	
 	@Override

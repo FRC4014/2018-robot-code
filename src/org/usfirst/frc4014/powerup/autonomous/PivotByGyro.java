@@ -47,6 +47,7 @@ public class PivotByGyro extends PIDCommand{
 		double currentAngle = ahrs.getYaw();
 		System.out.println("NavX thinks the angle is: " + currentAngle);
 		return currentAngle;
+		
 	}
 
 	@Override
