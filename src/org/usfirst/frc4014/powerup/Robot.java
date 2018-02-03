@@ -47,8 +47,9 @@ public class Robot extends TimedRobot {
         driveTrain = new DriveTrain(oi);
 
         // Add commands to Autonomous Sendable Chooser
-        chooser.addDefault("Drive By Time", new DriveByTime(driveTrain, 1, 3));
+        chooser.addObject("Drive By Time", new DriveByTime(driveTrain, 1, 3));
         chooser.addObject("test", new DriveByDistance(driveTrain, .5, 36));
+        chooser.addDefault("TestPosition", new TestPosition(driveTrain, ahrs));
 
         SmartDashboard.putData("Autonomous mode chooser", chooser);
     }

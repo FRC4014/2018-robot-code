@@ -4,41 +4,55 @@ import org.usfirst.frc4014.powerup.drivetrain.DriveTrain;
 
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 
 public class PivotByGyro extends PIDCommand{
 
 	private final DriveTrain driveTrain;
 	private double angle;
-	private AHRS ahrs;
+	private AHRS ahrs; 
 	private boolean onTarget;
+	private double speedFactor;
+	private double p;
+	private double i;
+	private double d;
 	
 	public PivotByGyro(DriveTrain driveTrain, AHRS ahrs, double angle) {
-		super(0.7, 0, 0); //TODO these are just placeholder values, need to test to find what actually works
+		super(0.5, 0, 0); //TODO these are just placeholder values, need to test to find what actually works
 		this.driveTrain = driveTrain;
 		this.angle = angle;
 		this.ahrs = ahrs;
-		
+
 		requires(driveTrain);
-		setSetpoint(angle);
+		
+		getPIDController().setInputRange(-180, 180);
+		getPIDController().setOutputRange(-0.7, 0.7);
+		getPIDController().setSetpoint(angle);
+		getPIDController().setContinuous(false);
+		getPIDController().setAbsoluteTolerance(1); //TODO this value needs to be recalculated once we redo the math for movement
 	}
 
 	protected void initialize() {
 		ahrs.reset();
-		
-		getPIDController().setPID(0.7,0,0);
-		getPIDController().setAbsoluteTolerance(5); //TODO this value needs to be recalculated once we redo the math for movement
+		p = Preferences.getInstance().getDouble("P", 1);
+		i = Preferences.getInstance().getDouble("i", 1);
+		d = Preferences.getInstance().getDouble("d", 1);
+		speedFactor = Preferences.getInstance().getDouble("PivotSpeedFactor", 1);
+		getPIDController().setPID(p,i,d);
 	}
 	
 	@Override
 	protected double returnPIDInput() {
-		double currentAngle = ahrs.getAngle();
+		double currentAngle = ahrs.getYaw();
+		System.out.println("NavX thinks the angle is: " + currentAngle);
 		return currentAngle;
 	}
 
 	@Override
 	protected void usePIDOutput(double output) {
-		driveTrain.rotate(output);
+		driveTrain.rotate(output * speedFactor);
+		System.out.println("Output is currently:" + output);
 	}
 
 	@Override
