@@ -1,4 +1,4 @@
-package org.usfirst.frc4014.powerup.claw;
+package org.usfirst.frc4014.powerup.clawlift;
 
 import org.usfirst.frc4014.powerup.OI;
 import org.usfirst.frc4014.powerup.RobotMap;
@@ -6,11 +6,11 @@ import org.usfirst.frc4014.powerup.RobotMap;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Claw extends Subsystem {
+public class ClawLift extends Subsystem {
 
 	private OI oi;
 	
-	public Claw(OI oi) {
+	public ClawLift(OI oi) {
 		this.oi = oi;
 	}
 	
@@ -24,5 +24,6 @@ public class Claw extends Subsystem {
 		RobotMap.clawAscentMotor.set(speed);
 
 	}
+	
 
 }

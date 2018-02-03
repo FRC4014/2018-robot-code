@@ -1,4 +1,4 @@
-package org.usfirst.frc4014.powerup.claw;
+package org.usfirst.frc4014.powerup.clawlift;
 
 import org.usfirst.frc4014.powerup.OI;
 
@@ -6,10 +6,10 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class AscendClawByJoystick extends Command {
 
-	private final Claw claw;
+	private final ClawLift claw;
 	private final OI oi;
 
-	public AscendClawByJoystick(Claw claw, OI oi) {
+	public AscendClawByJoystick(ClawLift claw, OI oi) {
 		super();
 		this.oi = oi;
 		this.claw = claw;
