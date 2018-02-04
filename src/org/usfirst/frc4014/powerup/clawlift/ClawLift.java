@@ -3,6 +3,7 @@ package org.usfirst.frc4014.powerup.clawlift;
 import org.usfirst.frc4014.powerup.OI;
 import org.usfirst.frc4014.powerup.RobotMap;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -17,7 +18,6 @@ public class ClawLift extends Subsystem {
 	public ClawLift(OI oi) {
 		this.oi = oi;
 		tensionFactor = Preferences.getInstance().getDouble("tentionFactor", .95);
-		servoAngle = Preferences.getInstance().getDouble("ServoAngle", 90);
 	}
 	
 	@Override
@@ -39,7 +39,7 @@ public class ClawLift extends Subsystem {
 	}
 	
 	public void release() {
-		RobotMap.fredReleaseServo.setAngle(servoAngle);
+		RobotMap.fredReleaseSolenoid.set(DoubleSolenoid.Value.kReverse);
 	}
 	
 
