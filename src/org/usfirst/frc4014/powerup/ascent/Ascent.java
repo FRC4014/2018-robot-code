@@ -15,7 +15,7 @@ public class Ascent extends Subsystem {
 
 	public void drive(Joystick joystick) {
 		double speed = joystick.getY();
-		RobotMap.clawAscentMotor.set(speed);
+//		RobotMap.clawAscentMotor.set(speed);
 		
 	}
 

@@ -3,6 +3,7 @@ package org.usfirst.frc4014.powerup.drivetrain;
 import org.usfirst.frc4014.powerup.OI;
 import org.usfirst.frc4014.powerup.RobotMap;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -20,7 +21,7 @@ public class DriveTrain extends Subsystem {
 
     public DriveTrain(OI oi) {
 		this.oi = oi;
-		
+		oi.gearRatioButton.toggleWhenPressed(new ToggleGearRatio(this));
 	}
 
 	@Override
@@ -28,6 +29,16 @@ public class DriveTrain extends Subsystem {
         // Set the default command for a subsystem here.
          setDefaultCommand(new DriveByJoystick(this, oi));
     }
+	
+	public void slowGearRatio() {
+		RobotMap.driveTrainSolenoidA.set(DoubleSolenoid.Value.kForward);
+		RobotMap.driveTrainSolenoidB.set(DoubleSolenoid.Value.kForward);
+	}
+	
+	public void fastGearRatio() {
+		RobotMap.driveTrainSolenoidA.set(DoubleSolenoid.Value.kReverse);
+		RobotMap.driveTrainSolenoidB.set(DoubleSolenoid.Value.kReverse);
+	}
     
     public void drive(Joystick joystick) {
     	RobotMap.driveTrainDifferentialDrive.arcadeDrive(joystick.getY(), joystick.getTwist());

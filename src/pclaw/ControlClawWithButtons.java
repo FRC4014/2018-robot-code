@@ -1,4 +1,4 @@
-package claw;
+package pclaw;
 
 import org.usfirst.frc4014.powerup.OI;
 
@@ -6,13 +6,21 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class ControlClawWithButtons extends Command{
 
-	private final Claw claw;
-	private final OI oi;
+	private final PneumaticClaw claw;
 	
-	public ControlClawWithButtons(Claw claw, OI oi) {
+	public ControlClawWithButtons(PneumaticClaw claw) {
 		this.claw = claw;
-		this.oi = oi;
 		requires(claw);
+	}
+	
+	//initialize close the claw
+	protected void initialize() {
+		claw.close();
+	}
+	
+	//end resets the claw to open position
+	protected void end() {
+		claw.open();
 	}
 	
 	@Override

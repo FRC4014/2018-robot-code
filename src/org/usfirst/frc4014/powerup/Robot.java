@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import pclaw.PneumaticClaw;
+import wclaw.WheeledClaw;
 
 import org.usfirst.frc4014.powerup.autonomous.CustomPIDPivotByGyro;
 import org.usfirst.frc4014.powerup.autonomous.DriveByDistance;
@@ -33,6 +35,8 @@ public class Robot extends TimedRobot {
     public static AHRS ahrs = new AHRS(SPI.Port.kMXP);
     public static OI oi;
     public static DriveTrain driveTrain;
+    public static PneumaticClaw pneumaticClaw;
+    public static WheeledClaw wheeledClaw;
     
     public boolean isAllySwitchOnLeft;
     public boolean isAllyScaleOnLeft;
@@ -47,6 +51,8 @@ public class Robot extends TimedRobot {
         oi = new OI();
         RobotMap.init();
         driveTrain = new DriveTrain(oi);
+        pneumaticClaw = new PneumaticClaw(oi);
+        wheeledClaw = new WheeledClaw(oi);
 
         // Add commands to Autonomous Sendable Chooser
         chooser.addObject("Drive By Time", new DriveByTime(driveTrain, 1, 3));

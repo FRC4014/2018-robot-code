@@ -3,6 +3,8 @@ package org.usfirst.frc4014.powerup;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -32,13 +34,21 @@ public class RobotMap {
     private static SpeedControllerGroup driveTrainRightMotorGroup;
     public static DifferentialDrive driveTrainDifferentialDrive;
     
-    public static Solenoid clawSolenoidA;
-    public static Solenoid clawSolenoidB;
+    public static WPI_TalonSRX clawMotorA;
+    public static WPI_TalonSRX clawMotorB;
+    
+    public static Compressor compressor;
+    public static DoubleSolenoid clawSolenoidA;
+    public static DoubleSolenoid clawSolenoidB;
+    public static DoubleSolenoid driveTrainSolenoidA;
+    public static DoubleSolenoid driveTrainSolenoidB;
+    
     
     public static Encoder leftEncoder;
     public static Encoder rightEncoder;
     
-	public static WPI_TalonSRX clawAscentMotor;
+	public static WPI_TalonSRX clawAscentMotorA;
+	public static WPI_TalonSRX clawAscentMotorB;
 
     public static void init() {
     		// The numbers of these WPI_TalonSRXs have to match the CAN configuration.
@@ -52,15 +62,23 @@ public class RobotMap {
         driveTrainRightMotorA = new WPI_TalonSRX(5);
         driveTrainRightMotorB = new WPI_TalonSRX(4);
         driveTrainRightMotorGroup = new SpeedControllerGroup(driveTrainRightMotorA, driveTrainRightMotorB);
-
         driveTrainDifferentialDrive = new DifferentialDrive(driveTrainRightMotorGroup, driveTrainLeftMotorGroup);
-
         driveTrainDifferentialDrive.setName("Differential Drive");
         driveTrainDifferentialDrive.setSubsystem("DriveTrain");
         LiveWindow.add(driveTrainDifferentialDrive);
         
-//        clawSolenoidA = new Solenoid(1);
-//        clawSolenoidB = new Solenoid(2);
+        clawMotorA = new WPI_TalonSRX(6);
+        clawMotorB = new WPI_TalonSRX(7);
+        
+        compressor = new Compressor(0);
+        compressor.setClosedLoopControl(true);
+        clawSolenoidA = new DoubleSolenoid(0, 7);
+        clawSolenoidB = new DoubleSolenoid(1, 6);
+        driveTrainSolenoidA = new DoubleSolenoid(2, 5);
+        driveTrainSolenoidB = new DoubleSolenoid(3, 4);
+        
+        clawAscentMotorA = new WPI_TalonSRX(8);
+        clawAscentMotorB = new WPI_TalonSRX(9);
         
         // RobotBuilder generated this next line that uses deprecated library code. We can do better.
         // LiveWindow.addActuator("DriveTrain", "Differential Drive", driveTrainDifferentialDrive);
