@@ -12,10 +12,12 @@ public class ClawLift extends Subsystem {
 	private OI oi;
 	
 	private double tensionFactor;
+	private double servoAngle;
 	
 	public ClawLift(OI oi) {
 		this.oi = oi;
 		tensionFactor = Preferences.getInstance().getDouble("tentionFactor", .95);
+		servoAngle = Preferences.getInstance().getDouble("ServoAngle", 90);
 	}
 	
 	@Override
@@ -34,6 +36,10 @@ public class ClawLift extends Subsystem {
 		}
 		
 
+	}
+	
+	public void release() {
+		RobotMap.fredReleaseServo.setAngle(servoAngle);
 	}
 	
 

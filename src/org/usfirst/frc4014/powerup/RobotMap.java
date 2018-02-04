@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -44,6 +45,7 @@ public class RobotMap {
 
 	public static WPI_TalonSRX clawAscentMotorA;
 	public static WPI_TalonSRX clawAscentMotorB;
+	public static Servo fredReleaseServo;
 
 	public static void init() {
 		initDriveTrain();
@@ -102,5 +104,6 @@ public class RobotMap {
 
 		clawAscentMotorA = new WPI_TalonSRX(8);
 		clawAscentMotorB = new WPI_TalonSRX(9);
+		fredReleaseServo = new Servo(0);
 	}
 }
