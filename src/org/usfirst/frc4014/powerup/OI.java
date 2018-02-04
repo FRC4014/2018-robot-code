@@ -47,15 +47,20 @@ public class OI {
     public JoystickButton wheelClawReleaseButton;
 
     public OI() {
-        driverJoystick = new Joystick(0);
-        gearRatioButton = new JoystickButton(driverJoystick, 2);
-        mateJoystick = new Joystick(1);
+        initDriverJoystick();
+        initMateJoystick();
+    }
+
+	private void initMateJoystick() {
+		mateJoystick = new Joystick(1);
         clawButton = new JoystickButton(mateJoystick, 3);
         wheelClawReleaseButton = new JoystickButton(mateJoystick, 2);
+	}
 
-        // SmartDashboard Buttons
-        SmartDashboard.putData("Autonomous Command", new DriveByTime(null, 0, 0)); //TODO i'm pretty sure this line isn't supposed to be here. probably move to robot.java
-    }
+	private void initDriverJoystick() {
+		driverJoystick = new Joystick(0);
+        gearRatioButton = new JoystickButton(driverJoystick, 2);
+	}
 
     public Joystick getDriverJoystick() {
         return driverJoystick;
