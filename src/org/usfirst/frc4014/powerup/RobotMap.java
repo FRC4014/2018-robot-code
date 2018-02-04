@@ -59,8 +59,8 @@ public class RobotMap {
         driveTrainDifferentialDrive.setSubsystem("DriveTrain");
         LiveWindow.add(driveTrainDifferentialDrive);
         
-        clawSolenoidA = new Solenoid(1);
-        clawSolenoidB = new Solenoid(2);
+//        clawSolenoidA = new Solenoid(1);
+//        clawSolenoidB = new Solenoid(2);
         
         // RobotBuilder generated this next line that uses deprecated library code. We can do better.
         // LiveWindow.addActuator("DriveTrain", "Differential Drive", driveTrainDifferentialDrive);

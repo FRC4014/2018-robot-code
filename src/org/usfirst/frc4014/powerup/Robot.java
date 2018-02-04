@@ -1,6 +1,7 @@
 package org.usfirst.frc4014.powerup;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,6 +9,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc4014.powerup.autonomous.CustomPIDPivotByGyro;
 import org.usfirst.frc4014.powerup.autonomous.DriveByDistance;
 import org.usfirst.frc4014.powerup.autonomous.DriveByTime;
 import org.usfirst.frc4014.powerup.autonomous.TestPosition;
@@ -48,7 +50,8 @@ public class Robot extends TimedRobot {
 
         // Add commands to Autonomous Sendable Chooser
         chooser.addObject("Drive By Time", new DriveByTime(driveTrain, 1, 3));
-        chooser.addObject("test", new DriveByDistance(driveTrain, .5, 36));
+        chooser.addObject("Drive by Distance", new DriveByDistance(driveTrain, .5, 36));
+        chooser.addObject("Custom PID Pivot", new CustomPIDPivotByGyro(ahrs));
         chooser.addDefault("TestPosition", new TestPosition(driveTrain, ahrs));
 
         SmartDashboard.putData("Autonomous mode chooser", chooser);

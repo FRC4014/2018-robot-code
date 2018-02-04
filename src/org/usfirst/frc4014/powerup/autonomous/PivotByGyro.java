@@ -27,18 +27,21 @@ public class PivotByGyro extends PIDCommand{
 		requires(driveTrain);
 		
 		getPIDController().setInputRange(-180, 180);
-		getPIDController().setOutputRange(-0.7, 0.7);
-		getPIDController().setSetpoint(angle);
-		getPIDController().setContinuous(false);
+		getPIDController().setContinuous(true);
 		getPIDController().setAbsoluteTolerance(1); //TODO this value needs to be recalculated once we redo the math for movement
 	}
 
 	protected void initialize() {
 		ahrs.reset();
+		
+		getPIDController().setOutputRange(-0.7, 0.7);
+		getPIDController().setSetpoint(angle);
+
+		speedFactor = Preferences.getInstance().getDouble("PivotSpeedFactor", 1);
+
 		p = Preferences.getInstance().getDouble("P", 1);
 		i = Preferences.getInstance().getDouble("i", 1);
 		d = Preferences.getInstance().getDouble("d", 1);
-		speedFactor = Preferences.getInstance().getDouble("PivotSpeedFactor", 1);
 		getPIDController().setPID(p,i,d);
 	}
 	
