@@ -21,7 +21,7 @@ public class DriveTrain extends Subsystem {
 
     public DriveTrain(OI oi) {
 		this.oi = oi;
-		
+		oi.gearRatioButton.toggleWhenPressed(new ToggleGearRatio(this));
 	}
 
 	@Override
@@ -31,11 +31,13 @@ public class DriveTrain extends Subsystem {
     }
 	
 	public void slowGearRatio() {
-		RobotMap.driveTrainSolenoid.set(DoubleSolenoid.Value.kForward);
+		RobotMap.driveTrainSolenoidA.set(DoubleSolenoid.Value.kForward);
+		RobotMap.driveTrainSolenoidB.set(DoubleSolenoid.Value.kForward);
 	}
 	
 	public void fastGearRatio() {
-		RobotMap.driveTrainSolenoid.set(DoubleSolenoid.Value.kReverse);
+		RobotMap.driveTrainSolenoidA.set(DoubleSolenoid.Value.kReverse);
+		RobotMap.driveTrainSolenoidB.set(DoubleSolenoid.Value.kReverse);
 	}
     
     public void drive(Joystick joystick) {

@@ -41,14 +41,14 @@ public class OI {
 
 
     public Joystick driverJoystick;
-    public JoystickButton gearRationButton;
+    public JoystickButton gearRatioButton;
     public Joystick mateJoystick;
     public JoystickButton clawButton;
     public JoystickButton wheelClawReleaseButton;
 
     public OI() {
         driverJoystick = new Joystick(0);
-        gearRationButton = new JoystickButton(driverJoystick, 2);
+        gearRatioButton = new JoystickButton(driverJoystick, 2);
         mateJoystick = new Joystick(1);
         clawButton = new JoystickButton(mateJoystick, 3);
         wheelClawReleaseButton = new JoystickButton(mateJoystick, 2);

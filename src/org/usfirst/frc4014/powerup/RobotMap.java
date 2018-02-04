@@ -40,7 +40,9 @@ public class RobotMap {
     public static Compressor compressor;
     public static DoubleSolenoid clawSolenoidA;
     public static DoubleSolenoid clawSolenoidB;
-    public static DoubleSolenoid driveTrainSolenoid;
+    public static DoubleSolenoid driveTrainSolenoidA;
+    public static DoubleSolenoid driveTrainSolenoidB;
+    
     
     public static Encoder leftEncoder;
     public static Encoder rightEncoder;
@@ -70,9 +72,10 @@ public class RobotMap {
         
         compressor = new Compressor(0);
         compressor.setClosedLoopControl(true);
-        clawSolenoidA = new DoubleSolenoid(1, 2);
-        clawSolenoidB = new DoubleSolenoid(3, 4);
-        driveTrainSolenoid = new DoubleSolenoid(5, 6);
+        clawSolenoidA = new DoubleSolenoid(0, 7);
+        clawSolenoidB = new DoubleSolenoid(1, 6);
+        driveTrainSolenoidA = new DoubleSolenoid(2, 5);
+        driveTrainSolenoidB = new DoubleSolenoid(3, 4);
         
         clawAscentMotorA = new WPI_TalonSRX(8);
         clawAscentMotorB = new WPI_TalonSRX(9);
