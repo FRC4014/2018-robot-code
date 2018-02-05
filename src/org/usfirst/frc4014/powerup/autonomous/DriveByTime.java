@@ -1,7 +1,7 @@
 package org.usfirst.frc4014.powerup.autonomous;
-import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc4014.powerup.Robot;
 import org.usfirst.frc4014.powerup.drivetrain.DriveTrain;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *

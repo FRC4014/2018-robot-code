@@ -1,7 +1,15 @@
 package org.usfirst.frc4014.powerup;
 
+import org.usfirst.frc4014.powerup.autonomous.CustomPIDPivotByGyro;
+import org.usfirst.frc4014.powerup.autonomous.DriveByDistance;
+import org.usfirst.frc4014.powerup.autonomous.DriveByTime;
+import org.usfirst.frc4014.powerup.autonomous.TestPosition;
+import org.usfirst.frc4014.powerup.drivetrain.DriveTrain;
+
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -10,15 +18,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import pclaw.PneumaticClaw;
 import wclaw.WheeledClaw;
-
-import org.usfirst.frc4014.powerup.autonomous.CustomPIDPivotByGyro;
-import org.usfirst.frc4014.powerup.autonomous.DriveByDistance;
-import org.usfirst.frc4014.powerup.autonomous.DriveByTime;
-import org.usfirst.frc4014.powerup.autonomous.TestPosition;
-import org.usfirst.frc4014.powerup.drivetrain.DriveTrain;
-
-import com.kauailabs.navx.frc.AHRS;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 /**
  * The VM is configured to automatically run this class, and to call the

@@ -7,10 +7,6 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveByDistance extends Command{
 
-	
-	
-
-
 	private final DriveTrain driveTrain;
 	
 	private double speed;
@@ -31,21 +27,20 @@ public class DriveByDistance extends Command{
 	
 	@Override
 	protected void execute() {
-//		System.out.println("DriveByDistance.execute()");
 		driveTrain.drive(speed);
 	}
 	
 	@Override
 	protected boolean isFinished() {
 		// TODO: this is just a placeholder.... need to have it based on target distance etc.
-		double rightWheelDistance = driveTrain.getRightWheelDistance();
+		double rightDistance = RobotMap.rightEncoder.getDistance();
 		double leftDistance = RobotMap.leftEncoder.getDistance();
-//		System.out.println("DriveByDistance.isFinished(): rightWheelDistance = " + rightWheelDistance);
-		System.out.println("DriveByDistance.isFinished(): leftWheelDistance = " + 
-				leftDistance);
-		System.out.println("DriveByDistance.isFinished(): leftWheel raw = " + 
-				RobotMap.leftEncoder.getRaw());
+		System.out.println("DriveByDistance.isFinished(): right = " + rightDistance + " | left = " + leftDistance);
+		System.out.println("DriveByDistance.isFinished(): "
+				+ "right raw = " + RobotMap.rightEncoder.getRaw()
+				+ " | left raw = " + RobotMap.leftEncoder.getRaw());
 		boolean finished = leftDistance  >= distance;
+		System.out.println("DriveByDistance.isFinished(): finished = " + finished);
 		return finished;
 	}
 

@@ -1,10 +1,7 @@
 package org.usfirst.frc4014.powerup;
 
-import org.usfirst.frc4014.powerup.autonomous.*;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**

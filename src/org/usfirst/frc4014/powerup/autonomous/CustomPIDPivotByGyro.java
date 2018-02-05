@@ -11,6 +11,7 @@ public class CustomPIDPivotByGyro extends Command {
 	double p, i, d = 1;
 	double integral, previousError, setPoint = 0;
 	boolean done = false;
+	int postDone = 0;
 	boolean first = true;
 
 	final AHRS ahrs;
@@ -20,7 +21,7 @@ public class CustomPIDPivotByGyro extends Command {
 	private long initTimestamp;
 
 	public CustomPIDPivotByGyro(AHRS ahrs) {
-//		this.setPoint = setPoint;
+		// this.setPoint = setPoint;
 		this.ahrs = ahrs;
 	}
 
@@ -38,6 +39,7 @@ public class CustomPIDPivotByGyro extends Command {
 		tolerance = Preferences.getInstance().getDouble("PivotTolerance", 1.0);
 		integral = previousError = 0;
 		done = false;
+		postDone = 0;
 		first = true;
 		System.out.println("\n\n\n===========================================================");
 		System.out.println("p: " + p + " | i: " + i + " | d: " + d + " | setPoint: " + setPoint);
@@ -63,16 +65,22 @@ public class CustomPIDPivotByGyro extends Command {
 			speed = rcw < 0 ? -speed : speed;
 			RobotMap.driveTrainDifferentialDrive.arcadeDrive(0, speed);
 		}
-		System.out.println("done: " + done + " | angle: " + angle + " | error: " + error + 
-				" | raw rcw: " + rcw + " | speed: " + speed);
+		System.out.println("done: " + done + " | angle: " + angle + " | error: " + error + " | raw rcw: " + rcw
+				+ " | speed: " + speed);
 	}
 
 	@Override
 	protected boolean isFinished() {
 		if (done) {
-			System.out.println("Milliseconds: " + (System.currentTimeMillis() - initTimestamp));
+			postDone++;
+			if (postDone == 1) {
+				System.out.println("Milliseconds: " + (System.currentTimeMillis() - initTimestamp));
+			}
+			System.out.println("Post pivot angle " + postDone + ": " + ahrs.getAngle());
+			return (postDone > 3);
+		} else {
+			return false;
 		}
-		return done;
 	}
 
 }
