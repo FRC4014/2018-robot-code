@@ -1,7 +1,5 @@
 package org.usfirst.frc4014.powerup.ascent;
 
-import org.usfirst.frc4014.powerup.RobotMap;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 

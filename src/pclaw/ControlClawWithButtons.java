@@ -1,7 +1,5 @@
 package pclaw;
 
-import org.usfirst.frc4014.powerup.OI;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ControlClawWithButtons extends Command{
