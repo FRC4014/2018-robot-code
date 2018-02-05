@@ -30,12 +30,12 @@ public class DriveTrain extends Subsystem {
 	
 	public void slowGearRatio() {
 		RobotMap.driveTrainSolenoidA.set(DoubleSolenoid.Value.kForward);
-		RobotMap.driveTrainSolenoidB.set(DoubleSolenoid.Value.kForward);
+//		RobotMap.driveTrainSolenoidB.set(DoubleSolenoid.Value.kForward);
 	}
 	
 	public void fastGearRatio() {
 		RobotMap.driveTrainSolenoidA.set(DoubleSolenoid.Value.kReverse);
-		RobotMap.driveTrainSolenoidB.set(DoubleSolenoid.Value.kReverse);
+//		RobotMap.driveTrainSolenoidB.set(DoubleSolenoid.Value.kReverse);
 	}
     
     public void drive(Joystick joystick) {
