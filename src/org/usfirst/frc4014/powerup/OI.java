@@ -42,6 +42,8 @@ public class OI {
     public Joystick mateJoystick;
     public JoystickButton clawButton;
     public JoystickButton wheelClawReleaseButton;
+    public JoystickButton raiseLiftButton;
+    public JoystickButton lowerLiftButton;
 
     public OI() {
         initDriverJoystick();
@@ -52,6 +54,8 @@ public class OI {
 		mateJoystick = new Joystick(1);
         clawButton = new JoystickButton(mateJoystick, 3);
         wheelClawReleaseButton = new JoystickButton(mateJoystick, 2);
+        raiseLiftButton = new JoystickButton(mateJoystick, 6);
+        lowerLiftButton = new JoystickButton(mateJoystick, 7);
 	}
 
 	private void initDriverJoystick() {

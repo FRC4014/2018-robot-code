@@ -45,11 +45,14 @@ public class RobotMap {
 	public static WPI_TalonSRX clawAscentMotorA;
 	public static WPI_TalonSRX clawAscentMotorB;
 	public static DoubleSolenoid fredReleaseSolenoid;
+	
+	public static WPI_TalonSRX robotAscentMotor;
 
 	public static void init() {
 		initDriveTrain();
 		initDriveTrainGearShifter();
 		initClaw();
+		initAscent();
 	}
 
 	private static void initDriveTrain() {
@@ -93,16 +96,19 @@ public class RobotMap {
 	}
 
 	private static void initClaw() {
-		clawMotorA = new WPI_TalonSRX(6);
-		clawMotorB = new WPI_TalonSRX(7);
+		clawMotorA = new WPI_TalonSRX(CAN.CLAW_MOTOR_A);
+		clawMotorB = new WPI_TalonSRX(CAN.CLAW_MOTOR_B);
 
 		compressor = new Compressor(0);
 		compressor.setClosedLoopControl(true);
 		clawSolenoidA = new DoubleSolenoid(0, 7);
 //		clawSolenoidB = new DoubleSolenoid(1, 6);
 
-		clawAscentMotorA = new WPI_TalonSRX(8);
-		clawAscentMotorB = new WPI_TalonSRX(9);
+		clawAscentMotorA = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_A);
+		clawAscentMotorB = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_B);
 		fredReleaseSolenoid = new DoubleSolenoid(2, 5);
+	}
+	private static void initAscent() {
+		robotAscentMotor = new WPI_TalonSRX(CAN.ROBOT_ASCENT_MOTOR);
 	}
 }

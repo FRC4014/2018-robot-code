@@ -10,13 +10,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class ClawLift extends Subsystem {
 
+	//TODO make a method for when we first release fred that turns 1 motor a lot so we get rid of initial slack
 	private OI oi;
 	
 	private double tensionFactor;
 	
 	public ClawLift(OI oi) {
 		this.oi = oi;
-		tensionFactor = Preferences.getInstance().getDouble("tentionFactor", .95);
+		tensionFactor = Preferences.getInstance().getDouble("tensionFactor", .95);
 	}
 	
 	@Override
