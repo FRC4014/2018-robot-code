@@ -13,7 +13,6 @@ public class ClawLift extends Subsystem {
 	private OI oi;
 	
 	private double tensionFactor;
-	private double servoAngle;
 	
 	public ClawLift(OI oi) {
 		this.oi = oi;

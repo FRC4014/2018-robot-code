@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class WheeledClaw extends Subsystem{
 
 	private OI oi;
-	private boolean isIntaking;
 	
 	public WheeledClaw(OI oi) {
 		this.oi = oi;

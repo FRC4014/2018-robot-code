@@ -12,7 +12,6 @@ public class PivotByGyro extends PIDCommand{
 	private final DriveTrain driveTrain;
 	private double angle;
 	private AHRS ahrs; 
-	private boolean onTarget;
 	private double speedFactor;
 	private double p;
 	private double i;
