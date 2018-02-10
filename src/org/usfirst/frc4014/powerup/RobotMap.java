@@ -20,16 +20,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class RobotMap {
 	private static final double WHEEL_DIAMETER = 6;
 	private static final double GEAR_RATIO = 4.4;
-	private static final int ENCODER_RESOLUTION = Preferences.getInstance().getInt("DriveTrainEncoderResolution", 2048); // amt10s
-																															// are
-																															// 2048
-																															// and
-																															// E4T
-																															// for
-																															// shift
-																															// gearbox
-																															// is
-																															// 1440
+
+	// DriveTrainEncoderResolution: amt10s are 2048 and E4T for shift gearbox is 1440
+	private static final int ENCODER_RESOLUTION = Preferences.getInstance().getInt("DriveTrainEncoderResolution", 2048);
+
 	private static final double PULSES_PER_ROTATION = ENCODER_RESOLUTION;
 	private static final double DISTANCE_PER_PULSE = Math.PI * WHEEL_DIAMETER * GEAR_RATIO / PULSES_PER_ROTATION;
 
