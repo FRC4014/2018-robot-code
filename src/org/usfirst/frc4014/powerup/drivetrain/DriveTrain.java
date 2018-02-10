@@ -7,6 +7,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -16,10 +17,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class DriveTrain extends Subsystem {
 
 	private OI oi;
+	private double integral = 0;
+	private double prevError = 0;
+	private double dtP, dtI, dtD = 0;
 
     public DriveTrain(OI oi) {
 		this.oi = oi;
 		oi.gearRatioButton.toggleWhenPressed(new ToggleGearRatio(this));
+		dtP = Preferences.getInstance().getDouble("dtP", 0.5);
+		dtI = Preferences.getInstance().getDouble("dtI", 0);
+		dtD = Preferences.getInstance().getDouble("dtD", 0);
 	}
 
 	@Override
@@ -46,7 +53,11 @@ public class DriveTrain extends Subsystem {
     	double rightDist = RobotMap.rightEncoder.getDistance();
     	double leftDist = RobotMap.leftEncoder.getDistance();
     double error = rightDist - leftDist;
-    	RobotMap.driveTrainDifferentialDrive.arcadeDrive(-speed, 0);
+    integral += error * 0.02;
+    double derivative = (error - prevError) / 0.02;
+    double rcw = (dtP * error) + (dtI * integral) + (dtD * derivative);
+    	RobotMap.driveTrainDifferentialDrive.arcadeDrive(-speed, rcw);
+    	prevError = error;
     }
     
     public void rotate(double turnSpeed) {
