@@ -8,6 +8,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class TestPosition extends CommandGroup{
 	public TestPosition (DriveTrain driveTrain, AHRS ahrs){
-		addSequential (new PivotByGyro(driveTrain, ahrs, 90));
+		addSequential (new CustomPIDPivotByGyro(ahrs, 90));
 	}
 }
