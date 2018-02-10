@@ -43,6 +43,9 @@ public class DriveTrain extends Subsystem {
     }
     
     public void drive(double speed) {
+    	double rightDist = RobotMap.rightEncoder.getDistance();
+    	double leftDist = RobotMap.leftEncoder.getDistance();
+    double error = rightDist - leftDist;
     	RobotMap.driveTrainDifferentialDrive.arcadeDrive(-speed, 0);
     }
     
