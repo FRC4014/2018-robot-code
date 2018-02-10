@@ -126,8 +126,8 @@ public class RobotMap {
 			clawAscentMotorB = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_B);
 			fredReleaseSolenoid = new DoubleSolenoid(2, 5);
 
-			upperLimit = new DigitalInput(DPIO.CUBE_LIFT_TOP_LIMIT);
-			lowerLimit = new DigitalInput(DPIO.CUBE_LIFT_BOTTOM_LIMIT);
+//			upperLimit = new DigitalInput(DPIO.CUBE_LIFT_TOP_LIMIT);
+//			lowerLimit = new DigitalInput(DPIO.CUBE_LIFT_BOTTOM_LIMIT);
 		}
 	}
 

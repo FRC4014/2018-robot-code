@@ -7,7 +7,7 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class LeftPosition extends CommandGroup{
-	public LeftPosition(DriveTrain driveTrain, boolean isAllySwitchOnLeft, boolean isAllyScaleOnLefts) {
+	public LeftPosition(DriveTrain driveTrain, boolean isAllySwitchOnLeft, boolean isAllyScaleOnLeft) {
 		if(isAllySwitchOnLeft) {
 			addSequential(new DriveByDistance(driveTrain, 1, 140));
 			//TODO add drop code

@@ -49,12 +49,12 @@ public class DriveByDistance extends Command{
 	private void initPIDControl() {
 		initTimestamp = System.currentTimeMillis();
 		ahrs.reset();
-		p = Preferences.getInstance().getDouble("P", 0.5);
-		i = Preferences.getInstance().getDouble("i", 0);
-		d = Preferences.getInstance().getDouble("d", 0);
-		maxSpeed = Preferences.getInstance().getDouble("PivotMaxSpeed", 0.8);
-		minSpeed = Preferences.getInstance().getDouble("PivotMinSpeed", 0.2);
-		tolerance = Preferences.getInstance().getDouble("PivotTolerance", 1.0);
+		p = Preferences.getInstance().getDouble("ddP", 0.5);
+		i = Preferences.getInstance().getDouble("ddi", 0);
+		d = Preferences.getInstance().getDouble("ddd", 0);
+		maxSpeed = Preferences.getInstance().getDouble("ddPivotMaxSpeed", 0.8);
+		minSpeed = Preferences.getInstance().getDouble("ddPivotMinSpeed", 0.2);
+		tolerance = Preferences.getInstance().getDouble("ddPivotTolerance", 1.0);
 		integral = previousError = 0;
 		isInsideTolerance = false;
 		postDone = 0;
@@ -77,13 +77,16 @@ public class DriveByDistance extends Command{
 			double derivative = (error - previousError) / 0.02;
 			rcw = (p * error) + (i * integral) + (d * derivative);
 
-			double modRcw = Math.abs(rcw) / (setPoint * .25);
+			double modRcw = Math.abs(rcw)/* / (setPoint * .25)*/; //setpoint was 0, maybe dividing by 0 causes problems?
 			rotation = Math.max(minSpeed, Math.min(modRcw, maxSpeed));
 			rotation = rcw < 0 ? -rotation : rotation;
-			driveTrain.arcadeDrive(speed, rotation);
+			
+			driveTrain.arcadeDrive(-speed, rotation);
+		} else {
+			driveTrain.arcadeDrive(-speed, 0);
 		}
 		System.out.println("isInsideTolerance: " + isInsideTolerance + " | angle: " + angle + " | error: " + error + " | raw rcw: " + rcw
-				+ " | rotation: " + rotation);
+				+ " | rotation: " + rotation +" | speed: " + speed);
 	}
 	
 	@Override
