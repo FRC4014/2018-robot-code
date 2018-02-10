@@ -8,21 +8,22 @@ import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class CustomPIDPivotByGyro extends Command {
-	double p, i, d = 1;
-	double integral, previousError, setPoint = 0;
-	boolean acceptable = false;
-	int postDone = 0;
-	boolean first = true;
+	private double p, i, d = 1;
+	private double integral, previousError, setPoint = 0;
+	private boolean acceptable = false;
+	private int postDone = 0;
+	private boolean first = true;
 
-	final AHRS ahrs;
+	private final AHRS ahrs;
+
 	private double maxSpeed;
 	private double minSpeed;
 	private double tolerance;
 	private long initTimestamp;
 
-	public CustomPIDPivotByGyro(AHRS ahrs, double setPoint) {
+	public CustomPIDPivotByGyro(double setPoint) {
 		// this.setPoint = setPoint;
-		this.ahrs = ahrs;
+		this.ahrs = RobotMap.AHRS;
 		this.setPoint = setPoint;
 	}
 

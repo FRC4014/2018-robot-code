@@ -1,5 +1,7 @@
 package org.usfirst.frc4014.powerup.autonomous;
 
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.Preferences;
 import org.usfirst.frc4014.powerup.RobotMap;
 import org.usfirst.frc4014.powerup.drivetrain.DriveTrain;
 
@@ -11,8 +13,25 @@ public class DriveByDistance extends Command{
 	
 	private double speed;
 	private double distance;
-			
+
+	//////// PID stuff -- start
+	private double p, i, d = 0;
+	private double integral, previousError;
+	private final double setPoint = 0;
+	private boolean isInsideTolerance = false;
+	private int postDone = 0;
+	private boolean first = true;
+
+	private final AHRS ahrs;
+
+	private double maxSpeed;
+	private double minSpeed;
+	private double tolerance;
+	private long initTimestamp;
+	//////// PID stuff -- end
+
 	public DriveByDistance(DriveTrain driveTrain, double speed, double distance) {
+		this.ahrs = RobotMap.AHRS;
 		this.driveTrain = driveTrain;
 		this.speed = speed;
 		this.distance = distance;
@@ -23,11 +42,48 @@ public class DriveByDistance extends Command{
 	protected void initialize() {
 		System.out.println("DriveByDistance.initialize(): distance = " + distance);
 		driveTrain.resetEncoders();
+
+		initPIDControl();
 	}
-	
+
+	private void initPIDControl() {
+		initTimestamp = System.currentTimeMillis();
+		ahrs.reset();
+		p = Preferences.getInstance().getDouble("P", 0.5);
+		i = Preferences.getInstance().getDouble("i", 0);
+		d = Preferences.getInstance().getDouble("d", 0);
+		maxSpeed = Preferences.getInstance().getDouble("PivotMaxSpeed", 0.8);
+		minSpeed = Preferences.getInstance().getDouble("PivotMinSpeed", 0.2);
+		tolerance = Preferences.getInstance().getDouble("PivotTolerance", 1.0);
+		integral = previousError = 0;
+		isInsideTolerance = false;
+		postDone = 0;
+		first = true;
+		System.out.println("\n\n\n==== DriveByDistance =======================================================");
+		System.out.println("p: " + p + " | i: " + i + " | d: " + d + " | setPoint: " + setPoint);
+	}
+
 	@Override
 	protected void execute() {
-		driveTrain.drive(speed);
+		final double angle = ahrs.getAngle();
+		double error = setPoint - angle;
+		error = first ? setPoint : error; // in case ahrs.reset() isn't isInsideTolerance (only observed first time, so kludging it)
+		first = false;
+		double rcw = 0;
+		double rotation = 0;
+		isInsideTolerance = Math.abs(error) < tolerance;
+		if (!isInsideTolerance) {
+			integral += error * 0.02; // 0.02 because it's normal timing for IterativeRobot.
+			double derivative = (error - previousError) / 0.02;
+			rcw = (p * error) + (i * integral) + (d * derivative);
+
+			double modRcw = Math.abs(rcw) / (setPoint * .25);
+			rotation = Math.max(minSpeed, Math.min(modRcw, maxSpeed));
+			rotation = rcw < 0 ? -rotation : rotation;
+			driveTrain.arcadeDrive(speed, rotation);
+		}
+		System.out.println("isInsideTolerance: " + isInsideTolerance + " | angle: " + angle + " | error: " + error + " | raw rcw: " + rcw
+				+ " | rotation: " + rotation);
 	}
 	
 	@Override

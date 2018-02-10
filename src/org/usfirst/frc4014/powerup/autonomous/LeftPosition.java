@@ -7,14 +7,14 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class LeftPosition extends CommandGroup{
-	public LeftPosition(DriveTrain driveTrain, boolean isAllySwitchOnLeft, boolean isAllyScaleOnLeft, AHRS ahrs) {
+	public LeftPosition(DriveTrain driveTrain, boolean isAllySwitchOnLeft, boolean isAllyScaleOnLefts) {
 		if(isAllySwitchOnLeft) {
 			addSequential(new DriveByDistance(driveTrain, 1, 140));
 			//TODO add drop code
 		} else {
-			addSequential(new CustomPIDPivotByGyro(ahrs, 53.62));
+			addSequential(new CustomPIDPivotByGyro(53.62));
 			addSequential(new DriveByDistance(driveTrain, 1, 236));
-			addSequential(new CustomPIDPivotByGyro(ahrs, -53.62));
+			addSequential(new CustomPIDPivotByGyro(-53.62));
 			if (isAllyScaleOnLeft) {
 				addSequential(new DriveByDistance(driveTrain, 1, 184));
 				//TODO add drop code
