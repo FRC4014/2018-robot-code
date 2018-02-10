@@ -26,7 +26,7 @@ public class ClawLift extends Subsystem {
 	}
 
 	public void ascend (Joystick joystick) {
-		double speed = joystick.getY();
+		double speed = -joystick.getY();
 		if (speed > 0 && !RobotMap.upperLimit.get()) {
 			RobotMap.clawAscentMotorA.set(speed);
 			RobotMap.clawAscentMotorB.set(speed * tensionFactor);
