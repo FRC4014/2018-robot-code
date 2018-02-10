@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class CustomPIDPivotByGyro extends Command {
 	double p, i, d = 1;
 	double integral, previousError, setPoint = 0;
-	boolean done = false;
+	boolean acceptable = false;
 	int postDone = 0;
 	boolean first = true;
 
@@ -38,7 +38,7 @@ public class CustomPIDPivotByGyro extends Command {
 		minSpeed = Preferences.getInstance().getDouble("PivotMinSpeed", 0.2);
 		tolerance = Preferences.getInstance().getDouble("PivotTolerance", 1.0);
 		integral = previousError = 0;
-		done = false;
+		acceptable = false;
 		postDone = 0;
 		first = true;
 		System.out.println("\n\n\n===========================================================");
@@ -50,12 +50,12 @@ public class CustomPIDPivotByGyro extends Command {
 	protected void execute() {
 		final double angle = ahrs.getAngle();
 		double error = setPoint - angle;
-		error = first ? setPoint : error; // in case ahrs.reset() isn't done (only observed first time, so kludging it)
+		error = first ? setPoint : error; // in case ahrs.reset() isn't acceptable (only observed first time, so kludging it)
 		first = false;
 		double rcw = 0;
 		double speed = 0;
-		done = Math.abs(error) < tolerance;
-		if (!done) {
+		acceptable = Math.abs(error) < tolerance;
+		if (!acceptable) {
 			integral += error * 0.02; // 0.02 because it's normal timing for IterativeRobot.
 			double derivative = (error - previousError) / 0.02;
 			rcw = (p * error) + (i * integral) + (d * derivative);
@@ -65,13 +65,13 @@ public class CustomPIDPivotByGyro extends Command {
 			speed = rcw < 0 ? -speed : speed;
 			RobotMap.driveTrainDifferentialDrive.arcadeDrive(0, speed);
 		}
-		System.out.println("done: " + done + " | angle: " + angle + " | error: " + error + " | raw rcw: " + rcw
+		System.out.println("acceptable: " + acceptable + " | angle: " + angle + " | error: " + error + " | raw rcw: " + rcw
 				+ " | speed: " + speed);
 	}
 
 	@Override
 	protected boolean isFinished() {
-		if (done) {
+		if (acceptable) {
 			postDone++;
 			if (postDone == 1) {
 				System.out.println("Milliseconds: " + (System.currentTimeMillis() - initTimestamp));
