@@ -7,10 +7,8 @@ import org.usfirst.frc4014.powerup.autonomous.TestPosition;
 import org.usfirst.frc4014.powerup.drivetrain.DriveTrain;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -31,7 +29,6 @@ public class Robot extends TimedRobot {
     Command autonomousCommand;
     SendableChooser<Command> chooser = new SendableChooser<>();
 
-    public static AHRS ahrs = new AHRS(SPI.Port.kMXP);
     public static OI oi;
     public static DriveTrain driveTrain;
     public static PneumaticClaw pneumaticClaw;
@@ -56,8 +53,8 @@ public class Robot extends TimedRobot {
         // Add commands to Autonomous Sendable Chooser
         chooser.addObject("Drive By Time", new DriveByTime(driveTrain, 1, 3));
         chooser.addObject("Drive by Distance", new DriveByDistance(driveTrain, .5, 36));
-        chooser.addObject("Custom PID Pivot", new CustomPIDPivotByGyro(ahrs, 21));
-        chooser.addDefault("TestPosition", new TestPosition(driveTrain, ahrs));
+        chooser.addObject("Custom PID Pivot", new CustomPIDPivotByGyro(21));
+        chooser.addDefault("TestPosition", new TestPosition(driveTrain));
 
         SmartDashboard.putData("Autonomous mode chooser", chooser);
     }

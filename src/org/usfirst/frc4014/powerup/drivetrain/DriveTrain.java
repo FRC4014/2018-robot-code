@@ -75,4 +75,8 @@ public class DriveTrain extends Subsystem {
 		RobotMap.driveTrainRightMotorA.setNeutralMode(mode);
 		RobotMap.driveTrainRightMotorB.setNeutralMode(mode);
 	}
+
+	public void arcadeDrive(double xSpeed, double zRotation) {
+		RobotMap.driveTrainDifferentialDrive.arcadeDrive(xSpeed, zRotation);
+	}
 }
