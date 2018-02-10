@@ -20,7 +20,16 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class RobotMap {
 	private static final double WHEEL_DIAMETER = 6;
 	private static final double GEAR_RATIO = 4.4;
-	private static final int ENCODER_RESOLUTION = Preferences.getInstance().getInt("DriveTrainEncoderResolution", 2048); //amt10s are 2048 and E4T for shift gearbox is 1440
+	private static final int ENCODER_RESOLUTION = Preferences.getInstance().getInt("DriveTrainEncoderResolution", 2048); // amt10s
+																															// are
+																															// 2048
+																															// and
+																															// E4T
+																															// for
+																															// shift
+																															// gearbox
+																															// is
+																															// 1440
 	private static final double PULSES_PER_ROTATION = ENCODER_RESOLUTION;
 	private static final double DISTANCE_PER_PULSE = Math.PI * WHEEL_DIAMETER * GEAR_RATIO / PULSES_PER_ROTATION;
 
@@ -49,7 +58,7 @@ public class RobotMap {
 	public static DoubleSolenoid fredReleaseSolenoid;
 	public static DigitalInput upperLimit;
 	public static DigitalInput lowerLimit;
-	
+
 	public static WPI_TalonSRX robotAscentMotor;
 
 	public static void init() {
@@ -60,62 +69,72 @@ public class RobotMap {
 	}
 
 	private static void initDriveTrain() {
-		// The numbers of these WPI_TalonSRXs have to match the CAN configuration.
-		// Other things will be on the CAN bus too.
-		// We could have a CANSettings.java that has constants that clearly show
-		// the needed configuration so whoever sets up the CAN can look in one place
-		// rather than hunting though the robot code.
-		driveTrainLeftMotorA = new WPI_TalonSRX(CAN.DRIVE_TRAIN_LEFT_MOTOR_A);
-		driveTrainLeftMotorB = new WPI_TalonSRX(CAN.DRIVE_TRAIN_LEFT_MOTOR_B);
-		driveTrainLeftMotorGroup = new SpeedControllerGroup(driveTrainLeftMotorA, driveTrainLeftMotorB);
-		driveTrainRightMotorA = new WPI_TalonSRX(CAN.DRIVE_TRAIN_RIGHT_MOTOR_A);
-		driveTrainRightMotorB = new WPI_TalonSRX(CAN.DRIVE_TRAIN_RIGHT_MOTOR_B);
-		driveTrainRightMotorGroup = new SpeedControllerGroup(driveTrainRightMotorA, driveTrainRightMotorB);
-		driveTrainDifferentialDrive = new DifferentialDrive(driveTrainRightMotorGroup, driveTrainLeftMotorGroup);
-		driveTrainDifferentialDrive.setName("Differential Drive");
-		driveTrainDifferentialDrive.setSubsystem("DriveTrain");
-		LiveWindow.add(driveTrainDifferentialDrive);
+		if (Preferences.getInstance().getBoolean("initDT", true)) {
+			// The numbers of these WPI_TalonSRXs have to match the CAN configuration.
+			// Other things will be on the CAN bus too.
+			// We could have a CANSettings.java that has constants that clearly show
+			// the needed configuration so whoever sets up the CAN can look in one place
+			// rather than hunting though the robot code.
+			driveTrainLeftMotorA = new WPI_TalonSRX(CAN.DRIVE_TRAIN_LEFT_MOTOR_A);
+			driveTrainLeftMotorB = new WPI_TalonSRX(CAN.DRIVE_TRAIN_LEFT_MOTOR_B);
+			driveTrainLeftMotorGroup = new SpeedControllerGroup(driveTrainLeftMotorA, driveTrainLeftMotorB);
+			driveTrainRightMotorA = new WPI_TalonSRX(CAN.DRIVE_TRAIN_RIGHT_MOTOR_A);
+			driveTrainRightMotorB = new WPI_TalonSRX(CAN.DRIVE_TRAIN_RIGHT_MOTOR_B);
+			driveTrainRightMotorGroup = new SpeedControllerGroup(driveTrainRightMotorA, driveTrainRightMotorB);
+			driveTrainDifferentialDrive = new DifferentialDrive(driveTrainRightMotorGroup, driveTrainLeftMotorGroup);
+			driveTrainDifferentialDrive.setName("Differential Drive");
+			driveTrainDifferentialDrive.setSubsystem("DriveTrain");
+			LiveWindow.add(driveTrainDifferentialDrive);
 
-		// RobotBuilder generated this next line that uses deprecated library code. We
-		// can do better.
-		// LiveWindow.addActuator("DriveTrain", "Differential Drive",
-		// driveTrainDifferentialDrive);
+			// RobotBuilder generated this next line that uses deprecated library code. We
+			// can do better.
+			// LiveWindow.addActuator("DriveTrain", "Differential Drive",
+			// driveTrainDifferentialDrive);
 
-		// driveTrainDifferentialDrive.setSafetyEnabled(true);
-		// driveTrainDifferentialDrive.setExpiration(0.1);
-		// driveTrainDifferentialDrive.setMaxOutput(1.0);
+			// driveTrainDifferentialDrive.setSafetyEnabled(true);
+			// driveTrainDifferentialDrive.setExpiration(0.1);
+			// driveTrainDifferentialDrive.setMaxOutput(1.0);
 
-		leftEncoder = new Encoder(DPIO.LEFT_ENCODER_A_CHANNEL, DPIO.LEFT_ENCODER_B_CHANNEL, false,
-				Encoder.EncodingType.k4X);
-		rightEncoder = new Encoder(DPIO.RIGHT_ENCODER_A_CHANNEL, DPIO.RIGHT_ENCODER_B_CHANNEL, true,
-				Encoder.EncodingType.k4X);
-		leftEncoder.setDistancePerPulse(DISTANCE_PER_PULSE);
-		rightEncoder.setDistancePerPulse(DISTANCE_PER_PULSE);
-		System.out.println("DriveMap: DISTANCE_PER_PULSE = " + DISTANCE_PER_PULSE);
+			leftEncoder = new Encoder(DPIO.LEFT_ENCODER_A_CHANNEL, DPIO.LEFT_ENCODER_B_CHANNEL, false,
+					Encoder.EncodingType.k4X);
+			rightEncoder = new Encoder(DPIO.RIGHT_ENCODER_A_CHANNEL, DPIO.RIGHT_ENCODER_B_CHANNEL, true,
+					Encoder.EncodingType.k4X);
+			leftEncoder.setDistancePerPulse(DISTANCE_PER_PULSE);
+			rightEncoder.setDistancePerPulse(DISTANCE_PER_PULSE);
+			System.out.println("DriveMap: DISTANCE_PER_PULSE = " + DISTANCE_PER_PULSE);
+		}
 	}
 
 	private static void initDriveTrainGearShifter() {
-		driveTrainSolenoidA = new DoubleSolenoid(1, 6);
-//		driveTrainSolenoidB = new DoubleSolenoid(3, 4);
+		if (Preferences.getInstance().getBoolean("initDTShifter", true)) {
+
+			driveTrainSolenoidA = new DoubleSolenoid(1, 6);
+			// driveTrainSolenoidB = new DoubleSolenoid(3, 4);
+		}
 	}
 
 	private static void initClaw() {
-		clawMotorA = new WPI_TalonSRX(CAN.CLAW_MOTOR_A);
-		clawMotorB = new WPI_TalonSRX(CAN.CLAW_MOTOR_B);
+		if (Preferences.getInstance().getBoolean("initClaw", true)) {
+			clawMotorA = new WPI_TalonSRX(CAN.CLAW_MOTOR_A);
+			clawMotorB = new WPI_TalonSRX(CAN.CLAW_MOTOR_B);
 
-		compressor = new Compressor(0);
-		compressor.setClosedLoopControl(true);
-		clawSolenoidA = new DoubleSolenoid(0, 7);
-//		clawSolenoidB = new DoubleSolenoid(1, 6);
+			compressor = new Compressor(0);
+			compressor.setClosedLoopControl(true);
+			clawSolenoidA = new DoubleSolenoid(0, 7);
+			// clawSolenoidB = new DoubleSolenoid(1, 6);
 
-		clawAscentMotorA = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_A);
-		clawAscentMotorB = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_B);
-		fredReleaseSolenoid = new DoubleSolenoid(2, 5);
-		
-		upperLimit = new DigitalInput(DPIO.CUBE_LIFT_TOP_LIMIT);
-		lowerLimit = new DigitalInput(DPIO.CUBE_LIFT_BOTTOM_LIMIT);
+			clawAscentMotorA = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_A);
+			clawAscentMotorB = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_B);
+			fredReleaseSolenoid = new DoubleSolenoid(2, 5);
+
+			upperLimit = new DigitalInput(DPIO.CUBE_LIFT_TOP_LIMIT);
+			lowerLimit = new DigitalInput(DPIO.CUBE_LIFT_BOTTOM_LIMIT);
+		}
 	}
+
 	private static void initAscent() {
-		robotAscentMotor = new WPI_TalonSRX(CAN.ROBOT_ASCENT_MOTOR);
+		if (!Preferences.getInstance().getBoolean("initAscent", true)) {
+			robotAscentMotor = new WPI_TalonSRX(CAN.ROBOT_ASCENT_MOTOR);
+		}
 	}
 }
