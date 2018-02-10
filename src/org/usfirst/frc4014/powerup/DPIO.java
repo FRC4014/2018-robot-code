@@ -2,7 +2,8 @@ package org.usfirst.frc4014.powerup;
 
 public final class DPIO {
 
-	public static final int GEAR_PEG_LIMIT = 3;
+	public static final int CUBE_LIFT_TOP_LIMIT = 3;
+	public static final int CUBE_LIFT_BOTTOM_LIMIT = 4;
 	public static final int LEFT_ENCODER_A_CHANNEL = 6;
 	public static final int LEFT_ENCODER_B_CHANNEL = 7;
 	public static final int RIGHT_ENCODER_A_CHANNEL = 8;

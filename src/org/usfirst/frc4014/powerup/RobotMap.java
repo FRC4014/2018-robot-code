@@ -3,6 +3,7 @@ package org.usfirst.frc4014.powerup;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -45,6 +46,8 @@ public class RobotMap {
 	public static WPI_TalonSRX clawAscentMotorA;
 	public static WPI_TalonSRX clawAscentMotorB;
 	public static DoubleSolenoid fredReleaseSolenoid;
+	public static DigitalInput upperLimit;
+	public static DigitalInput lowerLimit;
 	
 	public static WPI_TalonSRX robotAscentMotor;
 
@@ -107,6 +110,9 @@ public class RobotMap {
 		clawAscentMotorA = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_A);
 		clawAscentMotorB = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_B);
 		fredReleaseSolenoid = new DoubleSolenoid(2, 5);
+		
+		upperLimit = new DigitalInput(DPIO.CUBE_LIFT_TOP_LIMIT);
+		lowerLimit = new DigitalInput(DPIO.CUBE_LIFT_BOTTOM_LIMIT);
 	}
 	private static void initAscent() {
 		robotAscentMotor = new WPI_TalonSRX(CAN.ROBOT_ASCENT_MOTOR);
