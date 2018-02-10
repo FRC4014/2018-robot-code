@@ -35,12 +35,10 @@ public class DriveByDistance extends Command{
 		// TODO: this is just a placeholder.... need to have it based on target distance etc.
 		double rightDistance = RobotMap.rightEncoder.getDistance();
 		double leftDistance = RobotMap.leftEncoder.getDistance();
-		System.out.println("DriveByDistance.isFinished(): right = " + rightDistance + " | left = " + leftDistance);
-		System.out.println("DriveByDistance.isFinished(): "
-				+ "right raw = " + RobotMap.rightEncoder.getRaw()
-				+ " | left raw = " + RobotMap.leftEncoder.getRaw());
 		boolean finished = leftDistance  >= distance;
-		System.out.println("DriveByDistance.isFinished(): finished = " + finished);
+		System.out.println("DriveByDistance.isFinished(): Distance[R : " + rightDistance + " | L = " + leftDistance
+				+ "]    Raw[R = " + RobotMap.rightEncoder.getRaw() + " | L = " + RobotMap.leftEncoder.getRaw() 
+				+ "]    finished = " + finished);
 		return finished;
 	}
 
