@@ -56,7 +56,7 @@ public class Robot extends TimedRobot {
         // Add commands to Autonomous Sendable Chooser
         chooser.addObject("Drive By Time", new DriveByTime(driveTrain, 1, 3));
         chooser.addObject("Drive by Distance", new DriveByDistance(driveTrain, .5, 36));
-        chooser.addObject("Custom PID Pivot", new CustomPIDPivotByGyro(ahrs));
+        chooser.addObject("Custom PID Pivot", new CustomPIDPivotByGyro(ahrs, 21));
         chooser.addDefault("TestPosition", new TestPosition(driveTrain, ahrs));
 
         SmartDashboard.putData("Autonomous mode chooser", chooser);

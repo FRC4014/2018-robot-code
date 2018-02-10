@@ -12,9 +12,9 @@ public class LeftPosition extends CommandGroup{
 			addSequential(new DriveByDistance(driveTrain, 1, 140));
 			//TODO add drop code
 		} else {
-			addSequential(new PivotByGyro(driveTrain, ahrs, 53.62));
+			addSequential(new CustomPIDPivotByGyro(ahrs, 53.62));
 			addSequential(new DriveByDistance(driveTrain, 1, 236));
-			addSequential(new PivotByGyro(driveTrain, ahrs, -53.62));
+			addSequential(new CustomPIDPivotByGyro(ahrs, -53.62));
 			if (isAllyScaleOnLeft) {
 				addSequential(new DriveByDistance(driveTrain, 1, 184));
 				//TODO add drop code

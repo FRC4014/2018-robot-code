@@ -20,9 +20,10 @@ public class CustomPIDPivotByGyro extends Command {
 	private double tolerance;
 	private long initTimestamp;
 
-	public CustomPIDPivotByGyro(AHRS ahrs) {
+	public CustomPIDPivotByGyro(AHRS ahrs, double setPoint) {
 		// this.setPoint = setPoint;
 		this.ahrs = ahrs;
+		this.setPoint = setPoint;
 	}
 
 	// Called just before this Command runs the first time
@@ -33,7 +34,6 @@ public class CustomPIDPivotByGyro extends Command {
 		p = Preferences.getInstance().getDouble("P", 0.5);
 		i = Preferences.getInstance().getDouble("i", 0);
 		d = Preferences.getInstance().getDouble("d", 0);
-		setPoint = Preferences.getInstance().getDouble("PivotSetPoint", 90);
 		maxSpeed = Preferences.getInstance().getDouble("PivotMaxSpeed", 0.8);
 		minSpeed = Preferences.getInstance().getDouble("PivotMinSpeed", 0.2);
 		tolerance = Preferences.getInstance().getDouble("PivotTolerance", 1.0);

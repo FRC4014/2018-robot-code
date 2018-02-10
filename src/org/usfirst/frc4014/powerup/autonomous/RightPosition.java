@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class RightPosition extends CommandGroup{
 	public RightPosition(DriveTrain driveTrain, boolean isAllySwitchOnLeft,  boolean isAllyScaleOnLeft, AHRS ahrs) {
 		if(isAllySwitchOnLeft) {
-			addSequential(new PivotByGyro(driveTrain, ahrs, -53.62));
+			addSequential(new CustomPIDPivotByGyro(ahrs, -53.62));
 			addSequential(new DriveByDistance(driveTrain, 1, 236));
-			addSequential(new PivotByGyro(driveTrain, ahrs, 53.62));
+			addSequential(new CustomPIDPivotByGyro(ahrs, 53.62));
 			if (isAllyScaleOnLeft) {
 				addSequential(new DriveByDistance(driveTrain, 1, 184));
 				//TODO add drop code
