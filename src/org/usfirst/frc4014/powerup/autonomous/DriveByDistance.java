@@ -94,10 +94,9 @@ public class DriveByDistance extends Command{
 		// TODO: this is just a placeholder.... need to have it based on target distance etc.
 		double rightDistance = RobotMap.rightEncoder.getDistance();
 		double leftDistance = RobotMap.leftEncoder.getDistance();
-		boolean finished = leftDistance  >= distance;
-		System.out.println("DriveByDistance.isFinished(): Distance[R : " + rightDistance + " | L = " + leftDistance
-				+ "]    Raw[R = " + RobotMap.rightEncoder.getRaw() + " | L = " + RobotMap.leftEncoder.getRaw() 
-				+ "]    finished = " + finished);
+		double ahrsDistance = ahrs.getDisplacementY() * 39.3701; //getDisplacement is in meters, this will convert it to inches
+		boolean finished = ahrsDistance  >= distance;
+		System.out.println("DriveByDistance.isFinished(): ahrs = " + ahrs.getDisplacementY() + " | ahrs in inches = " + ahrsDistance + " | isFinished = " + finished);
 		return finished;
 	}
 
