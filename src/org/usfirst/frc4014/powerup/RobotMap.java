@@ -64,6 +64,8 @@ public class RobotMap {
     private static void initNavX() {
         if (Preferences.getInstance().getBoolean("initNavX", true)) {
             AHRS = new AHRS(SPI.Port.kMXP);
+            AHRS.reset();
+            AHRS.resetDisplacement();
         }
     }
 
@@ -90,7 +92,7 @@ public class RobotMap {
 			// LiveWindow.addActuator("DriveTrain", "Differential Drive",
 			// driveTrainDifferentialDrive);
 
-			// driveTrainDifferentialDrive.setSafetyEnabled(true);
+			 driveTrainDifferentialDrive.setSafetyEnabled(false);
 			// driveTrainDifferentialDrive.setExpiration(0.1);
 			// driveTrainDifferentialDrive.setMaxOutput(1.0);
 
@@ -114,17 +116,17 @@ public class RobotMap {
 
 	private static void initClaw() {
 		if (Preferences.getInstance().getBoolean("initClaw", true)) {
-			clawMotorA = new WPI_TalonSRX(CAN.CLAW_MOTOR_A);
-			clawMotorB = new WPI_TalonSRX(CAN.CLAW_MOTOR_B);
-
-			compressor = new Compressor(0);
-			compressor.setClosedLoopControl(true);
-			clawSolenoidA = new DoubleSolenoid(0, 7);
-			// clawSolenoidB = new DoubleSolenoid(1, 6);
+//			clawMotorA = new WPI_TalonSRX(CAN.CLAW_MOTOR_A);
+//			clawMotorB = new WPI_TalonSRX(CAN.CLAW_MOTOR_B);
+//
+//			compressor = new Compressor(0);
+//			compressor.setClosedLoopControl(true);
+//			clawSolenoidA = new DoubleSolenoid(0, 7);
+//			// clawSolenoidB = new DoubleSolenoid(1, 6);
 
 			clawAscentMotorA = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_A);
-			clawAscentMotorB = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_B);
-			fredReleaseSolenoid = new DoubleSolenoid(2, 5);
+//			clawAscentMotorB = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_B);
+//			fredReleaseSolenoid = new DoubleSolenoid(2, 5);
 
 //			upperLimit = new DigitalInput(DPIO.CUBE_LIFT_TOP_LIMIT);
 //			lowerLimit = new DigitalInput(DPIO.CUBE_LIFT_BOTTOM_LIMIT);

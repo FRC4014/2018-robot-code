@@ -1,13 +1,17 @@
 package org.usfirst.frc4014.powerup;
 
+import org.usfirst.frc4014.powerup.autonomous.CenterPosition;
 import org.usfirst.frc4014.powerup.autonomous.CustomPIDPivotByGyro;
 import org.usfirst.frc4014.powerup.autonomous.DriveByDistance;
 import org.usfirst.frc4014.powerup.autonomous.DriveByTime;
 import org.usfirst.frc4014.powerup.autonomous.TestPosition;
+import org.usfirst.frc4014.powerup.clawlift.ClawLift;
 import org.usfirst.frc4014.powerup.drivetrain.DriveTrain;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.SPI;
@@ -33,6 +37,7 @@ public class Robot extends TimedRobot {
 
     public static OI oi;
     public static DriveTrain driveTrain;
+    public static ClawLift clawLift;
     public static PneumaticClaw pneumaticClaw;
     public static WheeledClaw wheeledClaw;
     
@@ -49,8 +54,12 @@ public class Robot extends TimedRobot {
         oi = new OI();
         RobotMap.init();
         driveTrain = new DriveTrain(oi);
+        clawLift = new ClawLift(oi);
         pneumaticClaw = new PneumaticClaw(oi);
         wheeledClaw = new WheeledClaw(oi);
+        
+//        UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+//        camera.setFPS(10);
 
         // Add commands to Autonomous Sendable Chooser
         chooser.addObject("Drive By Time", new DriveByTime(driveTrain, 1, 3));
@@ -58,6 +67,7 @@ public class Robot extends TimedRobot {
         		Preferences.getInstance().getDouble("driveSpeed", .5),
         		Preferences.getInstance().getDouble("DriveDistanceInches", 12)));
         chooser.addObject("Custom PID Pivot", new CustomPIDPivotByGyro(21));
+        chooser.addObject("Center Position", new CenterPosition(driveTrain, isAllyScaleOnLeft));
         chooser.addDefault("TestPosition", new TestPosition(driveTrain));
 
 

@@ -1,10 +1,11 @@
 package org.usfirst.frc4014.powerup.autonomous;
 
-import com.kauailabs.navx.frc.AHRS;
-import edu.wpi.first.wpilibj.Preferences;
 import org.usfirst.frc4014.powerup.RobotMap;
 import org.usfirst.frc4014.powerup.drivetrain.DriveTrain;
 
+import com.kauailabs.navx.frc.AHRS;
+
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveByDistance extends Command{
@@ -42,7 +43,8 @@ public class DriveByDistance extends Command{
 	protected void initialize() {
 		System.out.println("DriveByDistance.initialize(): distance = " + distance);
 		driveTrain.resetEncoders();
-
+	
+		ahrs.resetDisplacement();
 		initPIDControl();
 	}
 
@@ -94,11 +96,16 @@ public class DriveByDistance extends Command{
 		// TODO: this is just a placeholder.... need to have it based on target distance etc.
 		double rightDistance = RobotMap.rightEncoder.getDistance();
 		double leftDistance = RobotMap.leftEncoder.getDistance();
-		boolean finished = leftDistance  >= distance;
-		System.out.println("DriveByDistance.isFinished(): Distance[R : " + rightDistance + " | L = " + leftDistance
-				+ "]    Raw[R = " + RobotMap.rightEncoder.getRaw() + " | L = " + RobotMap.leftEncoder.getRaw() 
-				+ "]    finished = " + finished);
+		double ahrsDistance = RobotMap.AHRS.getDisplacementX() * -39.3701 * 3 * 1.5;
+		boolean finished = ahrsDistance  >= distance;
+		System.out.println("DriveByDistance.isFinished(): ahrs distance = " + RobotMap.AHRS.getDisplacementY() + " |adjusted for"
+				+ " inches = " + ahrsDistance + " |is finished = " + finished);
+		if(finished) {
+			ahrs.resetDisplacement();
+		}
 		return finished;
 	}
+
+
 
 }
