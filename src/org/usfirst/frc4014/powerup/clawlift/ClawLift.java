@@ -17,8 +17,6 @@ public class ClawLift extends Subsystem {
 	
 	public ClawLift(OI oi) {
 		this.oi = oi;
-		tensionFactor = 0;
-//		oi.mateJoystick.
 	}
 	
 	@Override
@@ -37,7 +35,6 @@ public class ClawLift extends Subsystem {
 			RobotMap.clawAscentMotorA.set(speed + .1);
 		}
 		
-
 	}
 	
 	public void release() {
