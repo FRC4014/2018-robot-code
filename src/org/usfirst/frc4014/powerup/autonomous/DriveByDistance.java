@@ -16,7 +16,7 @@ public class DriveByDistance extends Command{
 	private double distance;
 
 	//////// PID stuff -- start
-	private double p, i, d = 0;
+	private double p, i, d, dp = 0;
 	private double integral, previousError;
 	private final double setPoint = 0;
 	private boolean isInsideTolerance = false;
@@ -54,6 +54,7 @@ public class DriveByDistance extends Command{
 		p = Preferences.getInstance().getDouble("ddP", 0.5);
 		i = Preferences.getInstance().getDouble("ddi", 0);
 		d = Preferences.getInstance().getDouble("ddd", 0);
+		dp = Preferences.getInstance().getDouble("dPd", .7);
 		maxSpeed = Preferences.getInstance().getDouble("ddPivotMaxSpeed", 0.8);
 		minSpeed = Preferences.getInstance().getDouble("ddPivotMinSpeed", 0.2);
 		tolerance = Preferences.getInstance().getDouble("ddPivotTolerance", 1.0);
@@ -73,6 +74,8 @@ public class DriveByDistance extends Command{
 		first = false;
 		double rcw = 0;
 		double rotation = 0;
+		speed = dp * (distance - RobotMap.rightEncoder.getDistance());
+		speed = Math.max(.5, Math.min(speed, .7));
 		isInsideTolerance = Math.abs(error) < tolerance;
 		if (!isInsideTolerance) {
 			integral += error * 0.02; // 0.02 because it's normal timing for IterativeRobot.
