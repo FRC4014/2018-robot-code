@@ -74,8 +74,8 @@ public class DriveByDistance extends Command{
 		first = false;
 		double rcw = 0;
 		double rotation = 0;
-		speed = dp * (distance - RobotMap.rightEncoder.getDistance());
-		speed = Math.max(.5, Math.min(speed, .7));
+		speed = dp * (distance + RobotMap.rightEncoder.getDistance());
+		speed = Math.max(.5, Math.min(speed, 1));
 		isInsideTolerance = Math.abs(error) < tolerance;
 		if (!isInsideTolerance) {
 			integral += error * 0.02; // 0.02 because it's normal timing for IterativeRobot.
@@ -90,17 +90,17 @@ public class DriveByDistance extends Command{
 		} else {
 			driveTrain.arcadeDrive(-speed, 0);
 		}
-		System.out.println("isInsideTolerance: " + isInsideTolerance + " | angle: " + angle + " | error: " + error + " | raw rcw: " + rcw
-				+ " | rotation: " + rotation +" | speed: " + speed);
+//		System.out.println("isInsideTolerance: " + isInsideTolerance + " | angle: " + angle + " | error: " + error + " | raw rcw: " + rcw
+//				+ " | rotation: " + rotation +" | speed: " + speed);
 	}
 	
 	@Override
 	protected boolean isFinished() {
 		// TODO: this is just a placeholder.... need to have it based on target distance etc.
-		double rightDistance = RobotMap.rightEncoder.getDistance();
-		double leftDistance = RobotMap.leftEncoder.getDistance();
-		boolean finished = leftDistance  >= distance;
-		System.out.println("DriveByDistance.isFinished(): ahrs distance = " + RobotMap.AHRS.getDisplacementY() + " |is finished = " + finished);
+		double rightDistance = -RobotMap.rightEncoder.getDistance();
+		double leftDistance = -RobotMap.leftEncoder.getDistance();
+		boolean finished = rightDistance  >= distance - 1;
+		System.out.println("DriveByDistance.isFinished(): ahrs distance = " + rightDistance + " |speed = " + speed + " |is finished = " + finished);
 		return finished;
 	}
 
