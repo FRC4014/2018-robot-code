@@ -11,9 +11,9 @@ public class CenterPosition extends CommandGroup{
 
 	public CenterPosition(DriveTrain driveTrain) {
 		this.driveTrain = driveTrain;
-	}
-	
-	public void initialize() {
+//	}
+//	
+//	public void initialize() {
 		Double speed = 0.65;
 
 		String rawPrefs = "";
