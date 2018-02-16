@@ -87,9 +87,10 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
-		GameData.gameData = DriverStation.getInstance().getGameSpecificMessage();;
-		System.out.println("gameData: " + GameData.gameData);
-		
+    	GameData.initialize(
+    			Preferences.getInstance().getString("RobotPosition", "C"),
+    			DriverStation.getInstance().getGameSpecificMessage());
+
 		driveTrain.setNeutralMode(NeutralMode.Brake);
 
         autonomousCommand = chooser.getSelected();

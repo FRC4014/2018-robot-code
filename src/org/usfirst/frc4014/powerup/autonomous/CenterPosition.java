@@ -11,20 +11,10 @@ public class CenterPosition extends CommandGroup{
 
 	public CenterPosition(DriveTrain driveTrain) {
 		this.driveTrain = driveTrain;
-//	}
-//	
-//	public void initialize() {
-		Double speed = 0.65;
-
-		String rawPrefs = "";
-		if(GameData.isAllySwitchOnLeft()) {
-			System.out.println("going left");
-			rawPrefs = Preferences.getInstance().getString("AutoCenterLeft", "d:25,p:-67.5,d:141.16,p:67.4,d:42");
-		} else {
-			System.out.println("going right");
-			rawPrefs = Preferences.getInstance().getString("AutoCenterRight", "d:25,p:65,d:133.125,p:-65.4,d:42");
-		}
-		System.out.println("Autonomous prefs: " + rawPrefs);
+	}
+	
+	public void initialize() {
+		Double speed = Preferences.getInstance().getDouble("AutoDriveSpeed", 0.65);
 
 		String[] prefs = rawPrefs.split(",");
 		double d1 = getAsDouble(prefs[0]);
@@ -57,13 +47,5 @@ public class CenterPosition extends CommandGroup{
 
 		//TODO: add drop code
 		//TODO: extend fred (if we end up using fred)
-	}
-
-	/**
-	 * Gets the value as a double. 
-	 * Assumes format of pref to have the double after a colon, e.g., "b:25" or "p:23.5"
-	 */
-	private Double getAsDouble(String pref) {
-		return Double.valueOf(pref.split(":")[1]);
 	}
 }
