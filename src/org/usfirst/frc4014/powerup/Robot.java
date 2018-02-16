@@ -41,9 +41,6 @@ public class Robot extends TimedRobot {
     public static PneumaticClaw pneumaticClaw;
     public static WheeledClaw wheeledClaw;
     
-    public boolean isAllySwitchOnLeft;
-    public boolean isAllyScaleOnLeft;
-
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -66,8 +63,8 @@ public class Robot extends TimedRobot {
         chooser.addObject("Drive by Distance", new DriveByDistance(driveTrain, 
         		Preferences.getInstance().getDouble("driveSpeed", .5),
         		Preferences.getInstance().getDouble("DriveDistanceInches", 12)));
-        chooser.addObject("Custom PID Pivot", new CustomPIDPivotByGyro(21));
-        chooser.addObject("Center Position", new CenterPosition(driveTrain, isAllyScaleOnLeft));
+        chooser.addObject("Custom PID Pivot", new CustomPIDPivotByGyro(Preferences.getInstance().getDouble("PivotSetPoint", 90)));
+        chooser.addObject("Center Position", new CenterPosition(driveTrain));
         chooser.addDefault("TestPosition", new TestPosition(driveTrain));
 
 
@@ -90,21 +87,8 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
-    	String gameData;
-		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		if(gameData.charAt(0) == 'L')
-		{
-			isAllySwitchOnLeft = true;
-		} else {
-			isAllySwitchOnLeft = false;
-		}
-		
-		if(gameData.charAt(1) == 'L')
-		{
-			isAllyScaleOnLeft = true;
-		} else {
-			isAllyScaleOnLeft = false;
-		}
+		GameData.gameData = DriverStation.getInstance().getGameSpecificMessage();;
+		System.out.println("gameData: " + GameData.gameData);
 		
 		driveTrain.setNeutralMode(NeutralMode.Brake);
 

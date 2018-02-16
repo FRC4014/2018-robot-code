@@ -61,7 +61,7 @@ public class CustomPIDPivotByGyro extends Command {
 			double derivative = (error - previousError) / 0.02;
 			rcw = (p * error) + (i * integral) + (d * derivative);
 
-			double modRcw = Math.abs(rcw) / (setPoint * .25);
+			double modRcw = Math.abs(rcw) / (Math.abs(setPoint) * .25);
 			speed = Math.max(minSpeed, Math.min(modRcw, maxSpeed));
 			speed = rcw < 0 ? -speed : speed;
 			RobotMap.driveTrainDifferentialDrive.arcadeDrive(0, speed);
