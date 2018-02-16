@@ -83,6 +83,8 @@ public class RobotMap {
 			driveTrainRightMotorB = new WPI_TalonSRX(CAN.DRIVE_TRAIN_RIGHT_MOTOR_B);
 			driveTrainRightMotorGroup = new SpeedControllerGroup(driveTrainRightMotorA, driveTrainRightMotorB);
 			driveTrainDifferentialDrive = new DifferentialDrive(driveTrainRightMotorGroup, driveTrainLeftMotorGroup);
+			// for the final robot where we only have 1 motor on each side
+			// driveTrainDifferentialDrive = new DifferentialDrive(driveTrainRightMotorA, driveTrainLeftMotorA);
 			driveTrainDifferentialDrive.setName("Differential Drive");
 			driveTrainDifferentialDrive.setSubsystem("DriveTrain");
 			LiveWindow.add(driveTrainDifferentialDrive);
