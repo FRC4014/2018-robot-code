@@ -20,11 +20,11 @@ public class CenterPosition extends CommandGroup {
             prefs = new AutoPrefs("AutoCenterRight", "d:25,p:65,d:45,p:-65.4,d:42");
         }
 
-        addSequential(new DriveByDistance(driveTrain, speed, prefs.get(0)));
-        addSequential(new CustomPIDPivotByGyro(prefs.get(1)));
-        addSequential(new DriveByDistance(driveTrain, speed, prefs.get(2)));
-        addSequential(new CustomPIDPivotByGyro(prefs.get(3)));
-        addSequential(new DriveByDistance(driveTrain, speed, prefs.get(4)));
+        addSequential(new DriveByDistance(driveTrain, speed, prefs.prefs[0]));
+        addSequential(new CustomPIDPivotByGyro(prefs.prefs[1]));
+        addSequential(new DriveByDistance(driveTrain, speed, prefs.prefs[2]));
+        addSequential(new CustomPIDPivotByGyro(prefs.prefs[3]));
+        addSequential(new DriveByDistance(driveTrain, speed, prefs.prefs[4]));
 
         //TODO: add drop code
         //TODO: extend fred (if we end up using fred)

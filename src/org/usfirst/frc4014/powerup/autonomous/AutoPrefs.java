@@ -5,9 +5,10 @@ import edu.wpi.first.wpilibj.Preferences;
 
 public class AutoPrefs {
 
-    private final String stringPrefs;
+    public final String stringPrefs;
 
-    private final double[] prefs;
+    public final double[] prefs;
+
     public AutoPrefs(String prefsKey, String backup) {
         stringPrefs = Preferences.getInstance().getString(prefsKey, backup);
         prefs = parseRawPrefs(stringPrefs);
@@ -22,11 +23,4 @@ public class AutoPrefs {
         return p;
     }
 
-    public String getStringPrefs() {
-        return stringPrefs;
-    }
-
-    public double get(int index) {
-        return prefs[index];
-    }
 }
