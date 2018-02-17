@@ -63,6 +63,8 @@ public class Robot extends TimedRobot {
                 Preferences.getInstance().getDouble("DriveDistanceInches", 12)));
         chooser.addObject("Custom PID Pivot", new CustomPIDPivotByGyro(Preferences.getInstance().getDouble("PivotSetPoint", 90)));
         chooser.addObject("Center Position", new RobotPositionCommand(Center));
+        chooser.addObject("CLeft Position", new RobotPositionCommand(Left));
+        chooser.addObject("CRight Position", new RobotPositionCommand(Right));
         chooser.addDefault("TestPosition", new TestPosition(driveTrain));
 
 
