@@ -93,15 +93,13 @@ public class Robot extends TimedRobot {
         if (autonomousCommand instanceof RobotPositionCommand) {
             switch (((RobotPositionCommand) autonomousCommand).getPosition()) {
                 case Left:
-                    // TODO: ... make left for L
-                    // TODO: ... make left for R
+                    autonomousCommand = new LeftPosition(driveTrain, gameData);
                     break;
                 case Center:
                     autonomousCommand = new CenterPosition(driveTrain, gameData);
                     break;
                 case Right:
-                    // TODO: ... make right for L
-                    // TODO: ... make right for R
+                		autonomousCommand = new RightPosition(driveTrain, gameData);
                     break;
                 default:
                     throw new IllegalStateException("RobotPositionCommand mis-configured.");
