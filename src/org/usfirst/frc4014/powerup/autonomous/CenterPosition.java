@@ -1,51 +1,32 @@
 package org.usfirst.frc4014.powerup.autonomous;
 
+import edu.wpi.first.wpilibj.Preferences;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.usfirst.frc4014.powerup.GameData;
 import org.usfirst.frc4014.powerup.drivetrain.DriveTrain;
 
-import edu.wpi.first.wpilibj.Preferences;
-import edu.wpi.first.wpilibj.command.CommandGroup;
+public class CenterPosition extends CommandGroup {
 
-public class CenterPosition extends CommandGroup{
-	private final DriveTrain driveTrain;
+    public CenterPosition(DriveTrain driveTrain, GameData gameData) {
 
-	public CenterPosition(DriveTrain driveTrain) {
-		this.driveTrain = driveTrain;
-	}
-	
-	public void initialize() {
-		Double speed = Preferences.getInstance().getDouble("AutoDriveSpeed", 0.65);
+        Double speed = Preferences.getInstance().getDouble("AutoDriveSpeed", 1.0);
 
-		String[] prefs = rawPrefs.split(",");
-		double d1 = getAsDouble(prefs[0]);
-		double pA = getAsDouble(prefs[1]);
-		double d2 = getAsDouble(prefs[2]);
-		double pB = getAsDouble(prefs[3]);
-		double d3 = getAsDouble(prefs[4]);
+        AutoPrefs prefs;
+        if (gameData.isAllyScaleOnLeft()) {
+            System.out.println("Robot on center, going left");
+            prefs = new AutoPrefs("AutoCenterLeft", "d:25,p:-67.5,d:141.16,p:67.4,d:42");
+        } else {
+            System.out.println("Robot on center, going right");
+            prefs = new AutoPrefs("AutoCenterRight", "d:25,p:65,d:45,p:-65.4,d:42");
+        }
 
-		addSequential(new DriveByDistance(driveTrain, speed, d1));
-		addSequential(new CustomPIDPivotByGyro(pA));
-		addSequential(new DriveByDistance(driveTrain, speed, d2));
-		addSequential(new CustomPIDPivotByGyro(pB));
-		addSequential(new DriveByDistance(driveTrain, speed, d3));
+        addSequential(new DriveByDistance(driveTrain, speed, prefs.get(0)));
+        addSequential(new CustomPIDPivotByGyro(prefs.get(1)));
+        addSequential(new DriveByDistance(driveTrain, speed, prefs.get(2)));
+        addSequential(new CustomPIDPivotByGyro(prefs.get(3)));
+        addSequential(new DriveByDistance(driveTrain, speed, prefs.get(4)));
 
-//		if(isAllySwitchOnLeft) {
-//			System.out.println("going left");
-//			addSequential(new DriveByDistance(driveTrain, 1, 25));
-//			addSequential(new CustomPIDPivotByGyro(-67.5));
-//			addSequential(new DriveByDistance(driveTrain, 1.0, 141.16));
-//			addSequential(new CustomPIDPivotByGyro(67.4));
-//			addSequential(new DriveByDistance(driveTrain, 1, 42));
-//		} else {
-//			System.out.println("going right");
-//			addSequential(new DriveByDistance(driveTrain, 1, 25));
-//			addSequential(new CustomPIDPivotByGyro(65));
-//			addSequential(new DriveByDistance(driveTrain, 1, 133.125));
-//			addSequential(new CustomPIDPivotByGyro(-65));
-//			addSequential(new DriveByDistance(driveTrain, 1, 42));
-//		}
-
-		//TODO: add drop code
-		//TODO: extend fred (if we end up using fred)
-	}
+        //TODO: add drop code
+        //TODO: extend fred (if we end up using fred)
+    }
 }
