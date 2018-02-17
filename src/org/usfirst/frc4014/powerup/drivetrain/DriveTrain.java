@@ -4,6 +4,7 @@ import org.usfirst.frc4014.powerup.OI;
 import org.usfirst.frc4014.powerup.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
@@ -47,6 +48,8 @@ public class DriveTrain extends Subsystem {
     
     public void drive(Joystick joystick) {
     	RobotMap.driveTrainDifferentialDrive.arcadeDrive(joystick.getY(), joystick.getTwist());
+    double velocity = RobotMap.rightEncoder.getRate();
+    System.out.println("Velocity is: " + velocity);
     }
     
     public void drive(double speed) {
