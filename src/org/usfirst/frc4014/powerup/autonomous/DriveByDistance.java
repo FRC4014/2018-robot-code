@@ -102,7 +102,7 @@ public class DriveByDistance extends Command {
 
     private boolean probableCollision() {
         return (System.currentTimeMillis() - initTimestamp > 300) &&
-                (RobotMap.rightEncoder.getRate() < 1.0);
+                (Math.abs(RobotMap.rightEncoder.getRate()) < 1.0);
     }
 
     private boolean achievedDistance() {
