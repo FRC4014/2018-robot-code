@@ -17,7 +17,7 @@ public class RightPosition extends CommandGroup {
                 //TODO add drop code
             }
         } else {
-            addSequential(new DriveByDistance(driveTrain, 1, 140));
+            addSequential(new DriveByDistance(driveTrain, 1, 90));
             //TODO add drop code
         }
         //TODO extend fred (if we end up using fred)

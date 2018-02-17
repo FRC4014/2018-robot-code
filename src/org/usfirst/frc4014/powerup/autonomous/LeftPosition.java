@@ -8,7 +8,7 @@ public class LeftPosition extends CommandGroup {
 
     public LeftPosition(DriveTrain driveTrain, GameData gameData) {
         if (gameData.isAllySwitchOnLeft()) {
-            addSequential(new DriveByDistance(driveTrain, 1, 141));
+            addSequential(new DriveByDistance(driveTrain, 1, 91));
             //TODO add drop code
         } else {
         		addSequential(new DriveByDistance(driveTrain, 1, 25));

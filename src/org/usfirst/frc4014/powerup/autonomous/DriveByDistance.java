@@ -75,7 +75,7 @@ public class DriveByDistance extends Command{
 		double rcw = 0;
 		double rotation = 0;
 		speed = dp * (distance + RobotMap.rightEncoder.getDistance());
-		speed = Math.max(.5, Math.min(speed, 1));
+		speed = Math.max(.5, Math.min(speed, Preferences.getInstance().getDouble("drveSpeed", 1)));
 		isInsideTolerance = Math.abs(error) < tolerance;
 		if (!isInsideTolerance) {
 			integral += error * 0.02; // 0.02 because it's normal timing for IterativeRobot.
