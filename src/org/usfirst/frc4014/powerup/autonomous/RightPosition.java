@@ -8,11 +8,12 @@ public class RightPosition extends CommandGroup {
 
     public RightPosition(DriveTrain driveTrain, GameData gameData) {
         if (gameData.isAllySwitchOnLeft()) {
-            addSequential(new CustomPIDPivotByGyro(-53.62));
-            addSequential(new DriveByDistance(driveTrain, 1, 236));
-            addSequential(new CustomPIDPivotByGyro(53.62));
+        	addSequential(new DriveByDistance(driveTrain, 1, 25));
+            addSequential(new CustomPIDPivotByGyro(25));
+            addSequential(new DriveByDistance(driveTrain, 1, 127));
+            addSequential(new CustomPIDPivotByGyro(-25));
             if (gameData.isAllyScaleOnLeft()) {
-                addSequential(new DriveByDistance(driveTrain, 1, 184));
+                addSequential(new DriveByDistance(driveTrain, 1, 159));
                 //TODO add drop code
             }
         } else {

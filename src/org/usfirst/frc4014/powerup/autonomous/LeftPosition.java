@@ -8,14 +8,15 @@ public class LeftPosition extends CommandGroup {
 
     public LeftPosition(DriveTrain driveTrain, GameData gameData) {
         if (gameData.isAllySwitchOnLeft()) {
-            addSequential(new DriveByDistance(driveTrain, 1, 140));
+            addSequential(new DriveByDistance(driveTrain, 1, 141));
             //TODO add drop code
         } else {
-            addSequential(new CustomPIDPivotByGyro(53.62));
-            addSequential(new DriveByDistance(driveTrain, 1, 236));
-            addSequential(new CustomPIDPivotByGyro(-53.62));
+        		addSequential(new DriveByDistance(driveTrain, 1, 25));
+            addSequential(new CustomPIDPivotByGyro(-16.1));
+            addSequential(new DriveByDistance(driveTrain, 1, 116.77));
+            addSequential(new CustomPIDPivotByGyro(9.5));
             if (gameData.isAllyScaleOnLeft()) {
-                addSequential(new DriveByDistance(driveTrain, 1, 184));
+                addSequential(new DriveByDistance(driveTrain, 1, 159));
                 //TODO add drop code
             }
         }
