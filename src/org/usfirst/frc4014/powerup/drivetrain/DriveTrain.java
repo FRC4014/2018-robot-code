@@ -21,6 +21,8 @@ public class DriveTrain extends Subsystem {
 	private double integral = 0;
 	private double prevError = 0;
 	private double dtP, dtI, dtD = 0;
+	
+	private boolean gearRatioIsHigh = false;
 
     public DriveTrain(OI oi) {
 		this.oi = oi;
@@ -37,18 +39,25 @@ public class DriveTrain extends Subsystem {
     }
 	
 	public void slowGearRatio() {
-		RobotMap.driveTrainSolenoidA.set(DoubleSolenoid.Value.kForward);
-//		RobotMap.driveTrainSolenoidB.set(DoubleSolenoid.Value.kForward);
+//		RobotMap.driveTrainSolenoidA.set(DoubleSolenoid.Value.kForward); TODO uncomment once on new robot
+		gearRatioIsHigh = false;
 	}
 	
 	public void fastGearRatio() {
-		RobotMap.driveTrainSolenoidA.set(DoubleSolenoid.Value.kReverse);
-//		RobotMap.driveTrainSolenoidB.set(DoubleSolenoid.Value.kReverse);
+//		RobotMap.driveTrainSolenoidA.set(DoubleSolenoid.Value.kReverse); TODO uncomment once on new robot
+		gearRatioIsHigh = true;
 	}
     
     public void drive(Joystick joystick) {
     	RobotMap.driveTrainDifferentialDrive.arcadeDrive(joystick.getY(), joystick.getTwist());
-    double velocity = RobotMap.rightEncoder.getRate();
+    double velocity = Math.abs(RobotMap.rightEncoder.getRate());
+    if(velocity > Preferences.getInstance().getDouble("speed up theshold", 100) && !gearRatioIsHigh) {
+    	fastGearRatio();
+    	System.out.println("///////////////////////////////////////////// switched ratio to high");
+    } else if (velocity < Preferences.getInstance().getDouble("speed down threshold", 60) && gearRatioIsHigh) {
+    	slowGearRatio();
+    	System.out.println("///////////////////////////////////////////// switched ratio to low");
+    }
     System.out.println("Velocity is: " + velocity);
     }
     
