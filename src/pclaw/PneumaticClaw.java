@@ -13,7 +13,8 @@ public class PneumaticClaw extends Subsystem{
 	public PneumaticClaw (OI oi) {
 		this.oi = oi;
 		
-		oi.clawButton.toggleWhenPressed(new ControlClawWithButtons(this));
+		oi.clawButton.whenPressed(new ClampClaw(this));
+		oi.wheelClawReleaseButton.whenPressed(new UnclampClaw(this));
 	}
 	
 	@Override
