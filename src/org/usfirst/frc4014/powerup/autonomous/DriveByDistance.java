@@ -29,6 +29,7 @@ public class DriveByDistance extends Command {
     private double minSpeed;
     private double tolerance;
     private long initTimestamp;
+    private double maxDSpeed;
     //////// PID stuff -- end
 
     public DriveByDistance(DriveTrain driveTrain, double speed, double distance) {
@@ -36,6 +37,7 @@ public class DriveByDistance extends Command {
         this.driveTrain = driveTrain;
         this.speed = speed;
         this.distance = distance;
+        this.maxDSpeed = speed;
         requires(driveTrain);
     }
 
@@ -75,7 +77,7 @@ public class DriveByDistance extends Command {
         double rcw = 0;
         double rotation = 0;
         speed = dp * (distance + RobotMap.rightEncoder.getDistance());
-        speed = Math.max(.5, Math.min(speed, Preferences.getInstance().getDouble("drveSpeed", 1)));
+        speed = Math.max(.5, Math.min(speed, maxDSpeed));
         isInsideTolerance = Math.abs(error) < tolerance;
         if (!isInsideTolerance) {
             integral += error * 0.02; // 0.02 because it's normal timing for IterativeRobot.
