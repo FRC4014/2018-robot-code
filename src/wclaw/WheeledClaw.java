@@ -11,8 +11,8 @@ public class WheeledClaw extends Subsystem{
 	
 	public WheeledClaw(OI oi) {
 		this.oi = oi;
-		oi.clawButton.toggleWhenActive(new IntakeCube(this));
-		oi.wheelClawReleaseButton.toggleWhenActive(new OutputCube(this));
+		oi.clawButton.whenPressed(new IntakeCube(this));
+		oi.wheelClawReleaseButton.whenPressed(new OutputCube(this));
 	}
 	
 	@Override

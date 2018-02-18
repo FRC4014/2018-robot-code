@@ -2,11 +2,11 @@ package pclaw;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ControlClawWithButtons extends Command{
+public class ClampClaw extends Command{
 
 	private final PneumaticClaw claw;
 	
-	public ControlClawWithButtons(PneumaticClaw claw) {
+	public ClampClaw(PneumaticClaw claw) {
 		this.claw = claw;
 		requires(claw);
 	}
@@ -16,15 +16,10 @@ public class ControlClawWithButtons extends Command{
 		claw.close();
 	}
 	
-	//end resets the claw to open position
-	protected void end() {
-		claw.open();
-	}
 	
 	@Override
 	protected boolean isFinished() {
-		// always need a claw, this is always true
-		return false;
+		return true;
 	}
 
 }
