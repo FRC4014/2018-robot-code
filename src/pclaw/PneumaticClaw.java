@@ -24,13 +24,13 @@ public class PneumaticClaw extends Subsystem{
 	//opens so the claw is ready to grab a power cube
 	protected void open() {
 		RobotMap.clawSolenoidA.set(DoubleSolenoid.Value.kReverse);
-		RobotMap.clawSolenoidB.set(DoubleSolenoid.Value.kReverse);
+//		RobotMap.clawSolenoidB.set(DoubleSolenoid.Value.kReverse);
 	}
 	
 	//closes to grab the power cube
 	protected void close() {
 		RobotMap.clawSolenoidA.set(DoubleSolenoid.Value.kForward);
-		RobotMap.clawSolenoidB.set(DoubleSolenoid.Value.kForward);
+//		RobotMap.clawSolenoidB.set(DoubleSolenoid.Value.kForward);
 	}
 
 }

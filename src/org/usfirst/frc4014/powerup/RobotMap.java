@@ -62,7 +62,7 @@ public class RobotMap {
 	}
 
     private static void initNavX() {
-        if (Preferences.getInstance().getBoolean("initNavX", true)) {
+        if (Preferences.getInstance().getBoolean("initNavX", false)) {
             AHRS = new AHRS(SPI.Port.kMXP);
             AHRS.reset();
             AHRS.resetDisplacement();
@@ -70,7 +70,7 @@ public class RobotMap {
     }
 
     private static void initDriveTrain() {
-		if (Preferences.getInstance().getBoolean("initDT", true)) {
+		if (Preferences.getInstance().getBoolean("initDT", false)) {
 			// The numbers of these WPI_TalonSRXs have to match the CAN configuration.
 			// Other things will be on the CAN bus too.
 			// We could have a CANSettings.java that has constants that clearly show
@@ -109,25 +109,23 @@ public class RobotMap {
 	}
 
 	private static void initDriveTrainGearShifter() {
-		if (Preferences.getInstance().getBoolean("initDTShifter", true)) {
+		if (Preferences.getInstance().getBoolean("initDTShifter", false)) {
 
 			driveTrainSolenoidA = new DoubleSolenoid(1, 6);
-			// driveTrainSolenoidB = new DoubleSolenoid(3, 4);
 		}
 	}
 
 	private static void initClaw() {
 		if (Preferences.getInstance().getBoolean("initClaw", true)) {
-//			clawMotorA = new WPI_TalonSRX(CAN.CLAW_MOTOR_A);
-//			clawMotorB = new WPI_TalonSRX(CAN.CLAW_MOTOR_B);
+		    System.out.println("claw activated");
+			clawMotorA = new WPI_TalonSRX(CAN.CLAW_MOTOR_A);
+			clawMotorB = new WPI_TalonSRX(CAN.CLAW_MOTOR_B);
 //
-//			compressor = new Compressor(0);
-//			compressor.setClosedLoopControl(true);
-//			clawSolenoidA = new DoubleSolenoid(0, 7);
-//			// clawSolenoidB = new DoubleSolenoid(1, 6);
+			compressor = new Compressor(0);
+			compressor.setClosedLoopControl(true);
+			clawSolenoidA = new DoubleSolenoid(0, 7);
 
-			clawAscentMotorA = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_A);
-//			clawAscentMotorB = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_B);
+//			clawAscentMotorA = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_A);
 //			fredReleaseSolenoid = new DoubleSolenoid(2, 5);
 
 //			upperLimit = new DigitalInput(DPIO.CUBE_LIFT_TOP_LIMIT);
@@ -136,7 +134,7 @@ public class RobotMap {
 	}
 
 	private static void initAscent() {
-		if (!Preferences.getInstance().getBoolean("initAscent", true)) {
+		if (!Preferences.getInstance().getBoolean("initAscent", false)) {
 			robotAscentMotor = new WPI_TalonSRX(CAN.ROBOT_ASCENT_MOTOR);
 		}
 	}

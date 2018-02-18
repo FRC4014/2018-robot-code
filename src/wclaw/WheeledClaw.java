@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class WheeledClaw extends Subsystem{
 
 	private OI oi;
+	private double clawSpeed = 1;
 	
 	public WheeledClaw(OI oi) {
 		this.oi = oi;
@@ -22,13 +23,13 @@ public class WheeledClaw extends Subsystem{
 	}
 	
 	protected void intake() {
-		RobotMap.clawMotorA.set(1);
-		RobotMap.clawMotorB.set(-1);
+		RobotMap.clawMotorA.set(clawSpeed);
+		RobotMap.clawMotorB.set(-clawSpeed);
 	}
 	
 	protected void output() {
-		RobotMap.clawMotorA.set(-1);
-		RobotMap.clawMotorB.set(1);
+		RobotMap.clawMotorA.set(-clawSpeed);
+		RobotMap.clawMotorB.set(clawSpeed);
 	}
 
 }
