@@ -7,7 +7,7 @@ package org.usfirst.frc4014.powerup;
  */
 public final class CAN {
 
-	public static final int ROBOT_ASCENT_MOTOR = 2;
+	public static final int ROBOT_ASCENT_MOTOR = 1;
 	public static final int DRIVE_TRAIN_LEFT_MOTOR_A = 3;
 	public static final int DRIVE_TRAIN_LEFT_MOTOR_B = 2;
 	public static final int DRIVE_TRAIN_RIGHT_MOTOR_A = 5;
