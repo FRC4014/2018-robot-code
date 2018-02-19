@@ -38,7 +38,8 @@ public class ClawLift extends Subsystem {
 	}
 	
 	public void release() {
-		RobotMap.fredReleaseSolenoid.set(DoubleSolenoid.Value.kReverse);
+//		RobotMap.fredReleaseSolenoid.set(DoubleSolenoid.Value.kReverse);
+		RobotMap.fredReleaseServo.setAngle(180);
 	}
 	
 
