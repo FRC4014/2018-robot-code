@@ -8,6 +8,10 @@ import org.usfirst.frc4014.powerup.drivetrain.DriveTrain;
 public class LeftPosition extends CommandGroup {
 
     public LeftPosition(DriveTrain driveTrain, GameData gameData) {
+        TrackTimeCommand.TimeTracker timeTracker =
+                new TrackTimeCommand.TimeTracker("CenterPosition");
+
+        addSequential(new TrackTimeCommand(timeTracker, true));
         if (gameData.isAllySwitchOnLeft()) {
             addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), 91));
             addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveSlowSpeed", 1), 15));
@@ -22,6 +26,7 @@ public class LeftPosition extends CommandGroup {
                 //TODO add drop code
             }
         }
+        addSequential(new TrackTimeCommand(timeTracker, false));
         //TODO extend fred (if we end up using fred)
     }
 }

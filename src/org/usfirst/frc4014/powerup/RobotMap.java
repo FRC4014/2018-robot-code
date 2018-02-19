@@ -47,7 +47,8 @@ public class RobotMap {
 
 	public static WPI_TalonSRX clawAscentMotorA;
 	public static WPI_TalonSRX clawAscentMotorB;
-	public static DoubleSolenoid fredReleaseSolenoid;
+//	public static DoubleSolenoid fredReleaseSolenoid;
+	public static Servo fredReleaseServo;
 	public static DigitalInput upperLimit;
 	public static DigitalInput lowerLimit;
 
@@ -126,7 +127,8 @@ public class RobotMap {
 //			clawSolenoidA = new DoubleSolenoid(0, 7);
 
 			clawAscentMotorA = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_A);
-//			fredReleaseSolenoid = new DoubleSolenoid(2, 5);
+			fredReleaseServo = new Servo(0);
+//	//		fredReleaseSolenoid = new DoubleSolenoid(2, 5);
 
 //			upperLimit = new DigitalInput(DPIO.CUBE_LIFT_TOP_LIMIT);
 //			lowerLimit = new DigitalInput(DPIO.CUBE_LIFT_BOTTOM_LIMIT);

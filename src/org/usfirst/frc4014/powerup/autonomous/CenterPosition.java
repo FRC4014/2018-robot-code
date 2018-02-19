@@ -20,12 +20,17 @@ public class CenterPosition extends CommandGroup {
             prefs = new AutoPrefs("AutoCenterRight", "d:25,p:65,d:45,p:-65.4,d:33,d:15");
         }
 
+        TrackTimeCommand.TimeTracker timeTracker =
+                new TrackTimeCommand.TimeTracker("CenterPosition");
+
+        addSequential(new TrackTimeCommand(timeTracker, true));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), prefs.prefs[0]));
         addSequential(new CustomPIDPivotByGyro(prefs.prefs[1]));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), prefs.prefs[2]));
         addSequential(new CustomPIDPivotByGyro(prefs.prefs[3]));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), prefs.prefs[4]));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveSlowSpeed", 1), prefs.prefs[5]));
+        addSequential(new TrackTimeCommand(timeTracker, false));
 
         //TODO: add drop code
         //TODO: extend fred (if we end up using fred)
