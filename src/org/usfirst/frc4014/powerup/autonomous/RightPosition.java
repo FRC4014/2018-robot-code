@@ -8,8 +8,12 @@ import org.usfirst.frc4014.powerup.drivetrain.DriveTrain;
 public class RightPosition extends CommandGroup {
 
     public RightPosition(DriveTrain driveTrain, GameData gameData) {
+        TrackTimeCommand.TimeTracker timeTracker =
+                new TrackTimeCommand.TimeTracker("CenterPosition");
+
+        addSequential(new TrackTimeCommand(timeTracker, true));
         if (gameData.isAllySwitchOnLeft()) {
-        		addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), 25));
+            addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), 25));
             addSequential(new CustomPIDPivotByGyro(25));
             addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), 127));
             addSequential(new CustomPIDPivotByGyro(-25));
@@ -22,6 +26,7 @@ public class RightPosition extends CommandGroup {
             addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveSlowSpeed", 1), 15));
             //TODO add drop code
         }
+        addSequential(new TrackTimeCommand(timeTracker, false));
         //TODO extend fred (if we end up using fred)
     }
 }
