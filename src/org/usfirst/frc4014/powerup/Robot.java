@@ -88,6 +88,9 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         driveTrain.setNeutralMode(NeutralMode.Brake);
+        
+        // reset the gyro so movements always start oriented to the field
+        RobotMap.AHRS.reset();
 
         GameData gameData = new GameData(DriverStation.getInstance().getGameSpecificMessage());
 

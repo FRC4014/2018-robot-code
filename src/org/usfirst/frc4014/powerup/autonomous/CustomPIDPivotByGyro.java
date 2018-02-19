@@ -31,10 +31,11 @@ public class CustomPIDPivotByGyro extends Command {
 	@Override
 	protected void initialize() {
 		initTimestamp = System.currentTimeMillis();
-		ahrs.reset();
-		p = Preferences.getInstance().getDouble("P", 0.5);
-		i = Preferences.getInstance().getDouble("i", 0);
-		d = Preferences.getInstance().getDouble("d", 0);
+//		ahrs.reset();
+		AutoPrefs prefs = new AutoPrefs("PivotPID", "p:0.5,i:0,d:0");
+		p = prefs.prefs[0];//Preferences.getInstance().getDouble("P", 0.5);
+		i = prefs.prefs[1];//Preferences.getInstance().getDouble("i", 0);
+		d = prefs.prefs[2];//Preferences.getInstance().getDouble("d", 0);
 		maxSpeed = Preferences.getInstance().getDouble("PivotMaxSpeed", 0.8);
 		minSpeed = Preferences.getInstance().getDouble("PivotMinSpeed", 0.2);
 		tolerance = Preferences.getInstance().getDouble("PivotTolerance", 1.0);
@@ -42,8 +43,7 @@ public class CustomPIDPivotByGyro extends Command {
 		acceptable = false;
 		postDone = 0;
 		first = true;
-		System.out.println("\n\n\n===========================================================");
-		System.out.println("p: " + p + " | i: " + i + " | d: " + d + " | setPoint: " + setPoint);
+		System.out.println("CustomPidPivotByGyro.initialize(): p: " + p + " | i: " + i + " | d: " + d + " | setPoint: " + setPoint);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -66,8 +66,8 @@ public class CustomPIDPivotByGyro extends Command {
 			speed = rcw < 0 ? -speed : speed;
 			RobotMap.driveTrainDifferentialDrive.arcadeDrive(0, speed);
 		}
-		System.out.println("acceptable: " + acceptable + " | angle: " + angle + " | error: " + error + " | raw rcw: " + rcw
-				+ " | speed: " + speed);
+//		System.out.println("acceptable: " + acceptable + " | angle: " + angle + " | error: " + error + " | raw rcw: " + rcw
+//				+ " | speed: " + speed);
 	}
 
 	@Override

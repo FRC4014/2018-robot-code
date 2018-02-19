@@ -50,7 +50,9 @@ public class DriveTrain extends Subsystem {
     
     public void drive(Joystick joystick) {
     	RobotMap.driveTrainDifferentialDrive.arcadeDrive(joystick.getY(), joystick.getTwist());
-    double velocity = Math.abs(RobotMap.rightEncoder.getRate());
+    double velocity = Math.abs(RobotMap.leftEncoder.getRate());
+    double ldist = RobotMap.leftEncoder.getDistance();
+    double rdist = RobotMap.rightEncoder.getDistance();
     if(velocity > Preferences.getInstance().getDouble("speed up theshold", 100) && !gearRatioIsHigh) {
     	fastGearRatio();
     	System.out.println("///////////////////////////////////////////// switched ratio to high");
@@ -58,18 +60,18 @@ public class DriveTrain extends Subsystem {
     	slowGearRatio();
     	System.out.println("///////////////////////////////////////////// switched ratio to low");
     }
-    System.out.println("Velocity is: " + velocity);
+    //System.out.println("Velocity is: " + velocity + " | left dist = " + ldist + " | right dist = " + rdist);
     }
     
     public void drive(double speed) {
-    	double rightDist = RobotMap.rightEncoder.getDistance();
-    	double leftDist = RobotMap.leftEncoder.getDistance();
-    double error = rightDist - leftDist;
-    integral += error * 0.02;
-    double derivative = (error - prevError) / 0.02;
-    double rcw = (dtP * error) + (dtI * integral) + (dtD * derivative);
-    	RobotMap.driveTrainDifferentialDrive.arcadeDrive(-speed, rcw);
-    	prevError = error;
+//    	double rightDist = RobotMap.rightEncoder.getDistance();
+//    	double leftDist = RobotMap.leftEncoder.getDistance();
+//    double error = rightDist - leftDist;
+//    integral += error * 0.02;
+//    double derivative = (error - prevError) / 0.02;
+//    double rcw = (dtP * error) + (dtI * integral) + (dtD * derivative);
+    	RobotMap.driveTrainDifferentialDrive.arcadeDrive(-speed, 0);
+//    	prevError = error;
     }
     
     public void rotate(double turnSpeed) {

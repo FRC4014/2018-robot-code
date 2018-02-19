@@ -18,7 +18,7 @@ public class RightPosition extends CommandGroup {
                 //TODO add drop code
             }
         } else {
-            addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), 90));
+            addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), Preferences.getInstance().getDouble("rightPositionDistance", 90)));
             addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveSlowSpeed", 1), 15));
             //TODO add drop code
         }

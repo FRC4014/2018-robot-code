@@ -21,17 +21,17 @@ public class ClawLift extends Subsystem {
 	
 	@Override
 	protected void initDefaultCommand() {
-//		setDefaultCommand(new AscendClawByJoystick(this, oi));
+		setDefaultCommand(new AscendClawByJoystick(this, oi));
 	}
 
 	public void ascend (Joystick joystick) {
 		double speed = -joystick.getY() + .1;
-		System.out.println("joystick speed is: " + speed);
+//		System.out.println("joystick speed is: " + speed);
 		if (speed > 0 /*&& !RobotMap.upperLimit.get()*/) {
-			System.out.println("going down!");
+//			System.out.println("going down!");
 			RobotMap.clawAscentMotorA.set(speed + .1);
 		} else if (speed < 0 /*&& !RobotMap.lowerLimit.get()*/){
-			System.out.println("going up!");
+//			System.out.println("going up!");
 			RobotMap.clawAscentMotorA.set(speed + .1);
 		}
 		

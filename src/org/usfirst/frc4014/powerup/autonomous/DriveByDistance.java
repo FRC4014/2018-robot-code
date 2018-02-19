@@ -46,7 +46,7 @@ public class DriveByDistance extends Command {
         System.out.println("DriveByDistance.initialize(): distance = " + distance);
         driveTrain.resetEncoders();
 
-        ahrs.resetDisplacement();
+//        ahrs.resetDisplacement();
         initPIDControl();
     }
 
@@ -64,7 +64,6 @@ public class DriveByDistance extends Command {
         isInsideTolerance = false;
         postDone = 0;
         first = true;
-        System.out.println("\n\n\n==== DriveByDistance =======================================================");
         System.out.println("p: " + p + " | i: " + i + " | d: " + d + " | setPoint: " + setPoint);
     }
 
@@ -76,7 +75,7 @@ public class DriveByDistance extends Command {
         first = false;
         double rcw = 0;
         double rotation = 0;
-        speed = dp * (distance + RobotMap.rightEncoder.getDistance());
+        speed = dp * (distance + RobotMap.leftEncoder.getDistance());
         speed = Math.max(.5, Math.min(speed, maxDSpeed));
         isInsideTolerance = Math.abs(error) < tolerance;
         if (!isInsideTolerance) {
@@ -103,15 +102,22 @@ public class DriveByDistance extends Command {
     }
 
     private boolean probableCollision() {
-        return (System.currentTimeMillis() - initTimestamp > 300) &&
-                (Math.abs(RobotMap.rightEncoder.getRate()) < 1.0);
+        boolean collision = (System.currentTimeMillis() - initTimestamp > 300) &&
+                (Math.abs(RobotMap.leftEncoder.getRate()) < 1.0);
+        if (collision) {
+            System.out.println("DriveByDistance: collision");
+        }
+        return collision;
     }
 
     private boolean achievedDistance() {
         double rightDistance = -RobotMap.rightEncoder.getDistance();
         double leftDistance = -RobotMap.leftEncoder.getDistance();
-        boolean finished = rightDistance >= distance - 1;
-        System.out.println("DriveByDistance.isFinished(): ahrs distance = " + rightDistance + " |speed = " + speed + " |is finished = " + finished);
+        boolean finished = leftDistance >= distance - 1;
+//        System.out.println("DriveByDistance.isFinished(): ahrs distance = " + leftDistance + " |speed = " + speed + " |is finished = " + finished);
+        if (finished) {
+            System.out.println("DriveByDistance: drove " + distance + " inches");
+        }
         return finished;
     }
 

@@ -14,10 +14,10 @@ public class CenterPosition extends CommandGroup {
         AutoPrefs prefs;
         if (gameData.isAllyScaleOnLeft()) {
             System.out.println("Robot on center, going left");
-            prefs = new AutoPrefs("AutoCenterLeft", "d:25,p:-67.5,d:141.16,p:67.4,d:42");
+            prefs = new AutoPrefs("AutoCenterLeft", "d:25,p:-67.5,d:141.16,p:67.4,d:33,d:15");
         } else {
             System.out.println("Robot on center, going right");
-            prefs = new AutoPrefs("AutoCenterRight", "d:25,p:65,d:45,p:-65.4,d:42");
+            prefs = new AutoPrefs("AutoCenterRight", "d:25,p:65,d:45,p:-65.4,d:33,d:15");
         }
 
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), prefs.prefs[0]));
@@ -25,7 +25,7 @@ public class CenterPosition extends CommandGroup {
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), prefs.prefs[2]));
         addSequential(new CustomPIDPivotByGyro(prefs.prefs[3]));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), prefs.prefs[4]));
-        addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveSlowSpeed", 1), 15));
+        addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveSlowSpeed", 1), prefs.prefs[5]));
 
         //TODO: add drop code
         //TODO: extend fred (if we end up using fred)

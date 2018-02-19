@@ -62,7 +62,7 @@ public class RobotMap {
 	}
 
     private static void initNavX() {
-        if (Preferences.getInstance().getBoolean("initNavX", false)) {
+        if (Preferences.getInstance().getBoolean("initNavX", true)) {
             AHRS = new AHRS(SPI.Port.kMXP);
             AHRS.reset();
             AHRS.resetDisplacement();
@@ -118,14 +118,14 @@ public class RobotMap {
 	private static void initClaw() {
 		if (Preferences.getInstance().getBoolean("initClaw", true)) {
 		    System.out.println("claw activated");
-			clawMotorA = new WPI_TalonSRX(CAN.CLAW_MOTOR_A);
-			clawMotorB = new WPI_TalonSRX(CAN.CLAW_MOTOR_B);
-//
-			compressor = new Compressor(0);
-			compressor.setClosedLoopControl(true);
-			clawSolenoidA = new DoubleSolenoid(0, 7);
+//			clawMotorA = new WPI_TalonSRX(CAN.CLAW_MOTOR_A);
+//			clawMotorB = new WPI_TalonSRX(CAN.CLAW_MOTOR_B);
+////
+//			compressor = new Compressor(0);
+//			compressor.setClosedLoopControl(true);
+//			clawSolenoidA = new DoubleSolenoid(0, 7);
 
-//			clawAscentMotorA = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_A);
+			clawAscentMotorA = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_A);
 //			fredReleaseSolenoid = new DoubleSolenoid(2, 5);
 
 //			upperLimit = new DigitalInput(DPIO.CUBE_LIFT_TOP_LIMIT);
