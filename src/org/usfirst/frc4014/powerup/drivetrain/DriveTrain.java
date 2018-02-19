@@ -21,6 +21,7 @@ public class DriveTrain extends Subsystem {
 	private double integral = 0;
 	private double prevError = 0;
 	private double dtP, dtI, dtD = 0;
+	private double turnValue;
 	
 	private boolean gearRatioIsHigh = false;
 
@@ -49,10 +50,13 @@ public class DriveTrain extends Subsystem {
 	}
     
     public void drive(Joystick joystick) {
-    	RobotMap.driveTrainDifferentialDrive.arcadeDrive(joystick.getY(), joystick.getTwist());
+    	if(joystick.getY() != 0) {
+    		turnValue = joystick.getTwist() + Preferences.getInstance().getDouble("fudgeValue", 0);
+    	} else {
+    		turnValue = joystick.getTwist();
+    	}
+    	RobotMap.driveTrainDifferentialDrive.arcadeDrive(joystick.getY(), turnValue);
     double velocity = Math.abs(RobotMap.leftEncoder.getRate());
-    double ldist = RobotMap.leftEncoder.getDistance();
-    double rdist = RobotMap.rightEncoder.getDistance();
     if(velocity > Preferences.getInstance().getDouble("speed up theshold", 100) && !gearRatioIsHigh) {
     	fastGearRatio();
     	System.out.println("///////////////////////////////////////////// switched ratio to high");
