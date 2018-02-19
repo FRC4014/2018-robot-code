@@ -64,7 +64,7 @@ public class CustomPIDPivotByGyro extends Command {
 			double modRcw = Math.abs(rcw) / (Math.abs(setPoint) * .25);
 			speed = Math.max(minSpeed, Math.min(modRcw, maxSpeed));
 			speed = rcw < 0 ? -speed : speed;
-			RobotMap.driveTrainDifferentialDrive.arcadeDrive(0, speed);
+			RobotMap.driveTrainDifferentialDrive.arcadeDrive(0, -speed);
 		}
 //		System.out.println("acceptable: " + acceptable + " | angle: " + angle + " | error: " + error + " | raw rcw: " + rcw
 //				+ " | speed: " + speed);

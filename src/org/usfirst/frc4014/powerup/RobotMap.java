@@ -21,7 +21,8 @@ public class RobotMap {
 	private static final int ENCODER_RESOLUTION = Preferences.getInstance().getInt("DriveTrainEncoderResolution", 2048);
 
 	private static final double PULSES_PER_ROTATION = ENCODER_RESOLUTION;
-	private static final double DISTANCE_PER_PULSE = Math.PI * WHEEL_DIAMETER * 1 / PULSES_PER_ROTATION;
+	private static final double DISTANCE_PER_PULSE = (Math.PI * WHEEL_DIAMETER * 1 / PULSES_PER_ROTATION) * 2.19047619;
+//	private static final double DISTANCE_PER_PULSE = 184/13750;
 
 	public static AHRS AHRS;
 

@@ -50,13 +50,15 @@ public class DriveTrain extends Subsystem {
 	}
     
     public void drive(Joystick joystick) {
-    	if(joystick.getY() != 0) {
-    		turnValue = joystick.getTwist() + Preferences.getInstance().getDouble("fudgeValue", 0);
+    	if(Math.abs(joystick.getY()) > .1) {
+    		turnValue = -joystick.getTwist() + Preferences.getInstance().getDouble("dtFudgeValue", 0);
     	} else {
-    		turnValue = joystick.getTwist();
+    		turnValue = -joystick.getTwist();
     	}
     	RobotMap.driveTrainDifferentialDrive.arcadeDrive(joystick.getY(), turnValue);
     double velocity = Math.abs(RobotMap.leftEncoder.getRate());
+    double ldist = RobotMap.leftEncoder.getRaw();
+    double rdist = RobotMap.rightEncoder.getRaw();
     if(velocity > Preferences.getInstance().getDouble("speed up theshold", 100) && !gearRatioIsHigh) {
     	fastGearRatio();
     	System.out.println("///////////////////////////////////////////// switched ratio to high");
@@ -64,7 +66,7 @@ public class DriveTrain extends Subsystem {
     	slowGearRatio();
     	System.out.println("///////////////////////////////////////////// switched ratio to low");
     }
-    //System.out.println("Velocity is: " + velocity + " | left dist = " + ldist + " | right dist = " + rdist);
+    System.out.println("Velocity is: " + velocity + " | left dist = " + ldist + " | right dist = " + rdist);
     }
     
     public void drive(double speed) {

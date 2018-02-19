@@ -87,7 +87,7 @@ public class DriveByDistance extends Command {
             rotation = Math.max(minSpeed, Math.min(modRcw, maxSpeed));
             rotation = rcw < 0 ? -rotation : rotation;
 
-            driveTrain.arcadeDrive(-speed, rotation);
+            driveTrain.arcadeDrive(-speed, -rotation);
         } else {
             driveTrain.arcadeDrive(-speed, 0);
         }
@@ -112,9 +112,9 @@ public class DriveByDistance extends Command {
 
     private boolean achievedDistance() {
         double rightDistance = -RobotMap.rightEncoder.getDistance();
-        double leftDistance = -RobotMap.leftEncoder.getDistance();
+        double leftDistance = RobotMap.leftEncoder.getDistance();
         boolean finished = leftDistance >= distance - 1;
-//        System.out.println("DriveByDistance.isFinished(): ahrs distance = " + leftDistance + " |speed = " + speed + " |is finished = " + finished);
+        System.out.println("DriveByDistance.isFinished(): ENCODER distance = " + leftDistance + " |speed = " + speed + " |is finished = " + finished);
         if (finished) {
             System.out.println("DriveByDistance: drove " + distance + " inches");
         }
