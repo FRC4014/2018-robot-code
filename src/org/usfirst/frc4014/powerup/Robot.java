@@ -56,8 +56,10 @@ public class Robot extends TimedRobot {
         pneumaticClaw = new PneumaticClaw(oi);
         wheeledClaw = new WheeledClaw(oi);
 
-//        UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-//        camera.setFPS(10);
+        if (Preferences.getInstance().getBoolean("HasCamera", false)) {
+            UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+            camera.setFPS(10);
+        }
 
         // Add commands to Autonomous Sendable Chooser
         chooser.addObject("Drive By Time", new DriveByTime(driveTrain, 1, 3));
