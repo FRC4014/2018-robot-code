@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import pclaw.PneumaticClaw;
 import wclaw.WheeledClaw;
 
 import static org.usfirst.frc4014.powerup.autonomous.RobotPositionCommand.Position.*;
@@ -36,7 +35,6 @@ public class Robot extends TimedRobot {
     public static OI oi;
     public static DriveTrain driveTrain;
     public static ClawLift clawLift;
-    public static PneumaticClaw pneumaticClaw;
     public static WheeledClaw wheeledClaw;
 
     /**
@@ -53,7 +51,6 @@ public class Robot extends TimedRobot {
         RobotMap.init();
         driveTrain = new DriveTrain(oi);
         clawLift = new ClawLift(oi);
-        pneumaticClaw = new PneumaticClaw(oi);
         wheeledClaw = new WheeledClaw(oi);
 
         if (Preferences.getInstance().getBoolean("HasCamera", false)) {
@@ -103,13 +100,13 @@ public class Robot extends TimedRobot {
         if (autonomousCommand instanceof RobotPositionCommand) {
             switch (((RobotPositionCommand) autonomousCommand).getPosition()) {
                 case Left:
-                    autonomousCommand = new LeftPosition(driveTrain, gameData);
+                    autonomousCommand = new LeftPosition(driveTrain, gameData, clawLift, wheeledClaw);
                     break;
                 case Center:
-                    autonomousCommand = new CenterPosition(driveTrain, gameData);
+                    autonomousCommand = new CenterPosition(driveTrain, gameData, clawLift, wheeledClaw);
                     break;
                 case Right:
-                		autonomousCommand = new RightPosition(driveTrain, gameData);
+                		autonomousCommand = new RightPosition(driveTrain, gameData, clawLift, wheeledClaw);
                     break;
                 default:
                     throw new IllegalStateException("RobotPositionCommand mis-configured.");

@@ -2,13 +2,17 @@ package org.usfirst.frc4014.powerup.autonomous;
 
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import wclaw.OutputCube;
+import wclaw.WheeledClaw;
+
 import org.usfirst.frc4014.powerup.MultiPrefs;
+import org.usfirst.frc4014.powerup.clawlift.ClawLift;
 import org.usfirst.frc4014.powerup.GameData;
 import org.usfirst.frc4014.powerup.drivetrain.DriveTrain;
 
 public class CenterPosition extends CommandGroup {
 
-    public CenterPosition(DriveTrain driveTrain, GameData gameData) {
+    public CenterPosition(DriveTrain driveTrain, GameData gameData, ClawLift clawLift, WheeledClaw wheeledClaw) {
 
         Double speed = Preferences.getInstance().getDouble("AutoDriveSpeed", 1.0);
 
@@ -25,12 +29,14 @@ public class CenterPosition extends CommandGroup {
                 new TrackTimeCommand.TimeTracker("CenterPosition");
 
         addSequential(new TrackTimeCommand(timeTracker, true));
+        addSequential(new ReleaseFred(clawLift));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), prefs.prefs[0]));
         addSequential(new CustomPIDPivotByGyro(prefs.prefs[1]));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), prefs.prefs[2]));
         addSequential(new CustomPIDPivotByGyro(prefs.prefs[3]));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), prefs.prefs[4]));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveSlowSpeed", 1), prefs.prefs[5]));
+        addSequential(new OutputCube(wheeledClaw));
         addSequential(new TrackTimeCommand(timeTracker, false));
 
         //TODO: add drop code
