@@ -111,14 +111,17 @@ public class RobotMap {
 	}
 
 	private static void initDriveTrainGearShifter() {
-		if (Preferences.getInstance().getBoolean("initDTShifter", false)) {
+		if (Preferences.getInstance().getBoolean("initDTShifter", true)) {
 
+		    compressor = new Compressor(0);
+		    compressor.setClosedLoopControl(true);
 			driveTrainSolenoidA = new DoubleSolenoid(1, 6);
+			driveTrainSolenoidB = new DoubleSolenoid(0, 7);
 		}
 	}
 
 	private static void initClaw() {
-		if (Preferences.getInstance().getBoolean("initClaw", true)) {
+		if (Preferences.getInstance().getBoolean("initClaw", false)) {
 		    System.out.println("claw activated");
 //			clawMotorA = new WPI_TalonSRX(CAN.CLAW_MOTOR_A);
 //			clawMotorB = new WPI_TalonSRX(CAN.CLAW_MOTOR_B);
@@ -127,8 +130,8 @@ public class RobotMap {
 //			compressor.setClosedLoopControl(true);
 //			clawSolenoidA = new DoubleSolenoid(0, 7);
 
-			clawAscentMotorA = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_A);
-			fredReleaseServo = new Servo(0);
+//			clawAscentMotorA = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_A);
+//			fredReleaseServo = new Servo(0);
 //	//		fredReleaseSolenoid = new DoubleSolenoid(2, 5);
 
 //			upperLimit = new DigitalInput(DPIO.CUBE_LIFT_TOP_LIMIT);

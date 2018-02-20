@@ -40,12 +40,16 @@ public class DriveTrain extends Subsystem {
     }
 	
 	public void slowGearRatio() {
-//		RobotMap.driveTrainSolenoidA.set(DoubleSolenoid.Value.kForward); TODO uncomment once on new robot
+	    System.out.println("///////////////////////////////////////////// switched ratio to low");
+		RobotMap.driveTrainSolenoidA.set(DoubleSolenoid.Value.kReverse);
+		RobotMap.driveTrainSolenoidB.set(DoubleSolenoid.Value.kReverse);
 		gearRatioIsHigh = false;
 	}
 	
 	public void fastGearRatio() {
-//		RobotMap.driveTrainSolenoidA.set(DoubleSolenoid.Value.kReverse); TODO uncomment once on new robot
+	    System.out.println("///////////////////////////////////////////// switched ratio to high");
+		RobotMap.driveTrainSolenoidA.set(DoubleSolenoid.Value.kForward);
+	    RobotMap.driveTrainSolenoidB.set(DoubleSolenoid.Value.kForward);
 		gearRatioIsHigh = true;
 	}
     
@@ -61,10 +65,10 @@ public class DriveTrain extends Subsystem {
     double rdist = RobotMap.rightEncoder.getRaw();
     if(velocity > Preferences.getInstance().getDouble("speed up theshold", 100) && !gearRatioIsHigh) {
     	fastGearRatio();
-    	System.out.println("///////////////////////////////////////////// switched ratio to high");
-    } else if (velocity < Preferences.getInstance().getDouble("speed down threshold", 60) && gearRatioIsHigh) {
+    	
+    } else if (velocity < Preferences.getInstance().getDouble("speed down threshold", 50) && gearRatioIsHigh) {
     	slowGearRatio();
-    	System.out.println("///////////////////////////////////////////// switched ratio to low");
+    	
     }
     System.out.println("Velocity is: " + velocity + " | left dist = " + ldist + " | right dist = " + rdist);
     }

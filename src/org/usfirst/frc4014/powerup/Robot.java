@@ -124,6 +124,8 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopInit() {
         driveTrain.setNeutralMode(NeutralMode.Coast);
+        RobotMap.compressor.start();
+//        RobotMap.compressor.setClosedLoopControl(true);
 
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to
@@ -137,6 +139,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopPeriodic() {
+//        System.out.println("compressor is: " + RobotMap.compressor.enabled());
         Scheduler.getInstance().run();
     }
 }
