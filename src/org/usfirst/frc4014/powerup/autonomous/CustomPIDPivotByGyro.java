@@ -1,5 +1,6 @@
 package org.usfirst.frc4014.powerup.autonomous;
 
+import org.usfirst.frc4014.powerup.Orientation;
 import org.usfirst.frc4014.powerup.RobotMap;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -54,7 +55,7 @@ public class CustomPIDPivotByGyro extends Command {
 		error = first ? setPoint : error; // in case ahrs.reset() isn't acceptable (only observed first time, so kludging it)
 		first = false;
 		double rcw = 0;
-		double speed = 0;
+		double rotation = 0;
 		acceptable = Math.abs(error) < tolerance;
 		if (!acceptable) {
 			integral += error * 0.02; // 0.02 because it's normal timing for IterativeRobot.
@@ -62,9 +63,9 @@ public class CustomPIDPivotByGyro extends Command {
 			rcw = (p * error) + (i * integral) + (d * derivative);
 
 			double modRcw = Math.abs(rcw) / (Math.abs(setPoint) * .25);
-			speed = Math.max(minSpeed, Math.min(modRcw, maxSpeed));
-			speed = rcw < 0 ? -speed : speed;
-			RobotMap.driveTrainDifferentialDrive.arcadeDrive(0, -speed);
+			rotation = Math.max(minSpeed, Math.min(modRcw, maxSpeed));
+			rotation = rcw < 0 ? -rotation : rotation;
+			RobotMap.driveTrainDifferentialDrive.arcadeDrive(0, Orientation.z(rotation));
 		}
 //		System.out.println("acceptable: " + acceptable + " | angle: " + angle + " | error: " + error + " | raw rcw: " + rcw
 //				+ " | speed: " + speed);

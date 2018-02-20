@@ -45,6 +45,9 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
+        // Orient robot Y and Z axis based on preferences.
+        Orientation.init();
+
         // since oi is constructed before subsystems, it must not contain any commands
         oi = new OI();
         RobotMap.init();

@@ -1,5 +1,6 @@
 package org.usfirst.frc4014.powerup.autonomous;
 
+import org.usfirst.frc4014.powerup.Orientation;
 import org.usfirst.frc4014.powerup.RobotMap;
 import org.usfirst.frc4014.powerup.drivetrain.DriveTrain;
 
@@ -87,9 +88,9 @@ public class DriveByDistance extends Command {
             rotation = Math.max(minSpeed, Math.min(modRcw, maxSpeed));
             rotation = rcw < 0 ? -rotation : rotation;
 
-            driveTrain.arcadeDrive(-speed, -rotation);
+            driveTrain.arcadeDrive(Orientation.y(speed), Orientation.z(rotation));
         } else {
-            driveTrain.arcadeDrive(-speed, 0);
+            driveTrain.arcadeDrive(Orientation.y(speed), 0);
         }
 //		System.out.println("isInsideTolerance: " + isInsideTolerance + " | angle: " + angle + " | error: " + error + " | raw rcw: " + rcw
 //				+ " | rotation: " + rotation +" | speed: " + speed);
