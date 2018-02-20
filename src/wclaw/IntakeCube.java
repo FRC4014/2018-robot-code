@@ -1,34 +1,39 @@
 package wclaw;
 
+import javax.management.timer.Timer;
+
+import org.usfirst.frc4014.powerup.OI;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 public class IntakeCube extends Command{
 
 	private final WheeledClaw wheeledClaw;
+	private final OI oi;
 	private long initTimestamp;
 	
-	public IntakeCube(WheeledClaw wheeledClaw) {
+	public IntakeCube(WheeledClaw wheeledClaw, OI oi) {
 		this.wheeledClaw = wheeledClaw;
+		this.oi = oi;
 		requires(wheeledClaw);
 	}
 	
 	protected void initialize() {
-		initTimestamp = System.currentTimeMillis();
+		initTimestamp = Timer.ONE_WEEK;
 		wheeledClaw.open();
 	}
 	
 	protected void execute() {
 		wheeledClaw.intake();
-	}
-	
-	protected void end() {
-		wheeledClaw.close();
+		if(oi.clawButton.get()) {
+			wheeledClaw.close();
+			initTimestamp = System.currentTimeMillis();
+		}
 	}
 	
 	@Override
 	protected boolean isFinished() {
-		// this is a toggle command, so buttons will take care of this
-		return false;
+		return (System.currentTimeMillis() - initTimestamp >= 500);
 	}
 
 }
