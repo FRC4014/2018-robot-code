@@ -10,6 +10,7 @@ public class IntakeCube extends Command{
 
 	private final WheeledClaw wheeledClaw;
 	private final OI oi;
+	private long turnOffTimestamp;
 	private long initTimestamp;
 	
 	public IntakeCube(WheeledClaw wheeledClaw, OI oi) {
@@ -19,13 +20,14 @@ public class IntakeCube extends Command{
 	}
 	
 	protected void initialize() {
-		initTimestamp = Timer.ONE_WEEK;
+		turnOffTimestamp = Timer.ONE_MINUTE;
+		initTimestamp = System.currentTimeMillis();
 		wheeledClaw.open();
 	}
 	
 	protected void execute() {
 		wheeledClaw.intake();
-		if(oi.clawButton.get()) {
+		if(oi.clawButton.get() && System.currentTimeMillis() - initTimestamp > 1000) {
 			wheeledClaw.close();
 			initTimestamp = System.currentTimeMillis();
 		}
@@ -33,7 +35,7 @@ public class IntakeCube extends Command{
 	
 	@Override
 	protected boolean isFinished() {
-		return (System.currentTimeMillis() - initTimestamp >= 500);
+		return (System.currentTimeMillis() - turnOffTimestamp >= 500);
 	}
 
 }
