@@ -9,19 +9,26 @@ public class IntakeCube extends Command{
 	
 	public IntakeCube(WheeledClaw wheeledClaw) {
 		this.wheeledClaw = wheeledClaw;
+		requires(wheeledClaw);
 	}
 	
 	protected void initialize() {
 		initTimestamp = System.currentTimeMillis();
+		wheeledClaw.open();
 	}
 	
 	protected void execute() {
 		wheeledClaw.intake();
 	}
 	
+	protected void end() {
+		wheeledClaw.close();
+	}
+	
 	@Override
 	protected boolean isFinished() {
-		return (System.currentTimeMillis() - initTimestamp > 1000);
+		// this is a toggle command, so buttons will take care of this
+		return false;
 	}
 
 }

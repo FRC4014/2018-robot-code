@@ -9,6 +9,7 @@ public class OutputCube extends Command{
 	
 	public OutputCube(WheeledClaw wheeledClaw) {
 		this.wheeledClaw = wheeledClaw;
+		requires(wheeledClaw);
 	}
 
 	protected void initialize() {
@@ -17,6 +18,10 @@ public class OutputCube extends Command{
 	
 	protected void execute() {
 		wheeledClaw.output();
+	}
+	
+	protected void end() {
+		wheeledClaw.open();
 	}
 	
 	@Override
