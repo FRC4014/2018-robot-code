@@ -1,15 +1,15 @@
-package org.usfirst.frc4014.powerup.autonomous;
+package org.usfirst.frc4014.powerup;
 
 
 import edu.wpi.first.wpilibj.Preferences;
 
-public class AutoPrefs {
+public class MultiPrefs {
 
     public final String stringPrefs;
 
     public final double[] prefs;
 
-    public AutoPrefs(String prefsKey, String backup) {
+    public MultiPrefs(String prefsKey, String backup) {
         stringPrefs = Preferences.getInstance().getString(prefsKey, backup);
         prefs = parseRawPrefs(stringPrefs);
     }

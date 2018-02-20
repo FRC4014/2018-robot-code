@@ -1,5 +1,6 @@
 package org.usfirst.frc4014.powerup.autonomous;
 
+import org.usfirst.frc4014.powerup.MultiPrefs;
 import org.usfirst.frc4014.powerup.Orientation;
 import org.usfirst.frc4014.powerup.RobotMap;
 
@@ -33,7 +34,7 @@ public class CustomPIDPivotByGyro extends Command {
 	protected void initialize() {
 		initTimestamp = System.currentTimeMillis();
 //		ahrs.reset();
-		AutoPrefs prefs = new AutoPrefs("PivotPID", "p:0.5,i:0,d:0");
+		MultiPrefs prefs = new MultiPrefs("PivotPID", "p:0.5,i:0,d:0");
 		p = prefs.prefs[0];//Preferences.getInstance().getDouble("P", 0.5);
 		i = prefs.prefs[1];//Preferences.getInstance().getDouble("i", 0);
 		d = prefs.prefs[2];//Preferences.getInstance().getDouble("d", 0);

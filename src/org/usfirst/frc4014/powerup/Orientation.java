@@ -1,7 +1,5 @@
 package org.usfirst.frc4014.powerup;
 
-import org.usfirst.frc4014.powerup.autonomous.AutoPrefs;
-
 /**
  * Provides orientation factors for Y (forward/reverse) and Z (turn left/right)
  * based on the preference 'Orientation'.
@@ -17,7 +15,7 @@ public final class Orientation {
      * This should be called in Robot.robotInit().
      */
     static void init() {
-        AutoPrefs prefs = new AutoPrefs("Orientation", "y:-1,x:-1");
+        MultiPrefs prefs = new MultiPrefs("Orientation", "y:-1,x:-1");
         y = prefs.prefs[0];
         z = prefs.prefs[1];
     }

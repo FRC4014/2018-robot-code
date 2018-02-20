@@ -2,6 +2,7 @@ package org.usfirst.frc4014.powerup.autonomous;
 
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import org.usfirst.frc4014.powerup.MultiPrefs;
 import org.usfirst.frc4014.powerup.GameData;
 import org.usfirst.frc4014.powerup.drivetrain.DriveTrain;
 
@@ -11,13 +12,13 @@ public class CenterPosition extends CommandGroup {
 
         Double speed = Preferences.getInstance().getDouble("AutoDriveSpeed", 1.0);
 
-        AutoPrefs prefs;
+        MultiPrefs prefs;
         if (gameData.isAllyScaleOnLeft()) {
             System.out.println("Robot on center, going left");
-            prefs = new AutoPrefs("AutoCenterLeft", "d:25,p:-67.5,d:141.16,p:67.4,d:33,d:15");
+            prefs = new MultiPrefs("AutoCenterLeft", "d:25,p:-67.5,d:141.16,p:67.4,d:33,d:15");
         } else {
             System.out.println("Robot on center, going right");
-            prefs = new AutoPrefs("AutoCenterRight", "d:25,p:65,d:45,p:-65.4,d:33,d:15");
+            prefs = new MultiPrefs("AutoCenterRight", "d:25,p:65,d:45,p:-65.4,d:33,d:15");
         }
 
         TrackTimeCommand.TimeTracker timeTracker =
