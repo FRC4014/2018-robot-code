@@ -9,10 +9,10 @@ public final class CAN {
 
 	// Change these in the RoboRIO System Configuration tool, not in this code.
 	public static final int ROBOT_ASCENT_MOTOR = 1;
-	public static final int DRIVE_TRAIN_LEFT_MOTOR_A = 3;
-	public static final int DRIVE_TRAIN_LEFT_MOTOR_B = 2;
-	public static final int DRIVE_TRAIN_RIGHT_MOTOR_A = 5;
-	public static final int DRIVE_TRAIN_RIGHT_MOTOR_B = 4;
+	public static final int DRIVE_TRAIN_LEFT_MOTOR_A = 5;
+	public static final int DRIVE_TRAIN_LEFT_MOTOR_B = 4;
+	public static final int DRIVE_TRAIN_RIGHT_MOTOR_A = 3;
+	public static final int DRIVE_TRAIN_RIGHT_MOTOR_B = 2;
 	public static final int CLAW_MOTOR_A = 6;
 	public static final int CLAW_MOTOR_B = 7;
 	public static final int CLAW_ASCENT_MOTOR_A = 8;
