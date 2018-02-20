@@ -66,7 +66,7 @@ public class DriveTrain extends Subsystem {
     if(velocity > Preferences.getInstance().getDouble("speed up theshold", 100) && !gearRatioIsHigh) {
     	fastGearRatio();
     	
-    } else if (velocity < Preferences.getInstance().getDouble("speed down threshold", 50) && gearRatioIsHigh) {
+    } else if (velocity < Preferences.getInstance().getDouble("speed down threshold", 90) && gearRatioIsHigh) {
     	slowGearRatio();
     	
     }

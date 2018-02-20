@@ -15,7 +15,7 @@ public final class CAN {
 	public static final int DRIVE_TRAIN_RIGHT_MOTOR_B = 2;
 	public static final int CLAW_MOTOR_A = 6;
 	public static final int CLAW_MOTOR_B = 7;
-	public static final int CLAW_ASCENT_MOTOR_A = 8;
+	public static final int CLAW_ASCENT_MOTOR_A = 9;
 	public static final int CLAW_ASCENT_MOTOR_B = 9;
 
 	/**
