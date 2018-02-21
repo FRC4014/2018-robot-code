@@ -66,14 +66,18 @@ public class RobotMap {
 
     private static void initNavX() {
         if (Preferences.getInstance().getBoolean("initNavX", true)) {
+			System.out.println("RobotMap: initializing NavX");
             AHRS = new AHRS(SPI.Port.kMXP);
             AHRS.reset();
             AHRS.resetDisplacement();
-        }
+		} else {
+			System.out.println("RobotMap: NavX disabled");
+		}
     }
 
     private static void initDriveTrain() {
 		if (Preferences.getInstance().getBoolean("initDT", false)) {
+			System.out.println("RobotMap: initializing DriveTrain");
 			// The numbers of these WPI_TalonSRXs have to match the CAN configuration.
 			// Other things will be on the CAN bus too.
 			// We could have a CANSettings.java that has constants that clearly show
@@ -108,22 +112,26 @@ public class RobotMap {
 			leftEncoder.setDistancePerPulse(DISTANCE_PER_PULSE);
 			rightEncoder.setDistancePerPulse(DISTANCE_PER_PULSE);
 			System.out.println("DriveMap: DISTANCE_PER_PULSE = " + DISTANCE_PER_PULSE);
+		} else {
+			System.out.println("RobotMap: DriveTrain disabled");
 		}
 	}
 
 	private static void initDriveTrainGearShifter() {
 		if (Preferences.getInstance().getBoolean("initDTShifter", true)) {
-
+			System.out.println("RobotMap: initializing DriveTrain Gear Shifter");
 		    compressor = new Compressor(0);
 		    compressor.setClosedLoopControl(true);
 			driveTrainSolenoidA = new DoubleSolenoid(1, 6);
 			driveTrainSolenoidB = new DoubleSolenoid(0, 7);
+		} else {
+			System.out.println("RobotMap: DriveTrain Gear Shifter disabled");
 		}
 	}
 
 	private static void initClaw() {
 		if (Preferences.getInstance().getBoolean("initClaw", false)) {
-		    System.out.println("claw activated");
+			System.out.println("RobotMap: initializing Claw");
 			clawMotorA = new WPI_TalonSRX(CAN.CLAW_MOTOR_A);
 			clawMotorB = new WPI_TalonSRX(CAN.CLAW_MOTOR_B);
 //
@@ -137,12 +145,17 @@ public class RobotMap {
 
 //			upperLimit = new DigitalInput(DPIO.CUBE_LIFT_TOP_LIMIT);
 //			lowerLimit = new DigitalInput(DPIO.CUBE_LIFT_BOTTOM_LIMIT);
+		} else {
+			System.out.println("RobotMap: Claw disabled");
 		}
 	}
 
 	private static void initAscent() {
 		if (!Preferences.getInstance().getBoolean("initAscent", false)) {
+			System.out.println("RobotMap: initializing Ascent");
 			robotAscentMotor = new WPI_TalonSRX(CAN.ROBOT_ASCENT_MOTOR);
+		} else {
+			System.out.println("RobotMap: Ascent disabled");
 		}
 	}
 }

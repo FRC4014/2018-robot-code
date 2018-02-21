@@ -42,6 +42,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
+        System.out.println("Robot.robotInit() called.");
         // Orient robot Y and Z axis based on preferences.
         Orientation.init();
 
@@ -88,6 +89,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
+        System.out.println("Robot.autonomousInit() called.");
         driveTrain.setNeutralMode(NeutralMode.Brake);
         
         // reset the gyro so movements always start oriented to the field
@@ -124,6 +126,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
+        System.out.println("Robot.teleopInit() called.");
         driveTrain.setNeutralMode(NeutralMode.Coast);
         RobotMap.compressor.start();
 //        RobotMap.compressor.setClosedLoopControl(true);
