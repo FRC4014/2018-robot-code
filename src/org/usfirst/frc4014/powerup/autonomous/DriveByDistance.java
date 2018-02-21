@@ -16,7 +16,6 @@ public class DriveByDistance extends Command {
     private double speed;
     private double distance;
 
-    //////// PID stuff -- start
     private double p, i, d, dp = 0;
     private double integral, previousError;
     private final double setPoint = 0;
@@ -31,7 +30,6 @@ public class DriveByDistance extends Command {
     private double tolerance;
     private long initTimestamp;
     private double maxDSpeed;
-    //////// PID stuff -- end
 
     public DriveByDistance(DriveTrain driveTrain, double speed, double distance) {
         this.ahrs = RobotMap.AHRS;

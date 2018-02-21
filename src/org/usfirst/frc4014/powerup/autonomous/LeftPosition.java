@@ -16,13 +16,14 @@ public class LeftPosition extends CommandGroup {
                 new TrackTimeCommand.TimeTracker("CenterPosition");
 
         addSequential(new TrackTimeCommand(timeTracker, true));
-        addSequential(new ReleaseFred(clawLift));
+        addParallel(new ReleaseFred(clawLift));
         if (gameData.isAllySwitchOnLeft()) {
+            addParallel(new AscendClawByDistance(clawLift, 20));
             addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), 91));
             addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveSlowSpeed", 1), 15));
             addSequential(new OutputCube(wheeledClaw));
         } else {
-        		addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), 25));
+            addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), 25));
             addSequential(new Pivot(-16.1));
             addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), 116.77));
             addSequential(new Pivot(9.5));

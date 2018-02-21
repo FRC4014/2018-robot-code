@@ -3,18 +3,18 @@ package org.usfirst.frc4014.powerup.clawlift;
 import org.usfirst.frc4014.powerup.OI;
 import org.usfirst.frc4014.powerup.RobotMap;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class ClawLift extends Subsystem {
 
-	//TODO make a method for when we first release fred that turns 1 motor a lot so we get rid of initial slack
 	private OI oi;
-	
-	private double tensionFactor;
-	
+
+	// Don't want the motor to run until fred is fully deployed.
+    // For now, the ReleaseFred command is responsible for setting enableMotor.
+    // TODO: Would be better to use a limit switch to know when the lock-shaft is in place on Fred.
+    public boolean enableMotor = false;
+
 	public ClawLift(OI oi) {
 		this.oi = oi;
 	}
@@ -25,22 +25,29 @@ public class ClawLift extends Subsystem {
 	}
 
 	public void ascend (Joystick joystick) {
-//		double speed = -joystick.getY() + .1;
-////		System.out.println("joystick speed is: " + speed);
-//		if (speed > 0 /*&& !RobotMap.upperLimit.get()*/) {
-////			System.out.println("going down!");
-//			RobotMap.clawAscentMotorA.set(speed + .1);
-//		} else if (speed < 0 /*&& !RobotMap.lowerLimit.get()*/){
-////			System.out.println("going up!");
-//			RobotMap.clawAscentMotorA.set(speed + .1);
-//		}
-//		
+	    // TODO: What's with all these `+ .1` things?
+		double speed = -joystick.getY() + .1;
+//		System.out.println("joystick speed is: " + speed);
+		if (speed > 0 /*&& !RobotMap.upperLimit.get()*/) {
+//			System.out.println("going down!");
+			RobotMap.clawAscentMotorA.set(speed + .1);
+		} else if (speed < 0 /*&& !RobotMap.lowerLimit.get()*/){
+//			System.out.println("going up!");
+			RobotMap.clawAscentMotorA.set(speed + .1);
+		}
+
+	}
+
+	public void ascend(double speed) {
+		RobotMap.clawAscentMotorA.set(speed);
 	}
 	
-	public void release() {
+	public void releaseFred() {
 //		RobotMap.fredReleaseSolenoid.set(DoubleSolenoid.Value.kReverse);
 		RobotMap.fredReleaseServo.setAngle(180);
 	}
-	
 
+	public void resetEncoder() {
+		RobotMap.clawAscentEncoder.reset();
+	}
 }

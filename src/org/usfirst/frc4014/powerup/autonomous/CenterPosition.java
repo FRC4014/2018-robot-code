@@ -29,17 +29,16 @@ public class CenterPosition extends CommandGroup {
                 new TrackTimeCommand.TimeTracker("CenterPosition");
 
         addSequential(new TrackTimeCommand(timeTracker, true));
-        addSequential(new ReleaseFred(clawLift));
+        addParallel(new ReleaseFred(clawLift));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), prefs.prefs[0]));
         addSequential(new Pivot(prefs.prefs[1]));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), prefs.prefs[2]));
         addSequential(new Pivot(prefs.prefs[3]));
+        addParallel(new AscendClawByDistance(clawLift, 20));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), prefs.prefs[4]));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveSlowSpeed", 1), prefs.prefs[5]));
         addSequential(new OutputCube(wheeledClaw));
         addSequential(new TrackTimeCommand(timeTracker, false));
 
-        //TODO: add drop code
-        //TODO: extend fred (if we end up using fred)
     }
 }

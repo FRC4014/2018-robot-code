@@ -16,7 +16,7 @@ public class RightPosition extends CommandGroup {
                 new TrackTimeCommand.TimeTracker("CenterPosition");
 
         addSequential(new TrackTimeCommand(timeTracker, true));
-        addSequential(new ReleaseFred(clawLift));
+        addParallel(new ReleaseFred(clawLift));
         if (gameData.isAllySwitchOnLeft()) {
             addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), 25));
             addSequential(new Pivot(25));
@@ -26,6 +26,7 @@ public class RightPosition extends CommandGroup {
                 addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), 159));
             }
         } else {
+            addParallel(new AscendClawByDistance(clawLift, 20));
             addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), Preferences.getInstance().getDouble("rightPositionDistance", 90)));
             addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveSlowSpeed", 1), 15));
             addSequential(new OutputCube(wheeledClaw));

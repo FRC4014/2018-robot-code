@@ -48,6 +48,7 @@ public class RobotMap {
 
 	public static WPI_TalonSRX clawAscentMotorA;
 	public static WPI_TalonSRX clawAscentMotorB;
+	public static Encoder clawAscentEncoder;
 //	public static DoubleSolenoid fredReleaseSolenoid;
 	public static Servo fredReleaseServo;
 	public static DigitalInput upperLimit;
@@ -130,9 +131,12 @@ public class RobotMap {
 //			compressor.setClosedLoopControl(true);
 //			clawSolenoidA = new DoubleSolenoid(0, 7);
 
-//			clawAscentMotorA = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_A);
-//			fredReleaseServo = new Servo(0);
+			clawAscentMotorA = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_A);
+			fredReleaseServo = new Servo(0);
 //	//		fredReleaseSolenoid = new DoubleSolenoid(2, 5);
+
+			clawAscentEncoder = new Encoder(DPIO.CLAW_ASCENT_ENCODER_A_CHANNEL, DPIO.CLAW_ASCENT_ENCODER_B_CHANNEL,
+					false, Encoder.EncodingType.k4X);
 
 //			upperLimit = new DigitalInput(DPIO.CUBE_LIFT_TOP_LIMIT);
 //			lowerLimit = new DigitalInput(DPIO.CUBE_LIFT_BOTTOM_LIMIT);

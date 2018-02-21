@@ -6,24 +6,26 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class AscendClawByJoystick extends Command {
 
-	private final ClawLift claw;
-	private final OI oi;
+    private final ClawLift claw;
+    private final OI oi;
 
-	public AscendClawByJoystick(ClawLift claw, OI oi) {
-		super();
-		this.oi = oi;
-		this.claw = claw;
-		requires(claw);
-	}
+    public AscendClawByJoystick(ClawLift claw, OI oi) {
+        super();
+        this.oi = oi;
+        this.claw = claw;
+        requires(claw);
+    }
 
-	protected void execute() {
-		claw.ascend(oi.mateJoystick);
-	}
+    protected void execute() {
+        if (claw.enableMotor) {
+            claw.ascend(oi.mateJoystick);
+        }
+    }
 
-	@Override
-	protected boolean isFinished() {
-		// we're always driving, so this is always false
-		return false;
-	}
+    @Override
+    protected boolean isFinished() {
+        // we're always driving, so this is always false
+        return false;
+    }
 
 }
