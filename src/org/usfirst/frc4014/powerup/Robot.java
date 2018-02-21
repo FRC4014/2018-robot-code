@@ -10,7 +10,6 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Preferences;
-import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -63,7 +62,7 @@ public class Robot extends TimedRobot {
         chooser.addObject("Drive by Distance", new DriveByDistance(driveTrain,
                 Preferences.getInstance().getDouble("driveSpeed", .5),
                 Preferences.getInstance().getDouble("DriveDistanceInches", 12)));
-        chooser.addObject("Custom PID Pivot", new CustomPIDPivotByGyro(Preferences.getInstance().getDouble("PivotSetPoint", 90)));
+        chooser.addObject("Custom PID Pivot", new Pivot(Preferences.getInstance().getDouble("PivotSetPoint", 90)));
         chooser.addObject("Center Position", new RobotPositionCommand(Center));
         chooser.addObject("Left Position", new RobotPositionCommand(Left));
         chooser.addObject("Right Position", new RobotPositionCommand(Right));

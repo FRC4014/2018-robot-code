@@ -23,9 +23,9 @@ public class LeftPosition extends CommandGroup {
             addSequential(new OutputCube(wheeledClaw));
         } else {
         		addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), 25));
-            addSequential(new CustomPIDPivotByGyro(-16.1));
+            addSequential(new Pivot(-16.1));
             addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), 116.77));
-            addSequential(new CustomPIDPivotByGyro(9.5));
+            addSequential(new Pivot(9.5));
             if (gameData.isAllyScaleOnLeft()) {
                 addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), 159));
             }

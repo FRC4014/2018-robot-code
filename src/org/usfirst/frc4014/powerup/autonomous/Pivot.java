@@ -9,7 +9,7 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class CustomPIDPivotByGyro extends Command {
+public class Pivot extends Command {
 	private double p, i, d = 1;
 	private double integral, previousError, setPoint = 0;
 	private boolean acceptable = false;
@@ -23,7 +23,7 @@ public class CustomPIDPivotByGyro extends Command {
 	private double tolerance;
 	private long initTimestamp;
 
-	public CustomPIDPivotByGyro(double setPoint) {
+	public Pivot(double setPoint) {
 		// this.setPoint = setPoint;
 		this.ahrs = RobotMap.AHRS;
 		this.setPoint = setPoint;

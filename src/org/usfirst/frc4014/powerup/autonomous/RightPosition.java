@@ -19,9 +19,9 @@ public class RightPosition extends CommandGroup {
         addSequential(new ReleaseFred(clawLift));
         if (gameData.isAllySwitchOnLeft()) {
             addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), 25));
-            addSequential(new CustomPIDPivotByGyro(25));
+            addSequential(new Pivot(25));
             addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), 127));
-            addSequential(new CustomPIDPivotByGyro(-25));
+            addSequential(new Pivot(-25));
             if (gameData.isAllyScaleOnLeft()) {
                 addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), 159));
             }
