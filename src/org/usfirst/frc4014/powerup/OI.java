@@ -52,10 +52,10 @@ public class OI {
 
 	private void initMateJoystick() {
 		mateJoystick = new Joystick(1);
-        clawButton = new JoystickButton(mateJoystick, 3);
+        clawButton = new JoystickButton(mateJoystick, 1);
         wheelClawReleaseButton = new JoystickButton(mateJoystick, 2);
         raiseLiftButton = new JoystickButton(mateJoystick, 6);
-        lowerLiftButton = new JoystickButton(mateJoystick, 7);
+        lowerLiftButton = new JoystickButton(mateJoystick, 4);
 	}
 
 	private void initDriverJoystick() {
