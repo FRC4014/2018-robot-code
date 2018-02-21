@@ -1,4 +1,4 @@
-package wclaw;
+package org.usfirst.frc4014.powerup.wheeledclaw.wclaw;
 
 import edu.wpi.first.wpilibj.command.Command;
 

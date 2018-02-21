@@ -2,8 +2,8 @@ package org.usfirst.frc4014.powerup.autonomous;
 
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import wclaw.OutputCube;
-import wclaw.WheeledClaw;
+import org.usfirst.frc4014.powerup.wheeledclaw.wclaw.OutputCube;
+import org.usfirst.frc4014.powerup.wheeledclaw.wclaw.WheeledClaw;
 
 import org.usfirst.frc4014.powerup.GameData;
 import org.usfirst.frc4014.powerup.clawlift.ClawLift;

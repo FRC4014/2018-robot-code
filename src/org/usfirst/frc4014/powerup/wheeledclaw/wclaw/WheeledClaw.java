@@ -1,4 +1,4 @@
-package wclaw;
+package org.usfirst.frc4014.powerup.wheeledclaw.wclaw;
 
 import org.usfirst.frc4014.powerup.OI;
 import org.usfirst.frc4014.powerup.RobotMap;

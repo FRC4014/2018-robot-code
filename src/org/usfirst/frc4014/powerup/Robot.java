@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import wclaw.WheeledClaw;
+import org.usfirst.frc4014.powerup.wheeledclaw.wclaw.WheeledClaw;
 
 import static org.usfirst.frc4014.powerup.autonomous.RobotPositionCommand.Position.*;
 
