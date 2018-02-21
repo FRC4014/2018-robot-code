@@ -30,10 +30,10 @@ public class ClawLift extends Subsystem {
 //		System.out.println("joystick speed is: " + speed);
 		if (speed > 0 /*&& !RobotMap.upperLimit.get()*/) {
 //			System.out.println("going down!");
-			RobotMap.clawAscentMotorA.set(speed + .1);
+			RobotMap.clawAscentMotorA.set(speed + .2);
 		} else if (speed < 0 /*&& !RobotMap.lowerLimit.get()*/){
 //			System.out.println("going up!");
-			RobotMap.clawAscentMotorA.set(speed + .1);
+			RobotMap.clawAscentMotorA.set(speed + .2);
 		}
 
 	}

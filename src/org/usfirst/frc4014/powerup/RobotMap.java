@@ -124,16 +124,13 @@ public class RobotMap {
 	private static void initClaw() {
 		if (Preferences.getInstance().getBoolean("initClaw", false)) {
 		    System.out.println("claw activated");
-//			clawMotorA = new WPI_TalonSRX(CAN.CLAW_MOTOR_A);
-//			clawMotorB = new WPI_TalonSRX(CAN.CLAW_MOTOR_B);
-////
-//			compressor = new Compressor(0);
-//			compressor.setClosedLoopControl(true);
-//			clawSolenoidA = new DoubleSolenoid(0, 7);
+			clawMotorA = new WPI_TalonSRX(CAN.CLAW_MOTOR_A);
+			clawMotorB = new WPI_TalonSRX(CAN.CLAW_MOTOR_B);
+//
+			clawSolenoidA = new DoubleSolenoid(2, 5);
 
 			clawAscentMotorA = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_A);
 			fredReleaseServo = new Servo(0);
-//	//		fredReleaseSolenoid = new DoubleSolenoid(2, 5);
 
 			clawAscentEncoder = new Encoder(DPIO.CLAW_ASCENT_ENCODER_A_CHANNEL, DPIO.CLAW_ASCENT_ENCODER_B_CHANNEL,
 					false, Encoder.EncodingType.k4X);
