@@ -48,10 +48,11 @@ public class AscendClawByDistance extends Command {
     private boolean achievedDistance() {
         double encoderDistance = RobotMap.clawAscentEncoder.getDistance();
         boolean finished = encoderDistance >= distance - 0.5;
-        System.out.println("AscendClawByDistance.isFinished(): ENCODER distance = " + encoderDistance +
+        System.out.println("AscendClawByDistance: target distance = " + distance +
+                " | ENCODER distance = " + encoderDistance +
                 " | speed = " + speed + " | is finished = " + finished);
         if (finished) {
-            System.out.println("AscendClawByDistance: ascended " + distance + " inches");
+            System.out.println("AscendClawByDistance: ascended " + distance);
         }
         return finished;
     }
