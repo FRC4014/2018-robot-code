@@ -20,18 +20,17 @@ public class WheeledClaw extends Subsystem{
 	
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
-		
+		// TODO: do we need a default command here?
 	}
 	
 	protected void intake() {
-		RobotMap.clawMotorA.set(clawSpeed);
-		RobotMap.clawMotorB.set(-clawSpeed);
+		RobotMap.clawMotorA.set(-clawSpeed);
+		RobotMap.clawMotorB.set(clawSpeed);
 	}
 	
 	protected void output() {
-		RobotMap.clawMotorA.set(-clawSpeed);
-		RobotMap.clawMotorB.set(clawSpeed);
+		RobotMap.clawMotorA.set(clawSpeed);
+		RobotMap.clawMotorB.set(-clawSpeed);
 	}
 	
 	//opens so the claw is ready to grab a power cube
