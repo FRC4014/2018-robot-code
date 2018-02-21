@@ -19,7 +19,7 @@ public class ReleaseFred extends Command {
 	@Override
 	protected void initialize() {
 		initTimestamp = System.currentTimeMillis();
-		durationMillis = Preferences.getInstance().getLong("FredReleaseDuration", 0);
+		durationMillis = Preferences.getInstance().getLong("FredReleaseDuration", 2000);
 		clawLift.releaseFred();
 	}
 	
