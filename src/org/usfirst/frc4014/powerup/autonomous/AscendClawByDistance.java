@@ -22,7 +22,7 @@ public class AscendClawByDistance extends Command {
     protected void initialize() {
         initTimestamp = System.currentTimeMillis();
         clawLift.resetEncoder();
-        speed = Preferences.getInstance().getDouble("AutoAscendClawSpeed", 1.0);
+        speed = Preferences.getInstance().getDouble("AutoAscendClawSpeed", 0.5);
     }
 
     @Override
