@@ -22,7 +22,7 @@ public class AscendClawByDistance extends Command {
     protected void initialize() {
         initTimestamp = System.currentTimeMillis();
         clawLift.resetEncoder();
-        speed = Preferences.getInstance().getDouble("AutoAscendClawSpeed", 1.0);
+        speed = Preferences.getInstance().getDouble("AutoAscendClawSpeed", 0.5);
     }
 
     @Override
@@ -48,10 +48,11 @@ public class AscendClawByDistance extends Command {
     private boolean achievedDistance() {
         double encoderDistance = RobotMap.clawAscentEncoder.getDistance();
         boolean finished = encoderDistance >= distance - 0.5;
-        System.out.println("AscendClawByDistance.isFinished(): ENCODER distance = " + encoderDistance +
+        System.out.println("AscendClawByDistance: target distance = " + distance +
+                " | ENCODER distance = " + encoderDistance +
                 " | speed = " + speed + " | is finished = " + finished);
         if (finished) {
-            System.out.println("AscendClawByDistance: ascended " + distance + " inches");
+            System.out.println("AscendClawByDistance: ascended " + distance);
         }
         return finished;
     }
