@@ -4,6 +4,7 @@ import org.usfirst.frc4014.powerup.OI;
 import org.usfirst.frc4014.powerup.RobotMap;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class ClawLift extends Subsystem {
@@ -14,6 +15,7 @@ public class ClawLift extends Subsystem {
     // For now, the ReleaseFred command is responsible for setting enableMotor.
     // TODO: Would be better to use a limit switch to know when the lock-shaft is in place on Fred.
     public boolean enableMotor = false;
+    private double holdSteady = Preferences.getInstance().getDouble("HoldSteady", .2);
 
 	public ClawLift(OI oi) {
 		this.oi = oi;
@@ -25,15 +27,13 @@ public class ClawLift extends Subsystem {
 	}
 
 	public void ascend (Joystick joystick) {
-	    // TODO: What's with all these `+ .1` things?
-		double speed = -joystick.getY() + .1;
-//		System.out.println("joystick speed is: " + speed);
+		double speed = -joystick.getY() + holdSteady;
 		if (speed > 0 /*&& !RobotMap.upperLimit.get()*/) {
-//			System.out.println("going down!");
-			RobotMap.clawAscentMotorA.set(speed + .2);
+			System.out.println("going down!");
+			RobotMap.clawAscentMotorA.set(speed);
 		} else if (speed < 0 /*&& !RobotMap.lowerLimit.get()*/){
-//			System.out.println("going up!");
-			RobotMap.clawAscentMotorA.set(speed + .2);
+			System.out.println("going up!");
+			RobotMap.clawAscentMotorA.set(speed);
 		}
 
 	}

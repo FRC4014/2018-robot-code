@@ -17,9 +17,9 @@ public class AscendClawByJoystick extends Command {
     }
 
     protected void execute() {
-        if (claw.enableMotor) {
+//        if (claw.enableMotor) {
             claw.ascend(oi.mateJoystick);
-        }
+//        }
     }
 
     @Override

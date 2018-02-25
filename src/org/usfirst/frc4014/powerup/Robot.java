@@ -128,7 +128,7 @@ public class Robot extends TimedRobot {
     public void teleopInit() {
         System.out.println("Robot.teleopInit() called.");
         driveTrain.setNeutralMode(NeutralMode.Coast);
-        RobotMap.compressor.start();
+//        RobotMap.compressor.start();
 //        RobotMap.compressor.setClosedLoopControl(true);
 
         // This makes sure that the autonomous stops running when

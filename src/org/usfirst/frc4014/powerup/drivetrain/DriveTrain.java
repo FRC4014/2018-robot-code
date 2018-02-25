@@ -41,15 +41,15 @@ public class DriveTrain extends Subsystem {
 	
 	public void slowGearRatio() {
 	    System.out.println("///////////////////////////////////////////// switched ratio to low");
-		RobotMap.driveTrainSolenoidA.set(DoubleSolenoid.Value.kReverse);
-		RobotMap.driveTrainSolenoidB.set(DoubleSolenoid.Value.kReverse);
+//		RobotMap.driveTrainSolenoidA.set(DoubleSolenoid.Value.kReverse);
+//		RobotMap.driveTrainSolenoidB.set(DoubleSolenoid.Value.kReverse);
 		gearRatioIsHigh = false;
 	}
 	
 	public void fastGearRatio() {
 	    System.out.println("///////////////////////////////////////////// switched ratio to high");
-		RobotMap.driveTrainSolenoidA.set(DoubleSolenoid.Value.kForward);
-	    RobotMap.driveTrainSolenoidB.set(DoubleSolenoid.Value.kForward);
+//		RobotMap.driveTrainSolenoidA.set(DoubleSolenoid.Value.kForward);
+//	    RobotMap.driveTrainSolenoidB.set(DoubleSolenoid.Value.kForward);
 		gearRatioIsHigh = true;
 	}
     
@@ -59,7 +59,7 @@ public class DriveTrain extends Subsystem {
     	} else {
     		turnValue = -joystick.getTwist();
     	}
-    	RobotMap.driveTrainDifferentialDrive.arcadeDrive(joystick.getY(), turnValue);
+    	RobotMap.driveTrainDifferentialDrive.arcadeDrive(joystick.getY(), joystick.getTwist());
     double velocity = Math.abs(RobotMap.leftEncoder.getRate());
     double ldist = RobotMap.leftEncoder.getRaw();
     double rdist = RobotMap.rightEncoder.getRaw();

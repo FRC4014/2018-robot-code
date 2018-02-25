@@ -130,18 +130,18 @@ public class RobotMap {
 	}
 
 	private static void initClaw() {
-		if (Preferences.getInstance().getBoolean("initClaw", false)) {
+		if (Preferences.getInstance().getBoolean("initClaw", true)) {
 			System.out.println("RobotMap: initializing Claw");
-			clawMotorA = new WPI_TalonSRX(CAN.CLAW_MOTOR_A);
-			clawMotorB = new WPI_TalonSRX(CAN.CLAW_MOTOR_B);
+//			clawMotorA = new WPI_TalonSRX(CAN.CLAW_MOTOR_A);
+//			clawMotorB = new WPI_TalonSRX(CAN.CLAW_MOTOR_B);
+////
+//			clawSolenoidA = new DoubleSolenoid(2, 5);
 //
-			clawSolenoidA = new DoubleSolenoid(2, 5);
-
 			clawAscentMotorA = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_A);
-			fredReleaseServo = new Servo(0);
-
-			clawAscentEncoder = new Encoder(DPIO.CLAW_ASCENT_ENCODER_A_CHANNEL, DPIO.CLAW_ASCENT_ENCODER_B_CHANNEL,
-					false, Encoder.EncodingType.k4X);
+//			fredReleaseServo = new Servo(0);
+//
+//			clawAscentEncoder = new Encoder(DPIO.CLAW_ASCENT_ENCODER_A_CHANNEL, DPIO.CLAW_ASCENT_ENCODER_B_CHANNEL,
+//					false, Encoder.EncodingType.k4X);
 
 //			upperLimit = new DigitalInput(DPIO.CUBE_LIFT_TOP_LIMIT);
 //			lowerLimit = new DigitalInput(DPIO.CUBE_LIFT_BOTTOM_LIMIT);
