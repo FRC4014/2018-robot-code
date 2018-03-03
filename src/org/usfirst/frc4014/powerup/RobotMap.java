@@ -18,7 +18,7 @@ public class RobotMap {
 	private static final double GEAR_RATIO = 4.4;
 
 	// DriveTrainEncoderResolution: amt10s are 2048 and E4T for shift gearbox is 1440
-	private static final int ENCODER_RESOLUTION = Preferences.getInstance().getInt("DriveTrainEncoderResolution", 330);
+	private static final int ENCODER_RESOLUTION = Preferences.getInstance().getInt("DriveTrainEncoderResolution", /*330*/ 889);
 
 	private static final double PULSES_PER_ROTATION = ENCODER_RESOLUTION;
 	private static final double DISTANCE_PER_PULSE = (Math.PI * WHEEL_DIAMETER * 1 / PULSES_PER_ROTATION);
@@ -138,7 +138,7 @@ public class RobotMap {
 //			clawSolenoidA = new DoubleSolenoid(2, 5);
 //
 			clawAscentMotorA = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_A);
-//			fredReleaseServo = new Servo(0);
+			fredReleaseServo = new Servo(0);
 //
 //			clawAscentEncoder = new Encoder(DPIO.CLAW_ASCENT_ENCODER_A_CHANNEL, DPIO.CLAW_ASCENT_ENCODER_B_CHANNEL,
 //					false, Encoder.EncodingType.k4X);

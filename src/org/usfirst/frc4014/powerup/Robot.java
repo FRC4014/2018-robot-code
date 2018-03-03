@@ -67,7 +67,7 @@ public class Robot extends TimedRobot {
         chooser.addObject("Center Position", new RobotPositionCommand(Center));
         chooser.addObject("Left Position", new RobotPositionCommand(Left));
         chooser.addObject("Right Position", new RobotPositionCommand(Right));
-        chooser.addDefault("TestPosition", new TestPosition(driveTrain));
+        chooser.addDefault("TestPosition", new TestPosition(driveTrain, clawLift));
 
 
         SmartDashboard.putData("Autonomous mode chooser", chooser);

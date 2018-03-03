@@ -37,7 +37,8 @@ public class CenterPosition extends CommandGroup {
         addParallel(new AscendClawByDistance(clawLift, 20));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), prefs.prefs[4]));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveSlowSpeed", 1), prefs.prefs[5]));
-        addSequential(new OutputCube(wheeledClaw));
+//        addSequential(new OutputCube(wheeledClaw));
+        System.out.println("Pretending to output cube");
         addSequential(new TrackTimeCommand(timeTracker, false));
 
     }

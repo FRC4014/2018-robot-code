@@ -28,7 +28,7 @@ public class DriveByTime extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-    		driveTrain.drive(speed);
+    		driveTrain.arcadeDrive(speed, 0, false);
     		timeCounter = timeCounter + 0.02; //TODO find a delta time value, or make one
     }
 

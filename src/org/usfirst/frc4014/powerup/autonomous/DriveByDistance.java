@@ -30,6 +30,8 @@ public class DriveByDistance extends Command {
     private double tolerance;
     private long initTimestamp;
     private double maxDSpeed;
+    
+    private int collisions;
 
     public DriveByDistance(DriveTrain driveTrain, double speed, double distance) {
         this.ahrs = RobotMap.AHRS;
@@ -86,9 +88,9 @@ public class DriveByDistance extends Command {
             rotation = Math.max(minSpeed, Math.min(modRcw, maxSpeed));
             rotation = rcw < 0 ? -rotation : rotation;
 
-            driveTrain.arcadeDrive(Orientation.y(speed), Orientation.z(rotation));
+            driveTrain.arcadeDrive(-speed, rotation, false);
         } else {
-            driveTrain.arcadeDrive(Orientation.y(speed), 0);
+            driveTrain.arcadeDrive(-speed, 0, false);
         }
 //		System.out.println("isInsideTolerance: " + isInsideTolerance + " | angle: " + angle + " | error: " + error + " | raw rcw: " + rcw
 //				+ " | rotation: " + rotation +" | speed: " + speed);
@@ -102,16 +104,18 @@ public class DriveByDistance extends Command {
 
     private boolean probableCollision() {
         boolean collision = (System.currentTimeMillis() - initTimestamp > 300) &&
-                (Math.abs(RobotMap.leftEncoder.getRate()) < 1.0);
+                (Math.abs(RobotMap.leftEncoder.getRate()) < 1.0) &&
+                (Math.abs(RobotMap.rightEncoder.getRate()) < 1.0);
         if (collision) {
             System.out.println("DriveByDistance: collision");
+            collisions++;
         }
-        return collision;
+        return (collisions > 3);
     }
 
     private boolean achievedDistance() {
         double rightDistance = -RobotMap.rightEncoder.getDistance();
-        double leftDistance = RobotMap.leftEncoder.getDistance();
+        double leftDistance = -RobotMap.leftEncoder.getDistance();
         boolean finished = leftDistance >= distance - 1;
         System.out.println("DriveByDistance.isFinished(): ENCODER distance = " + leftDistance + " |speed = " + speed + " |is finished = " + finished);
         if (finished) {

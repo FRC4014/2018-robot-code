@@ -27,9 +27,11 @@ public class RightPosition extends CommandGroup {
             }
         } else {
             addParallel(new AscendClawByDistance(clawLift, 20));
-            addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), Preferences.getInstance().getDouble("rightPositionDistance", 90)));
+            addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveSlowSpeed", 1), 
+            		Preferences.getInstance().getDouble("rightPositionDistance", 90)));
             addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveSlowSpeed", 1), 15));
-            addSequential(new OutputCube(wheeledClaw));
+            System.out.println("pretending to output cube");
+//            addSequential(new OutputCube(wheeledClaw));
         }
         addSequential(new TrackTimeCommand(timeTracker, false));
         //TODO extend fred (if we end up using fred)

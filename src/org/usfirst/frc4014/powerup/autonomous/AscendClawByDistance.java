@@ -1,4 +1,4 @@
-package org.usfirst.frc4014.powerup.autonomous;
+ package org.usfirst.frc4014.powerup.autonomous;
 
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
@@ -22,12 +22,16 @@ public class AscendClawByDistance extends Command {
     protected void initialize() {
         initTimestamp = System.currentTimeMillis();
         clawLift.resetEncoder();
-        speed = Preferences.getInstance().getDouble("AutoAscendClawSpeed", 0.5);
+        speed = Preferences.getInstance().getDouble("AutoAscendClawSpeed", 0.9);
     }
 
     @Override
     protected void execute() {
-        clawLift.ascend((distance > 0) ? speed : -speed);
+//        clawLift.ascend((distance > 0) ? speed : -speed);
+    	if (System.currentTimeMillis() - initTimestamp > 500) {
+    		speed = .1;
+    	}
+    	clawLift.ascend(speed);
     }
 
     @Override
@@ -37,23 +41,27 @@ public class AscendClawByDistance extends Command {
     }
 
     private boolean probableCollision() {
-        boolean collision = (System.currentTimeMillis() - initTimestamp > 150) &&
+        /*boolean collision = (System.currentTimeMillis() - initTimestamp > 150) &&
                 (Math.abs(RobotMap.clawAscentEncoder.getRate()) < 1.0);
         if (collision) {
             System.out.println("AscendClawByDistance: collision");
-        }
-        return collision;
+        }*/
+        return false;
     }
 
     private boolean achievedDistance() {
-        double encoderDistance = RobotMap.clawAscentEncoder.getDistance();
+        /*double encoderDistance = RobotMap.clawAscentEncoder.getDistance();
         boolean finished = encoderDistance >= distance - 0.5;
         System.out.println("AscendClawByDistance: target distance = " + distance +
                 " | ENCODER distance = " + encoderDistance +
                 " | speed = " + speed + " | is finished = " + finished);
         if (finished) {
             System.out.println("AscendClawByDistance: ascended " + distance);
-        }
-        return finished;
+        }*/
+    	if (System.currentTimeMillis() - initTimestamp > 500) {
+    		speed = .1;
+    	}
+    	System.out.println("time is: " + ((System.currentTimeMillis() - initTimestamp)));
+        return (System.currentTimeMillis() - initTimestamp > 500);
     }
 }
