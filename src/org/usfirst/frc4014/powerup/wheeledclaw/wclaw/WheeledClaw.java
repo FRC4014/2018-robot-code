@@ -33,6 +33,11 @@ public class WheeledClaw extends Subsystem{
 		RobotMap.clawMotorB.set(-clawSpeed);
 	}
 	
+	protected void hold() {
+	    RobotMap.clawMotorA.set(0);
+	    RobotMap.clawMotorB.set(0);
+	}
+	
 	//opens so the claw is ready to grab a power cube
 		protected void open() {
 			RobotMap.clawSolenoidA.set(DoubleSolenoid.Value.kForward);

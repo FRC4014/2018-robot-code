@@ -16,12 +16,12 @@ public class IntakeCube extends Command{
 	public IntakeCube(WheeledClaw wheeledClaw, OI oi) {
 		this.wheeledClaw = wheeledClaw;
 		this.oi = oi;
-		requires(wheeledClaw);
+//		requires(wheeledClaw);
 	}
 	
 	protected void initialize() {
 	    System.out.println("Intiake cube initialized!");
-		turnOffTimestamp = Timer.ONE_MINUTE;
+		turnOffTimestamp = System.currentTimeMillis() + Timer.ONE_MINUTE;
 		initTimestamp = System.currentTimeMillis();
 		wheeledClaw.open();
 	}
@@ -37,6 +37,11 @@ public class IntakeCube extends Command{
 			wheeledClaw.close();
 			turnOffTimestamp = System.currentTimeMillis();
 		}
+	}
+	
+	protected void end() {
+	    System.out.println("Intake cube has ended!");
+	    wheeledClaw.hold();
 	}
 	
 	@Override
