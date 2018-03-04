@@ -120,8 +120,6 @@ public class RobotMap {
 	private static void initDriveTrainGearShifter() {
 		if (Preferences.getInstance().getBoolean("initDTShifter", true)) {
 			System.out.println("RobotMap: initializing DriveTrain Gear Shifter");
-		    compressor = new Compressor(0);
-		    compressor.setClosedLoopControl(true);
 			driveTrainSolenoidA = new DoubleSolenoid(1, 6);
 			driveTrainSolenoidB = new DoubleSolenoid(0, 7);
 		} else {
@@ -132,10 +130,12 @@ public class RobotMap {
 	private static void initClaw() {
 		if (Preferences.getInstance().getBoolean("initClaw", true)) {
 			System.out.println("RobotMap: initializing Claw");
-//			clawMotorA = new WPI_TalonSRX(CAN.CLAW_MOTOR_A);
-//			clawMotorB = new WPI_TalonSRX(CAN.CLAW_MOTOR_B);
-////
-//			clawSolenoidA = new DoubleSolenoid(2, 5);
+			clawMotorA = new WPI_TalonSRX(CAN.CLAW_MOTOR_A);
+			clawMotorB = new WPI_TalonSRX(CAN.CLAW_MOTOR_B);
+//
+	        compressor = new Compressor(0);
+	        compressor.setClosedLoopControl(true);
+			clawSolenoidA = new DoubleSolenoid(2, 5);
 //
 			clawAscentMotorA = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_A);
 			fredReleaseServo = new Servo(0);

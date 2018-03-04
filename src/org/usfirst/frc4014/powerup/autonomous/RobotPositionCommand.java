@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.IllegalUseOfCommandException;
 
 public class RobotPositionCommand extends Command{
 
-    public enum Position {Left, Center, Right};
+    public enum Position {FarLeft, Left, Center, Right, FarRight};
 
     private final Position position;
 

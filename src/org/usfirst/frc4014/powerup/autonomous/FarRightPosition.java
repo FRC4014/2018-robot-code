@@ -8,17 +8,20 @@ import org.usfirst.frc4014.powerup.wheeledclaw.wclaw.WheeledClaw;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class FarRightPosition extends CommandGroup{
+public class FarRightPosition extends CommandGroup {
 
     public FarRightPosition(DriveTrain driveTrain, GameData gameData, ClawLift clawLift, WheeledClaw wheeledClaw) {
         addParallel(new ReleaseFred(clawLift));
-        addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), 168));
+        addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), 142));
         if (gameData.isAllySwitchOnLeft()) {
-        addSequential(new Pivot(-90));
-        addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveSlowSpeed", 1), 15));
+            addSequential(
+                    new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), 120));
         } else {
-            addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), 120));
+            addSequential(new Pivot(-90));
+            addParallel(new AscendClawByDistance(clawLift, 20));
+            addSequential(
+                    new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveSlowSpeed", 1), 15));
         }
-        
+
     }
 }

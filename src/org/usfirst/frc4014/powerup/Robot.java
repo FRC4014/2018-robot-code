@@ -66,7 +66,9 @@ public class Robot extends TimedRobot {
         chooser.addObject("Custom PID Pivot", new Pivot(Preferences.getInstance().getDouble("PivotSetPoint", 90)));
         chooser.addObject("Center Position", new RobotPositionCommand(Center));
         chooser.addObject("Left Position", new RobotPositionCommand(Left));
+        chooser.addObject("Far-Left Position", new RobotPositionCommand(FarLeft));
         chooser.addObject("Right Position", new RobotPositionCommand(Right));
+        chooser.addObject("Far-Right Position", new RobotPositionCommand(FarRight));
         chooser.addDefault("TestPosition", new TestPosition(driveTrain, clawLift));
 
 
@@ -100,6 +102,9 @@ public class Robot extends TimedRobot {
         autonomousCommand = chooser.getSelected();
         if (autonomousCommand instanceof RobotPositionCommand) {
             switch (((RobotPositionCommand) autonomousCommand).getPosition()) {
+                case FarLeft:
+                    autonomousCommand = new FarLeftPosition(driveTrain, gameData, clawLift, wheeledClaw);
+                    break;
                 case Left:
                     autonomousCommand = new LeftPosition(driveTrain, gameData, clawLift, wheeledClaw);
                     break;
@@ -108,6 +113,9 @@ public class Robot extends TimedRobot {
                     break;
                 case Right:
                 		autonomousCommand = new RightPosition(driveTrain, gameData, clawLift, wheeledClaw);
+                    break;
+                case FarRight:
+                    autonomousCommand = new FarRightPosition(driveTrain, gameData, clawLift, wheeledClaw);
                     break;
                 default:
                     throw new IllegalStateException("RobotPositionCommand mis-configured.");
