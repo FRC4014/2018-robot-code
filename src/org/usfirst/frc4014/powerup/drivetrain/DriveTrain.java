@@ -69,7 +69,7 @@ public class DriveTrain extends Subsystem {
             slowGearRatio();
 
         }
-        System.out.println("Velocity is: " + velocity + " | left dist = " + ldist + " | right dist = " + rdist);
+//        System.out.println("Velocity is: " + velocity + " | left dist = " + ldist + " | right dist = " + rdist);
     }
 
     public void resetEncoders() {

@@ -20,16 +20,22 @@ public class IntakeCube extends Command{
 	}
 	
 	protected void initialize() {
+	    System.out.println("Intiake cube initialized!");
 		turnOffTimestamp = Timer.ONE_MINUTE;
 		initTimestamp = System.currentTimeMillis();
 		wheeledClaw.open();
 	}
 	
 	protected void execute() {
-		wheeledClaw.intake();
+	    System.out.println("Input cube system time is: " + (System.currentTimeMillis() - initTimestamp) + "| Stop Time is: " + (System.currentTimeMillis() - turnOffTimestamp));
+	    if (System.currentTimeMillis() - turnOffTimestamp < 500) {
+	        System.out.println("intaking Cube");
+	        wheeledClaw.intake();
+	    }
 		if(oi.clawButton.get() && System.currentTimeMillis() - initTimestamp > 1000) {
+		    System.out.println("clawButton called in intakeCube!");
 			wheeledClaw.close();
-			initTimestamp = System.currentTimeMillis();
+			turnOffTimestamp = System.currentTimeMillis();
 		}
 	}
 	
