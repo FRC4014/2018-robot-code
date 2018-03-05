@@ -28,8 +28,8 @@ public class AscendClawByDistance extends Command {
     @Override
     protected void execute() {
 //        clawLift.ascend((distance > 0) ? speed : -speed);
-    	if (System.currentTimeMillis() - initTimestamp > 500) {
-    		speed = .1;
+    	if (System.currentTimeMillis() - initTimestamp > 1000) {
+    		speed = Preferences.getInstance().getDouble("HoldSteady", .15);
     	}
     	clawLift.ascend(speed);
     }
@@ -58,10 +58,10 @@ public class AscendClawByDistance extends Command {
         if (finished) {
             System.out.println("AscendClawByDistance: ascended " + distance);
         }*/
-    	if (System.currentTimeMillis() - initTimestamp > 500) {
+    	if (System.currentTimeMillis() - initTimestamp > 1000) {
     		speed = .1;
     	}
     	System.out.println("time is: " + ((System.currentTimeMillis() - initTimestamp)));
-        return (System.currentTimeMillis() - initTimestamp > 500);
+        return (System.currentTimeMillis() - initTimestamp > 1000);
     }
 }

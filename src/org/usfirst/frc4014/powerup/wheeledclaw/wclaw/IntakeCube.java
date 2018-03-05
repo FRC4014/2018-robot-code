@@ -32,7 +32,7 @@ public class IntakeCube extends Command{
 	        System.out.println("intaking Cube");
 	        wheeledClaw.intake();
 	    }
-		if(oi.clawButton.get() && System.currentTimeMillis() - initTimestamp > 1000) {
+		if(oi.clawButton.get() && System.currentTimeMillis() - initTimestamp > 200) {
 		    System.out.println("clawButton called in intakeCube!");
 			wheeledClaw.close();
 			turnOffTimestamp = System.currentTimeMillis();

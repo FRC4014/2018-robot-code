@@ -14,7 +14,7 @@ public class OutputCube extends Command{
 
 	protected void initialize() {
 	    System.out.println("Output cube initialized");
-	    wheeledClaw.open(); //ONLY FOR TESTING EXTERMINATE THIS LINE BEFORE COMPETITION
+//	    wheeledClaw.open(); //ONLY FOR TESTING EXTERMINATE THIS LINE BEFORE COMPETITION
 		initTimestamp = System.currentTimeMillis();
 	}
 	

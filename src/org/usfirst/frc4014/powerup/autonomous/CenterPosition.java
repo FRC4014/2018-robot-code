@@ -3,6 +3,7 @@ package org.usfirst.frc4014.powerup.autonomous;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.usfirst.frc4014.powerup.wheeledclaw.wclaw.OutputCube;
+import org.usfirst.frc4014.powerup.wheeledclaw.wclaw.SimpleIntake;
 import org.usfirst.frc4014.powerup.wheeledclaw.wclaw.WheeledClaw;
 
 import org.usfirst.frc4014.powerup.MultiPrefs;
@@ -30,6 +31,7 @@ public class CenterPosition extends CommandGroup {
 
         addSequential(new TrackTimeCommand(timeTracker, true));
         addParallel(new ReleaseFred(clawLift));
+        addSequential(new SimpleIntake(wheeledClaw));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), prefs.prefs[0]));
         addSequential(new Pivot(prefs.prefs[1]));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), prefs.prefs[2]));
@@ -37,8 +39,8 @@ public class CenterPosition extends CommandGroup {
         addParallel(new AscendClawByDistance(clawLift, 20));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), prefs.prefs[4]));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveSlowSpeed", 1), prefs.prefs[5]));
-//        addSequential(new OutputCube(wheeledClaw));
-        System.out.println("Pretending to output cube");
+        addSequential(new OutputCube(wheeledClaw));
+//        System.out.println("Pretending to output cube");
         addSequential(new TrackTimeCommand(timeTracker, false));
 
     }

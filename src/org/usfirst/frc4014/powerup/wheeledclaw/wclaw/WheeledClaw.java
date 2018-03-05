@@ -24,13 +24,13 @@ public class WheeledClaw extends Subsystem{
 	}
 	
 	protected void intake() {
-		RobotMap.clawMotorA.set(-clawSpeed);
-		RobotMap.clawMotorB.set(clawSpeed);
+		RobotMap.clawMotorA.set(clawSpeed);
+		RobotMap.clawMotorB.set(-clawSpeed);
 	}
 	
 	protected void output() {
-		RobotMap.clawMotorA.set(clawSpeed);
-		RobotMap.clawMotorB.set(-clawSpeed);
+		RobotMap.clawMotorA.set(-clawSpeed);
+		RobotMap.clawMotorB.set(clawSpeed);
 	}
 	
 	protected void hold() {
@@ -40,14 +40,12 @@ public class WheeledClaw extends Subsystem{
 	
 	//opens so the claw is ready to grab a power cube
 		protected void open() {
-			RobotMap.clawSolenoidA.set(DoubleSolenoid.Value.kForward);
-//			RobotMap.clawSolenoidB.set(DoubleSolenoid.Value.kReverse);
+			RobotMap.clawSolenoidA.set(DoubleSolenoid.Value.kReverse);
 		}
 		
 		//closes to grab the power cube
 		protected void close() {
-			RobotMap.clawSolenoidA.set(DoubleSolenoid.Value.kReverse);
-//			RobotMap.clawSolenoidB.set(DoubleSolenoid.Value.kForward);
+			RobotMap.clawSolenoidA.set(DoubleSolenoid.Value.kForward);
 		}
 
 }
