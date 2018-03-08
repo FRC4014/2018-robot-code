@@ -3,6 +3,7 @@ package org.usfirst.frc4014.powerup.wheeledclaw.wclaw;
 import javax.management.timer.Timer;
 
 import org.usfirst.frc4014.powerup.OI;
+import org.usfirst.frc4014.powerup.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -32,7 +33,7 @@ public class IntakeCube extends Command{
 	        System.out.println("intaking Cube");
 	        wheeledClaw.intake();
 	    }
-		if(oi.clawButton.get() && System.currentTimeMillis() - initTimestamp > 200) {
+		if((oi.clawButton.get() && System.currentTimeMillis() - initTimestamp > 200) || RobotMap.upperLimit.get()) {
 		    System.out.println("clawButton called in intakeCube!");
 			wheeledClaw.close();
 			turnOffTimestamp = System.currentTimeMillis();

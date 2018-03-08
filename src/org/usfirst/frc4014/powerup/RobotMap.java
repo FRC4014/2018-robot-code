@@ -143,7 +143,7 @@ public class RobotMap {
 //			clawAscentEncoder = new Encoder(DPIO.CLAW_ASCENT_ENCODER_A_CHANNEL, DPIO.CLAW_ASCENT_ENCODER_B_CHANNEL,
 //					false, Encoder.EncodingType.k4X);
 
-//			upperLimit = new DigitalInput(DPIO.CUBE_LIFT_TOP_LIMIT);
+			upperLimit = new DigitalInput(DPIO.CUBE_LIFT_TOP_LIMIT);
 //			lowerLimit = new DigitalInput(DPIO.CUBE_LIFT_BOTTOM_LIMIT);
 		} else {
 			System.out.println("RobotMap: Claw disabled");

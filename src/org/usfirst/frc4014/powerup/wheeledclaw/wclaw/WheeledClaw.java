@@ -24,13 +24,15 @@ public class WheeledClaw extends Subsystem{
 	}
 	
 	protected void intake() {
+	    System.out.println("attempting intake");
 		RobotMap.clawMotorA.set(clawSpeed);
 		RobotMap.clawMotorB.set(-clawSpeed);
 	}
 	
 	protected void output() {
-		RobotMap.clawMotorA.set(-clawSpeed);
-		RobotMap.clawMotorB.set(clawSpeed);
+	    System.out.println("attempting output");
+		RobotMap.clawMotorA.set(-clawSpeed*.75);
+		RobotMap.clawMotorB.set(clawSpeed*.75);
 	}
 	
 	protected void hold() {
