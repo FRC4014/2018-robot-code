@@ -15,10 +15,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class RobotMap {
 	private static final double WHEEL_DIAMETER = 6;
-	private static final double GEAR_RATIO = 4.4;
+	private static final double GEAR_RATIO = 3.0;//4.4;
 
 	// DriveTrainEncoderResolution: amt10s are 2048 and E4T for shift gearbox is 1440
-	private static final int ENCODER_RESOLUTION = Preferences.getInstance().getInt("DriveTrainEncoderResolution", /*330*/ 889);
+	private static final int ENCODER_RESOLUTION = Preferences.getInstance().getInt("DriveTrainEncoderResolution", 330 /*889*/);
 
 	private static final double PULSES_PER_ROTATION = ENCODER_RESOLUTION;
 	private static final double DISTANCE_PER_PULSE = (Math.PI * WHEEL_DIAMETER * 1 / PULSES_PER_ROTATION);
@@ -111,6 +111,7 @@ public class RobotMap {
 					Encoder.EncodingType.k4X);
 			leftEncoder.setDistancePerPulse(DISTANCE_PER_PULSE);
 			rightEncoder.setDistancePerPulse(DISTANCE_PER_PULSE);
+			System.out.println("--------- Encoder Resolution: " + ENCODER_RESOLUTION);
 			System.out.println("DriveMap: DISTANCE_PER_PULSE = " + DISTANCE_PER_PULSE);
 		} else {
 			System.out.println("RobotMap: DriveTrain disabled");

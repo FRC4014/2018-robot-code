@@ -1,18 +1,18 @@
- package org.usfirst.frc4014.powerup.autonomous;
+package org.usfirst.frc4014.powerup.autonomous;
+
+import org.usfirst.frc4014.powerup.clawlift.ClawLift;
 
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc4014.powerup.RobotMap;
-import org.usfirst.frc4014.powerup.clawlift.ClawLift;
 
-public class AscendClawByDistance extends Command {
+public class AscendClawToTop extends Command{
 
     private final ClawLift clawLift;
     private final double distance;
     private double speed;
     private long initTimestamp;
 
-    public AscendClawByDistance(ClawLift clawLift, double distanceInches) {
+    public AscendClawToTop(ClawLift clawLift, double distanceInches) {
         this.clawLift = clawLift;
         this.distance = distanceInches;
         requires(clawLift);
@@ -22,20 +22,16 @@ public class AscendClawByDistance extends Command {
     protected void initialize() {
         initTimestamp = System.currentTimeMillis();
         clawLift.resetEncoder();
-        speed = Preferences.getInstance().getDouble("AutoAscendClawSpeed", 1);
+        speed = Preferences.getInstance().getDouble("AutoAscendClawSpeed", 0.9);
     }
 
     @Override
     protected void execute() {
 //        clawLift.ascend((distance > 0) ? speed : -speed);
-    	if (System.currentTimeMillis() - initTimestamp > 1500) {
-    		speed = Preferences.getInstance().getDouble("HoldSteady", .25);
-    	}
-    	clawLift.ascend(speed);
-    }
-    
-    protected void end() {
-        clawLift.ascend(Preferences.getInstance().getDouble("HoldSteady", .25));
+        if (System.currentTimeMillis() - initTimestamp > 1800) {
+            speed = Preferences.getInstance().getDouble("HoldSteady", .25);
+        }
+        clawLift.ascend(speed);
     }
 
     @Override
@@ -62,10 +58,10 @@ public class AscendClawByDistance extends Command {
         if (finished) {
             System.out.println("AscendClawByDistance: ascended " + distance);
         }*/
-    	if (System.currentTimeMillis() - initTimestamp > 1500) {
-    		speed = .1;
-    	}
-    	System.out.println("time is: " + ((System.currentTimeMillis() - initTimestamp)));
-        return (System.currentTimeMillis() - initTimestamp > 1500);
+        if (System.currentTimeMillis() - initTimestamp > 1800) {
+            speed = .25;
+        }
+        System.out.println("time is: " + ((System.currentTimeMillis() - initTimestamp)));
+        return (System.currentTimeMillis() - initTimestamp > 1800);
     }
 }

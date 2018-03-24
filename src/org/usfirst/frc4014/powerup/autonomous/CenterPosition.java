@@ -18,7 +18,7 @@ public class CenterPosition extends CommandGroup {
         Double speed = Preferences.getInstance().getDouble("AutoDriveSpeed", 1.0);
 
         MultiPrefs prefs;
-        if (gameData.isAllyScaleOnLeft()) {
+        if (gameData.isAllySwitchOnLeft()) {
             System.out.println("Robot on center, going left");
             prefs = new MultiPrefs("AutoCenterLeft", "d:25,p:-67.5,d:141.16,p:67.4,d:33,d:15");
         } else {
@@ -30,13 +30,13 @@ public class CenterPosition extends CommandGroup {
                 new TrackTimeCommand.TimeTracker("CenterPosition");
 
         addSequential(new TrackTimeCommand(timeTracker, true));
-        addParallel(new ReleaseFred(clawLift));
+//        addParallel(new ReleaseFred(clawLift));
         addSequential(new SimpleIntake(wheeledClaw));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), prefs.prefs[0]));
         addSequential(new Pivot(prefs.prefs[1]));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), prefs.prefs[2]));
         addSequential(new Pivot(prefs.prefs[3]));
-        addParallel(new AscendClawByDistance(clawLift, 20));
+        addSequential(new AscendClawByDistance(clawLift, 20));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), prefs.prefs[4]));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveSlowSpeed", 1), prefs.prefs[5]));
         addSequential(new OutputCube(wheeledClaw));

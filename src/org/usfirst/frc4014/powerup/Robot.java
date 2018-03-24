@@ -64,12 +64,12 @@ public class Robot extends TimedRobot {
                 Preferences.getInstance().getDouble("driveSpeed", .5),
                 Preferences.getInstance().getDouble("DriveDistanceInches", 12)));
         chooser.addObject("Custom PID Pivot", new Pivot(Preferences.getInstance().getDouble("PivotSetPoint", 90)));
-        chooser.addObject("Center Position", new RobotPositionCommand(Center));
-        chooser.addObject("Left Position", new RobotPositionCommand(Left));
+        chooser.addDefault("Center Position", new RobotPositionCommand(Center));
+//        chooser.addObject("Left Position", new RobotPositionCommand(Left));
         chooser.addObject("Far-Left Position", new RobotPositionCommand(FarLeft));
-        chooser.addObject("Right Position", new RobotPositionCommand(Right));
+//        chooser.addObject("Right Position", new RobotPositionCommand(Right));
         chooser.addObject("Far-Right Position", new RobotPositionCommand(FarRight));
-        chooser.addDefault("TestPosition", new TestPosition(driveTrain, clawLift));
+        chooser.addObject("TestPosition", new TestPosition(driveTrain, clawLift, wheeledClaw));
 
 
         SmartDashboard.putData("Autonomous mode chooser", chooser);

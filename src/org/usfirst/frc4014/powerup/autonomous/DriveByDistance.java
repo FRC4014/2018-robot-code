@@ -114,8 +114,8 @@ public class DriveByDistance extends Command {
     }
 
     private boolean achievedDistance() {
-        double rightDistance = -RobotMap.rightEncoder.getDistance();
-        double leftDistance = -RobotMap.leftEncoder.getDistance();
+        double rightDistance = RobotMap.rightEncoder.getDistance();
+        double leftDistance = RobotMap.leftEncoder.getDistance();
         boolean finished = leftDistance >= distance - 1;
         System.out.println("DriveByDistance.isFinished(): ENCODER distance = " + leftDistance + " |speed = " + speed + " |is finished = " + finished);
         if (finished) {

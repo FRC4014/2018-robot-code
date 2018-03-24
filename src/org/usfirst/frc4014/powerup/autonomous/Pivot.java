@@ -66,10 +66,14 @@ public class Pivot extends Command {
 			double modRcw = Math.abs(rcw) / (Math.abs(setPoint) * .25);
 			rotation = Math.max(minSpeed, Math.min(modRcw, maxSpeed));
 			rotation = rcw < 0 ? -rotation : rotation;
-			RobotMap.driveTrainDifferentialDrive.arcadeDrive(0, rotation, false);
+			RobotMap.driveTrainDifferentialDrive.arcadeDrive(0, -rotation, false);
 		}
 		System.out.println("acceptable: " + acceptable + " | angle: " + angle + " | error: " + error + " | raw rcw: " + rcw
 				+ " | speed: " + rotation);
+	}
+	
+	protected void end() {
+	    RobotMap.driveTrainDifferentialDrive.arcadeDrive(0,0,false);
 	}
 
 	@Override
@@ -80,7 +84,7 @@ public class Pivot extends Command {
 				System.out.println("Milliseconds: " + (System.currentTimeMillis() - initTimestamp));
 			}
 			System.out.println("Post pivot angle " + postDone + ": " + ahrs.getAngle());
-			return (postDone > 2);
+			return (postDone > 3);
 		} else {
 			return false;
 		}

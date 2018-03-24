@@ -21,6 +21,7 @@ public class SimpleIntake extends Command{
     
     protected void end() {
         wheeledClaw.hold();
+        wheeledClaw.close();
     }
     
     @Override

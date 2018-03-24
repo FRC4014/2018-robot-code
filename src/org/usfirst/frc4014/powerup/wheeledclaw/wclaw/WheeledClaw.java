@@ -5,6 +5,7 @@ import org.usfirst.frc4014.powerup.RobotMap;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class WheeledClaw extends Subsystem{
 
@@ -25,15 +26,20 @@ public class WheeledClaw extends Subsystem{
 	
 	protected void intake() {
 	    System.out.println("attempting intake");
-		RobotMap.clawMotorA.set(clawSpeed);
+		RobotMap.clawMotorA.set(-clawSpeed);
 		RobotMap.clawMotorB.set(-clawSpeed);
 	}
 	
 	protected void output() {
 	    System.out.println("attempting output");
-		RobotMap.clawMotorA.set(-clawSpeed*.75);
+		RobotMap.clawMotorA.set(clawSpeed*.75);
 		RobotMap.clawMotorB.set(clawSpeed*.75);
 	}
+	protected void hOutput() {
+        System.out.println("attempting output");
+        RobotMap.clawMotorA.set(clawSpeed);
+        RobotMap.clawMotorB.set(clawSpeed);
+    }
 	
 	protected void hold() {
 	    RobotMap.clawMotorA.set(0);
@@ -43,11 +49,13 @@ public class WheeledClaw extends Subsystem{
 	//opens so the claw is ready to grab a power cube
 		protected void open() {
 			RobotMap.clawSolenoidA.set(DoubleSolenoid.Value.kReverse);
+			SmartDashboard.putBoolean("Pneumatics are closed", false);
 		}
 		
 		//closes to grab the power cube
 		protected void close() {
 			RobotMap.clawSolenoidA.set(DoubleSolenoid.Value.kForward);
+	         SmartDashboard.putBoolean("Pneumatics are closed", true);
 		}
 
 }
