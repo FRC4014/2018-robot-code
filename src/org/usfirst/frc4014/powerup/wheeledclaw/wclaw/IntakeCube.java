@@ -28,7 +28,7 @@ public class IntakeCube extends Command{
 	
 	protected void execute() {
 	    System.out.println("Input cube system time is: " + (System.currentTimeMillis() - initTimestamp) + "| Stop Time is: " + (System.currentTimeMillis() - turnOffTimestamp));
-	    if (System.currentTimeMillis() - turnOffTimestamp < 500) {
+	    if (System.currentTimeMillis() - turnOffTimestamp < 300) {
 	        System.out.println("intaking Cube");
 	        wheeledClaw.intake();
 	    }
@@ -46,7 +46,7 @@ public class IntakeCube extends Command{
 	
 	@Override
 	protected boolean isFinished() {
-		return (System.currentTimeMillis() - turnOffTimestamp >= 500);
+		return (System.currentTimeMillis() - turnOffTimestamp >= 300);
 	}
 
 }
