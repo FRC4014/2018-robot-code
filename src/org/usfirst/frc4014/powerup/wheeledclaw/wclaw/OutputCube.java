@@ -20,21 +20,24 @@ public class OutputCube extends Command{
 	
 	protected void execute() {
 	    System.out.println("Output Cube time is: " + (System.currentTimeMillis() - initTimestamp));
-	    if (System.currentTimeMillis() - initTimestamp < 1000) {
-		wheeledClaw.output();
-		System.out.println("Outputing Cube");
+	    if (System.currentTimeMillis() - initTimestamp < 600) {
+	    		wheeledClaw.output();
+	    		System.out.println("Outputing Cube");
+	    }
+	    if (System.currentTimeMillis() - initTimestamp > 300) {
+	    		wheeledClaw.open();
 	    }
 	}
 	
 	protected void end() {
 	    System.out.println("Output Cube is finished");
-		wheeledClaw.open();
+//		wheeledClaw.open();
 		wheeledClaw.hold();
 	}
 	
 	@Override
 	protected boolean isFinished() {
-		return (System.currentTimeMillis() - initTimestamp > 1000);
+		return (System.currentTimeMillis() - initTimestamp > 600);
 	}
 
 }
