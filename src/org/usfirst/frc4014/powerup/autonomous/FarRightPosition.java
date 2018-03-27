@@ -3,7 +3,6 @@ package org.usfirst.frc4014.powerup.autonomous;
 import org.usfirst.frc4014.powerup.GameData;
 import org.usfirst.frc4014.powerup.clawlift.ClawLift;
 import org.usfirst.frc4014.powerup.drivetrain.DriveTrain;
-import org.usfirst.frc4014.powerup.wheeledclaw.wclaw.HighSpeedOutput;
 import org.usfirst.frc4014.powerup.wheeledclaw.wclaw.OutputCube;
 import org.usfirst.frc4014.powerup.wheeledclaw.wclaw.SimpleIntake;
 import org.usfirst.frc4014.powerup.wheeledclaw.wclaw.WheeledClaw;
