@@ -17,9 +17,10 @@ public class SoftOutput extends Command{
 	}
 	
 	protected void execute() {
-		if (System.currentTimeMillis() - initTimestamp < 300) {
+//		if (System.currentTimeMillis() - initTimestamp < 300) {
+	        System.out.println("slowly outputting cube");
 			wheeledClaw.slowOutput();
-		}
+//		}
 	}
 	
 	protected void end() {
@@ -28,7 +29,7 @@ public class SoftOutput extends Command{
 	
 	@Override
 	protected boolean isFinished() {
-		return (System.currentTimeMillis() - initTimestamp < 300);
+		return (System.currentTimeMillis() - initTimestamp >= 300);
 	}
 
 }

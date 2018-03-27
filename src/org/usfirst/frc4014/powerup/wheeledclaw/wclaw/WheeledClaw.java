@@ -38,7 +38,7 @@ public class WheeledClaw extends Subsystem{
 	}
 	
 	protected void slowOutput() {
-		RobotMap.clawMotorA.set(-clawSpeed * .5);
+		RobotMap.clawMotorA.set(clawSpeed * .5);
 		RobotMap.clawMotorB.set(clawSpeed * .5);
 	}
 	

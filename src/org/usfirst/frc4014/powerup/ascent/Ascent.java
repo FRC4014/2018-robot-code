@@ -22,11 +22,11 @@ public class Ascent extends Subsystem {
 	}
 
 	protected void raise() {
-		RobotMap.robotAscentMotor.set(1);
+//		RobotMap.robotAscentMotor.set(1);
 	}
 	
 	protected void lower() {
-		RobotMap.robotAscentMotor.set(-1);
+//		RobotMap.robotAscentMotor.set(-1);
 	}
 
 }
