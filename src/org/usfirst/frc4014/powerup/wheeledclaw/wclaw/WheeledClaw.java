@@ -16,6 +16,7 @@ public class WheeledClaw extends Subsystem{
 		this.oi = oi;
 		oi.clawButton.whenPressed(new IntakeCube(this, oi));
 		oi.wheelClawReleaseButton.whenPressed(new OutputCube(this));
+		oi.wheelClawSoftReleaseButton.whenPressed(new SoftOutput(this));
 //		oi.clawButton.whenPressed(new ClampClaw(this));
 	}
 	
@@ -32,13 +33,13 @@ public class WheeledClaw extends Subsystem{
 	
 	protected void output() {
 	    System.out.println("attempting output");
-		RobotMap.clawMotorA.set(clawSpeed*.75);
-		RobotMap.clawMotorB.set(clawSpeed*.75);
+		RobotMap.clawMotorA.set(clawSpeed);
+		RobotMap.clawMotorB.set(clawSpeed);
 	}
-	protected void hOutput() {
+	protected void slowOutput() {
         System.out.println("attempting output");
-        RobotMap.clawMotorA.set(clawSpeed);
-        RobotMap.clawMotorB.set(clawSpeed);
+        RobotMap.clawMotorA.set(clawSpeed * .5);
+        RobotMap.clawMotorB.set(clawSpeed * .5);
     }
 	
 	protected void hold() {

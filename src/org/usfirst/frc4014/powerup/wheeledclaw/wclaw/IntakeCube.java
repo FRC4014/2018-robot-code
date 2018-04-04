@@ -29,11 +29,11 @@ public class IntakeCube extends Command{
 	
 	protected void execute() {
 	    System.out.println("Input cube system time is: " + (System.currentTimeMillis() - initTimestamp) + "| Stop Time is: " + (System.currentTimeMillis() - turnOffTimestamp));
-	    if (System.currentTimeMillis() - turnOffTimestamp < 500) {
+	    if (System.currentTimeMillis() - turnOffTimestamp < 300) {
 	        System.out.println("intaking Cube");
 	        wheeledClaw.intake();
 	    }
-		if((oi.clawButton.get() && System.currentTimeMillis() - initTimestamp > 200) || RobotMap.upperLimit.get()) {
+		if((oi.clawButton.get() && System.currentTimeMillis() - initTimestamp > 200)) {
 		    System.out.println("clawButton called in intakeCube!");
 			wheeledClaw.close();
 			turnOffTimestamp = System.currentTimeMillis();
@@ -47,7 +47,7 @@ public class IntakeCube extends Command{
 	
 	@Override
 	protected boolean isFinished() {
-		return (System.currentTimeMillis() - turnOffTimestamp >= 500);
+		return (System.currentTimeMillis() - turnOffTimestamp >= 300);
 	}
 
 }
