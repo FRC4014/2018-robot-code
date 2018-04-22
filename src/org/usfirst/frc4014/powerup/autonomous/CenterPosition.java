@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.usfirst.frc4014.powerup.wheeledclaw.wclaw.OutputCube;
 import org.usfirst.frc4014.powerup.wheeledclaw.wclaw.SimpleIntake;
+import org.usfirst.frc4014.powerup.wheeledclaw.wclaw.SoftOutput;
 import org.usfirst.frc4014.powerup.wheeledclaw.wclaw.WheeledClaw;
 
 import org.usfirst.frc4014.powerup.MultiPrefs;
@@ -36,10 +37,12 @@ public class CenterPosition extends CommandGroup {
         addSequential(new Pivot(prefs.prefs[1]));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), prefs.prefs[2]));
         addSequential(new Pivot(prefs.prefs[3]));
+        addSequential(new SimpleIntake(wheeledClaw));
         addSequential(new AscendClawByDistance(clawLift, 20));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveFastSpeed", 1), prefs.prefs[4]));
         addSequential(new DriveByDistance(driveTrain, Preferences.getInstance().getDouble("driveSlowSpeed", 1), prefs.prefs[5]));
-        addSequential(new OutputCube(wheeledClaw));
+//        addSequential(new OutputCube(wheeledClaw));
+        addSequential(new SoftOutput(wheeledClaw));
 //        System.out.println("Pretending to output cube");
         addSequential(new TrackTimeCommand(timeTracker, false));
 

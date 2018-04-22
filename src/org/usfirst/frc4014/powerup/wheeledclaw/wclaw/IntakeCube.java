@@ -47,7 +47,7 @@ public class IntakeCube extends Command{
 	
 	@Override
 	protected boolean isFinished() {
-		return (System.currentTimeMillis() - turnOffTimestamp >= 300);
+		return (System.currentTimeMillis() - turnOffTimestamp >= 1000);
 	}
 
 }

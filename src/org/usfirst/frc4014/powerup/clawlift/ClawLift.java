@@ -3,6 +3,7 @@ package org.usfirst.frc4014.powerup.clawlift;
 import org.usfirst.frc4014.powerup.OI;
 import org.usfirst.frc4014.powerup.RobotMap;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -28,19 +29,33 @@ public class ClawLift extends Subsystem {
 
 	public void ascend (Joystick joystick) {
 		double speed = -joystick.getY() + holdSteady;
-		speed = Math.max(0, speed);
-		if (speed > holdSteady /*&& !RobotMap.upperLimit.get()*/) {
+//		System.out.println("claw hight is" + RobotMap.clawAscentEncoder.get());
+//		speed = Math.max(0, speed);
+		if (speed > holdSteady + .1 /*&& !RobotMap.upperLimit.get()*/) {
+		    RobotMap.clawAscentSolenoid.set(DoubleSolenoid.Value.kForward);
 //			System.out.println("going down!");
 			RobotMap.clawAscentMotorA.set(speed);
-		} else if (speed < holdSteady /*&& !RobotMap.lowerLimit.get()*/){
+		} else if (speed < holdSteady -.1 /*&& !RobotMap.lowerLimit.get()*/){
+		    RobotMap.clawAscentSolenoid.set(DoubleSolenoid.Value.kForward);
 //			System.out.println("going up!");
 			RobotMap.clawAscentMotorA.set(speed);
+		} else {
+		    RobotMap.clawAscentSolenoid.set(DoubleSolenoid.Value.kReverse);
+		    RobotMap.clawAscentMotorA.set(0);
 		}
+		
 
 	}
 
 	public void ascend(double speed) {
-		RobotMap.clawAscentMotorA.set(speed);
+	    RobotMap.clawAscentSolenoid.set(DoubleSolenoid.Value.kForward);
+//      System.out.println("going up!");
+        RobotMap.clawAscentMotorA.set(speed);
+	}
+	
+	public void lock() {
+	    RobotMap.clawAscentSolenoid.set(DoubleSolenoid.Value.kReverse);
+        RobotMap.clawAscentMotorA.set(0);
 	}
 	
 	public void releaseFred() {

@@ -29,7 +29,7 @@ public class SoftOutput extends Command{
 	
 	@Override
 	protected boolean isFinished() {
-		return (System.currentTimeMillis() - initTimestamp >= 300);
+		return (System.currentTimeMillis() - initTimestamp >= 600);
 	}
 
 }

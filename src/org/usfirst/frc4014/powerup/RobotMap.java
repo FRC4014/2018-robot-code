@@ -48,7 +48,8 @@ public class RobotMap {
 
 	public static WPI_TalonSRX clawAscentMotorA;
 	public static WPI_TalonSRX clawAscentMotorB;
-	public static Encoder clawAscentEncoder;
+//	public static Encoder clawAscentEncoder;
+	public static DoubleSolenoid clawAscentSolenoid;
 //	public static DoubleSolenoid fredReleaseSolenoid;
 	public static Servo fredReleaseServo;
 	public static DigitalInput upperLimit;
@@ -76,7 +77,7 @@ public class RobotMap {
     }
 
     private static void initDriveTrain() {
-		if (Preferences.getInstance().getBoolean("initDT", false)) {
+		if (Preferences.getInstance().getBoolean("initDT", true)) {
 			System.out.println("RobotMap: initializing DriveTrain");
 			// The numbers of these WPI_TalonSRXs have to match the CAN configuration.
 			// Other things will be on the CAN bus too.
@@ -139,6 +140,7 @@ public class RobotMap {
 			clawSolenoidA = new DoubleSolenoid(2, 5);
 //
 			clawAscentMotorA = new WPI_TalonSRX(CAN.CLAW_ASCENT_MOTOR_A);
+			clawAscentSolenoid = new DoubleSolenoid(3,4);
 			fredReleaseServo = new Servo(0);
 //
 //			clawAscentEncoder = new Encoder(DPIO.CLAW_ASCENT_ENCODER_A_CHANNEL, DPIO.CLAW_ASCENT_ENCODER_B_CHANNEL,
