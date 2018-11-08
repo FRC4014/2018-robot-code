@@ -3,6 +3,7 @@ package org.usfirst.frc4014.powerup;
 import org.usfirst.frc4014.powerup.autonomous.*;
 import org.usfirst.frc4014.powerup.clawlift.ClawLift;
 import org.usfirst.frc4014.powerup.drivetrain.DriveTrain;
+import org.usfirst.frc4014.powerup.vision.PixyCam;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
@@ -35,6 +36,7 @@ public class Robot extends TimedRobot {
     public static DriveTrain driveTrain;
     public static ClawLift clawLift;
     public static WheeledClaw wheeledClaw;
+    public static PixyCam pixycam;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -52,6 +54,7 @@ public class Robot extends TimedRobot {
         driveTrain = new DriveTrain(oi);
         clawLift = new ClawLift(oi);
         wheeledClaw = new WheeledClaw(oi);
+        pixycam = new PixyCam();
 
         if (Preferences.getInstance().getBoolean("HasCamera", false)) {
             UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
